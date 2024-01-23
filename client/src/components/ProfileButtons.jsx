@@ -3,6 +3,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { UserContext } from "../contexts/UserContext";
+import { logout } from "../actions/auth";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -11,6 +12,13 @@ function classNames(...classes) {
 export default function ProfileButtons() {
   const { t } = useTranslation();
   const {user} = useContext(UserContext)
+
+  const LogOut = () => {
+    logout();
+    const { setUser } = useContext(UserContext)
+    setUser('');    
+  }
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="uppercase inline-flex items-center w-[120px] 2xl:w-[170px] justify-between gap-x-2 bg-[#070811] text-white px-2 2xl:px-5 h-[40px] 2xl:h-[50px] text-[14px] 2xl:text-[20px] font-bold shadow-sm hover:bg-[#202340] transition duration-300 hover:text-[#FFA801]">
@@ -73,7 +81,7 @@ export default function ProfileButtons() {
           <Menu.Item>
             {({ active }) => (
               <Link
-                href="#"
+                to={"/profile"}
                 className={classNames(
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-4 py-1 2xl:py-2 text-xs 2xl:text-sm text-white flex items-center gap-2 uppercase"
@@ -86,7 +94,8 @@ export default function ProfileButtons() {
           <Menu.Item>
             {({ active }) => (
               <Link
-                href="#"
+                to={"/"}
+                onClick={() => LogOut()}
                 className={classNames(
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-4 py-1 2xl:py-2 text-xs 2xl:text-sm text-white flex items-center gap-2 uppercase"

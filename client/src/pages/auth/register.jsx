@@ -8,7 +8,7 @@ import FacebookHoverIcon from "../../assets/img/socials/facebook_.png";
 import InputCheckBox from "../../components/InputCheckBox";
 import Button from "../../components/Buttons/Button";
 import { useTranslation } from 'react-i18next';
-import { validate } from '../../actions/auth';
+import { register } from '../../actions/auth';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
@@ -63,8 +63,16 @@ export default function Register() {
     }
     setCheckboxError('');
 
-    validate({ name, email, password }).then(data => {if(data.status === 200) navigate("/verify")}).catch(err => console.error(err));
-    setEmialError(t('emailvaliderror'));
+    register({ name, email, password }).then(data => {
+      if(data) {
+        navigate("/please-verify")
+      } 
+      else 
+      {
+        setEmialError(t('emailvaliderror'))
+      } 
+    }).catch(err => console.error(err));
+    
   };
 
   return (
@@ -94,7 +102,7 @@ export default function Register() {
                       onChange={(e) => onChange(e)}
                       required
                     />
-                    {nameerror && <div className="text-red-500">{t('nameerror')}</div>}
+                    {nameerror && <div className="text-red-500">{nameerror}</div>}
                     <InputText
                       name={"email"}
                       value={email}
@@ -103,7 +111,7 @@ export default function Register() {
                       onChange={(e) => onChange(e)}
                       required
                     />
-                    {emailerror && <div className="text-red-500">{t('emailerror')}</div>}
+                    {emailerror && <div className="text-red-500">{emailerror}</div>}
                     <InputText
                       name={"password"}
                       value={password}
@@ -113,7 +121,7 @@ export default function Register() {
                       onChange={(e) => onChange(e)}
                       required
                     />
-                    {passworderror && <div className="text-red-500">{t('passworderror')}</div>}
+                    {passworderror && <div className="text-red-500">{passworderror}</div>}
                     <div className="text-black text-[12px] 2xl:text-[14px] leading-[17px] 2xl:leading-[20px] ">
                       *{t('requiredform')}
                     </div>
@@ -134,7 +142,7 @@ export default function Register() {
                         </span>
                       </div>                      
                     </div>
-                    {checkboxError && <div className="text-red-500">{t('termserror')}</div>}
+                    {checkboxError && <div className="text-red-500">{checkboxError}</div>}
                     <div className=" justify-start items-center gap-2.5 inline-flex text-left">
                       <InputCheckBox setIsChecked={setIsSubscribeChecked} isChecked={isSubscribeChecked}/>
                       <div className="w-[176px] 2xl:w-[407px]">
@@ -191,7 +199,6 @@ export default function Register() {
           </div>
         </div>
       </div>
-    </div>
-    
+    </div>    
   );
 }

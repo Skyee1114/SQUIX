@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../../actions/auth';
 import Button from "../../components/Buttons/Button";
 import InputText from "../../components/InputText";
@@ -8,11 +8,13 @@ import FacebookIcon from "../../assets/img/socials/facebook.png";
 import GoogleIcon from "../../assets/img/socials/google_2.png";
 import GoogleHoverIcon from "../../assets/img/socials/google2_.png";
 import FacebookHoverIcon from "../../assets/img/socials/facebook_.png";
+import { UserContext } from "../../contexts/UserContext";
 import { useTranslation } from 'react-i18next';
 
 export default function Login() {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext)
   const [emailerror, setEmialError] = useState('');  
   const [passworderror, setPasswordError] = useState('');
 
@@ -28,7 +30,6 @@ export default function Login() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password)
     // Email validation using regular expression
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
@@ -46,9 +47,9 @@ export default function Login() {
     }
   
     // Clear error message if email and password are valid
-    setPasswordError('');    
+    setPasswordError('');       
 
-    login(email, password);
+    login({email, password}).then(data => {if(data) {setUser(data); navigate("/")}}).catch(err => console.error(err));
   };
 
   return (

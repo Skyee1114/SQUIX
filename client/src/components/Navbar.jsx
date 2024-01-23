@@ -9,18 +9,9 @@ import LogoNavSvgSmall from "../assets/img/logo_nav_small.svg"
 import { useTranslation } from 'react-i18next';
 import { useEffect, useContext } from "react";
 import { loadUser } from "../actions/auth";
-import {UserContext} from "../contexts/UserContext"
+// import {UserContext} from "../contexts/UserContext"
 
 function Navbar({colorMode}) {
-
-    const {setUser} = useContext(UserContext)
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-        
-        if(token) {
-        loadUser().then(data => setUser(data)).catch(err=> console.error(err))
-        }
-    },[])
 
     const { t } = useTranslation();
     const [mobileMenu, setMobileMenu] = useState(false);

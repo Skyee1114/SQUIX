@@ -53,6 +53,12 @@ router.post(
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
+      if (!user.isverified) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Not verified yet' }] });
+      }
+
       const payload = {
         user: {
           id: user.id,

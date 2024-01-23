@@ -5,57 +5,33 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-// const normalize = require('normalize-url');
-
+const user = require('../../middleware/user');
 const User = require('../../models/User');
 
 // @route    POST api/users
-// @desc     Register user
+// @desc     Verify user email
 // @access   Public
 router.post(
-  '/',
-  // check('name', 'Name is required').notEmpty(),
-  check('name', 'Name is required').not().isEmpty(),
-  check('email', 'Please include a valid email').isEmail(),
-  check(
-    'password',
-    'Please enter a password with 6 or more characters'
-  ).isLength({ min: 6 }),
+  '/', 
+  user,
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    //Retrieve the info from post request
-    const { name, email, password } = req.body;
-    
+   
     try {
-      //Check in the DB whether user already exists or not
-      let user = await User.findOne({ email });
+      
+      const user = await User.findOne({ email: req.email });
 
-      if (user) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'User already exists' }] });
+      if (!user) {
+        return res.status(404).json({ msg: 'User not found' });
       }
 
-      // Prepare user template to be stored in DB
-      user = new User({
-        name,
-        email,      
-        password,
-      });
-
-      // Encrypt the password
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
-
-      // Save the user registration details to DB
-      await user.save();
-
-      //   res.send('User Registered');
-
+      // Update user's verification status in the database
+      if (user.isverified === true) {
+        return res.status(400).json({ msg: 'Email verification link expired'});
+      }
+      else {
+        await User.findOneAndUpdate({ email: req.email }, { $set: { isverified: true } });
+      }      
+      
       const payload = {
         user: {
           id: user.id,
@@ -71,6 +47,7 @@ router.post(
           res.json({ token });
         }
       );
+
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

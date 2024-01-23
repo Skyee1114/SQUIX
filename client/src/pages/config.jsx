@@ -9,10 +9,8 @@ import Profile from "./profile";
 import Login from "./auth/login";
 import Auth from "./auth";
 import Register from "./auth/register";
-import Verify from "./verifyAccount/verify";
-import VerifyLayout from "./verifyAccount";
-import VerifyThanks from "./verifyAccount/thanks";
-import VerifyErr from "./verifyAccount/err";
+import PleaseVerify from "./pleaseverify";
+import Verify from "./verify";
 import Err404 from "./404";
 
 export const router = createBrowserRouter([
@@ -55,22 +53,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/verify",
-    element: <VerifyLayout />,
-    children: [
-      {
-        path: "",
-        element: <Verify />,
-      },
-      {
-        path: "thanks",
-        element: <VerifyThanks />,
-      },
-      {
-        path: "error",
-        element: <VerifyErr />,
-      },
-    ],
+    path: "/please-verify",    
+    element: <PleaseVerify />,      
+  },
+  {
+    path: "/verify/:emailtoken",    
+    element: <Verify />,      
   },
   {
     path: "/*",

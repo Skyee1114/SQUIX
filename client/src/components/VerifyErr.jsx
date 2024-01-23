@@ -1,5 +1,6 @@
 import React from "react";
-import Button from "../../components/Buttons/Button";
+import Button from "./Buttons/Button";
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function VerifyErr() {
@@ -54,10 +55,15 @@ export default function VerifyErr() {
                 <div className="2xl:w-[548px]  text-black text-[14px] 2xl:text-[23px] leading-[16px] 2xl:leading-[26px] text-left font-normal font-['Jost'] ">
                   {t('verifyerrorintro')}
                 </div>
-                <Button
-                  text={t('tryverifyagain')}
-                  className={"w-full text-center flex items-center justify-center"}
-                />
+                <Link 
+                  to={"/please-verify"}
+                  className="w-full"
+                  >
+                  <Button
+                    text={t('tryverifyagain')}
+                    className={"w-full text-center flex items-center justify-center"}
+                  />
+                </Link>                
               </div>
             </div>
           </div>

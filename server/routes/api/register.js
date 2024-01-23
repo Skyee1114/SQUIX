@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-// const normalize = require('normalize-url');
 
 const User = require('../../models/User');
 
@@ -33,16 +32,45 @@ router.post(
     try {
       //Check in the DB whether user already exists or not
       let user = await User.findOne({ email });
-
-      if (user) {
-        return res
+      if (user) { 
+        if(user.isverified === true) {
+          return res
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
+        }      
+        else {
+          const isMatch = await bcrypt.compare(password, user.password);
+          if(!isMatch){
+            return res
+            .status(400)
+            .json({ errors: [{ msg: 'Invalid Credentials' }] });            
+          }
+          else {
+            return res
+            .status(200)
+            .json({ success: [{ msg: 'User registered' }] });
+          }
+        }
       }
       else {
+        // Prepare user template to be stored in DB
+        user = new User({
+          name,
+          email,      
+          password,
+          isverified: false
+        });
+
+        // Encrypt the password
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+
+        // Save the user registration details to DB
+        await user.save();
+
         return res
           .status(200)
-          .json({ success: [{ msg: 'User validated' }] });
+          .json({ success: [{ msg: 'User registered' }] });
       }
       
     } catch (err) {

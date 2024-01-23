@@ -1,9 +1,11 @@
 import React from "react";
-import Button from "../../components/Buttons/Button";
+import Button from "./Buttons/Button";
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function VerifyThanks() {
   const { t } = useTranslation();
+
   return (
     <div>
       <div className="absolute -z-10 w-full h-[800px] 2xl:h-[1250px] bg-[url('./assets/img/verify-bg-320.jpg')] sm:bg-[url('./assets/img/verify-bg-834.jpg')] xl:bg-[url('./assets/img/verify-bg-1920.jpg')] bg-no-repeat 5xl:bg-cover bg-top">
@@ -47,10 +49,15 @@ export default function VerifyThanks() {
                 <div className="2xl:w-[548px] 2xl:h-[74.22px] text-black text-[14px] 2xl:text-[23px] leading-[16px] 2xl:leading-[26px] text-left font-normal font-['Jost'] ">
                   {t('verifythanksintro')}
                 </div>
-                <Button
-                  text={t('gotomyaccount')}
-                  className={"w-full text-center flex items-center justify-center"}
-                />
+                <Link
+                  to={"/profile"}
+                  className="w-full"
+                >
+                  <Button
+                    text={t('gotomyaccount')}
+                    className={"w-full text-center flex items-center justify-center"}
+                  />
+                </Link>                
               </div>
             </div>
           </div>

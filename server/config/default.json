@@ -2,5 +2,6 @@
     "mongoURI": "mongodb+srv://georgejohnson11305:r3uWwEGJg3aSjxJN@cluster0.mdvqrjw.mongodb.net/SQUIX",
     "jwtSecret": "anything",
     "gmailUser": "skyee1114@gmail.com",
-    "gmailPwd": "gdlffsmchexdsjnb"
+    "gmailPwd": "gdlffsmchexdsjnb",
+    "domain": "http://156.227.0.154:3000"
   }
