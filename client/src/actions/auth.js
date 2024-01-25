@@ -102,6 +102,6 @@ export const login = async ({email, password}) => {
 
   //Logout 
 export const logout = () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
 };
   

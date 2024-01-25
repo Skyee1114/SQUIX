@@ -20,7 +20,7 @@ export default function Verify() {
 
   useEffect(() => {
     
-    verifyuser(emailtoken).then(data => { if(data){ setUser(data); setLoading(true);}}).catch(err => {console.error(err); setUser(null); setLoading(true);})
+    verifyuser(emailtoken).then(data => { if(data){ setLoading(true); setUser(data);}}).catch(err => {console.error(err); setLoading(true); setUser(null);})
     
   }, [emailtoken,setUser])
 
