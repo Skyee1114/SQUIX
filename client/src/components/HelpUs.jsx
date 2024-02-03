@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import Arrow from "./Arrow";
 import Button from "./Buttons/Button";
 import { useTranslation } from 'react-i18next';
+import {donatetotalamount} from '../actions/payment'
 
 export default function HelpUs() {
   const { t, i18n } = useTranslation();
   const images = ['sproud', 'original', 'pioneer', 'pioneer', 'pioneer', 'pioneer', 'pioneer'];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const [totalamount, setTotalAmount] = useState(0);
 
   const handleLeftArrowClick = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
@@ -16,6 +19,26 @@ export default function HelpUs() {
   const handleRightArrowClick = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
+
+  const fetchTotalAmount = () => {
+    donatetotalamount().then(data => {
+      if (data) setTotalAmount(data.totalAmount);
+    });
+  };
+
+  useEffect(() => {
+    // Initial fetch
+    fetchTotalAmount();
+
+    // Update total amount every 60 seconds
+    const interval = setInterval(fetchTotalAmount, 6000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
+  // Calculate percentage of total amount achieved
+  const percentage = (totalamount / 600000) * 100;
 
   return (
     <div className="-mt-[1px]  z-10   relative bg-gradient-to-l to-[#FF9D42] from-[#AB2929]  ">
@@ -330,8 +353,30 @@ export default function HelpUs() {
                   {t('ourgoal600000eur')}
                 </div>
               </div>
-              <img src="img/donation_progress_bar.svg" alt="" className="hidden sm:block" />
-              <img src="img/donation_progress_bar1.svg" alt="" className="block sm:hidden"/>
+              <div className="relative">
+                <div 
+                  className="w-full h-1 md:h-2 xl:h-3 2xl:h-4 absolute top-4 md:top-6 xl:top-8 bg-gradient-to-r from-orange-500 to-white absolute ml-2 sm:ml-4 md:ml-6 xl:ml-8 2xl:ml-10"
+                  style={{ width: `${percentage}%` }}
+                />
+                <img 
+                  src="img/donation_progress_bar-2560.svg" 
+                  alt="" 
+                  className="h-16 w-auto max-w-full hidden 3xl:block" 
+                />
+                <img 
+                  src="img/donation_progress_bar-1512.svg" 
+                  alt="" 
+                  className="h-16 w-auto max-w-full hidden xl:block 3xl:hidden" 
+                />
+                <img 
+                  src="img/donation_progress_bar-1512.svg" 
+                  alt="" 
+                  className="h-8 md:h-12 w-auto max-w-full sm:block xl:hidden" 
+                />
+              </div>
+
+              
+              
             </div>
           </div>
         </div>

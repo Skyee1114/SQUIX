@@ -7,9 +7,6 @@ import LogoSvg from "../assets/img/logo.svg";
 import LogoNavSvgSmall from "../assets/img/logo_nav_small.svg"
 import MenuNavSvg from "../assets/img/menu_nav.svg"
 import { useTranslation } from 'react-i18next';
-import { useEffect, useContext } from "react";
-import { loadUser } from "../actions/auth";
-// import {UserContext} from "../contexts/UserContext"
 
 
 export default function Header() {

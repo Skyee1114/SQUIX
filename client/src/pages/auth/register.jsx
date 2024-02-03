@@ -15,7 +15,7 @@ export default function Register() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [nameerror, setNameError] = useState('');
-  const [emailerror, setEmialError] = useState('');  
+  const [emailerror, setEmailError] = useState('');  
   const [passworderror, setPasswordError] = useState('');
   const [checkboxError, setCheckboxError] = useState('');
   const [isTermsChecked, setIsTermsChecked] = useState(false);
@@ -44,10 +44,10 @@ export default function Register() {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
       // Set error message for invalid email
-      setEmialError(t('emailerror'));
+      setEmailError(t('emailerror'));
       return;
     }
-    setEmialError('');
+    setEmailError('');
 
     if (password.length < 6) {
       // Set error message for short password
@@ -69,7 +69,7 @@ export default function Register() {
       } 
       else 
       {
-        setEmialError(t('emailvaliderror'))
+        setEmailError(t('emailvaliderror'))
       } 
     }).catch(err => console.error(err));
     

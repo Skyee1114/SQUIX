@@ -77,7 +77,7 @@ router.post(
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 70px; padding-right: 70px;">
-                                        <p style="font-weight: bold; font-family: Tahoma; font-size: 32px; line-height: 38px; color: black;">Hello, Olena!</p>
+                                        <p style="font-weight: bold; font-family: Tahoma; font-size: 32px; line-height: 38px; color: black;">Hello, ${user.name}!</p>
                                         <p style="font-family: Tahoma; font-size: 20px; line-height: 24px; color: black;">Congratulations and welcome to the SQUIX gaming community!</p>
                                         <p style="font-family: Tahoma; font-size: 16px; line-height: 19px; color: black;">We are thrilled to have you as part of our ever-growing family of passionate gamers. Your registration process has been successfully completed, and we're excited to embark on this gaming adventure together.</p>
                                         <a href="${process.env.domain}/verify/${verificationToken}" style="cursor: pointer;">

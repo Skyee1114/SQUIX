@@ -1,5 +1,6 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import Modal from "react-modal";
 import { Link } from 'react-router-dom'
 import Navbar from "../../components/Navbar";
@@ -7,10 +8,16 @@ import Arrow from "../../components/Arrow";
 import Button from "../../components/Buttons/Button";
 import Footer from "../../components/Footer";
 import { useTranslation } from 'react-i18next';
-
+import { UserContext } from "../../contexts/UserContext";
+import { AnimationUtils } from 'three';
 
 const Donate = () => {
   const { t, i18n } = useTranslation();
+
+  const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+  
   const [option, setOption] = useState('');
   
   useEffect(() => {
@@ -21,21 +28,26 @@ const Donate = () => {
     setOption(index);    
   };
 
-  // const [donateoption, setDonateOption] = useState('sproud');
-  
-  // const optionItemClick = (index) => {
-  //   setDonateOption(index);    
-  // };
-
   const donateOptionPrice = {
-    [`${t('sproud')}`]: '25€',
-    [`${t('original')}`]: '50€',
-    [`${t('pioneer')}`]: '80€',
-    [`${t('founder')}`]: '150€',
-    [`${t('oldman')}`]: '250€',
-    [`${t('royal')}`]: '500€',
-    [`${t('ultimate')}`]: '1000€'
+    [`${t('sproud')}`]: '25',
+    [`${t('original')}`]: '50',
+    [`${t('pioneer')}`]: '80',
+    [`${t('founder')}`]: '150',
+    [`${t('oldman')}`]: '250',
+    [`${t('royal')}`]: '500',
+    [`${t('ultimate')}`]: '1000'
   };
+
+  const makePayment = () => {
+    if(user){
+      navigate("/stripe", {state: {amount: donateOptionPrice[option]}})
+    }
+    else {
+      navigate("/auth/login");
+    }
+  }
+
+  
   
   const customStyles = {
     content: {
@@ -77,6 +89,7 @@ const Donate = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
+
     setIsOpen(true);
   }
 
@@ -1250,9 +1263,10 @@ const Donate = () => {
                   </div>
                 </div>
                 <div className='font-bold text-[54px]'>
-                  <p>{donateOptionPrice[option]}</p>
+                  <p>{donateOptionPrice[option]}€</p>
                 </div>                
                 <Button
+                    onClick={() => makePayment()}
                     text={t('donate')}
                     className={
                       "w-full text-center flex items-center justify-center"

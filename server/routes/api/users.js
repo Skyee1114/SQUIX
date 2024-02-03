@@ -7,6 +7,7 @@ require('dotenv').config();
 const { check, validationResult } = require('express-validator');
 const user = require('../../middleware/user');
 const User = require('../../models/User');
+const Profile = require('../../models/Profile');
 
 // @route    POST api/users
 // @desc     Verify user email
@@ -29,7 +30,7 @@ router.post(
         return res.status(400).json({ msg: 'Email verification link expired'});
       }
       else {
-        await User.findOneAndUpdate({ email: req.email }, { $set: { isverified: true } });
+        await User.findOneAndUpdate({ email: req.email }, { $set: { isverified: true } });               
       }      
       
       const payload = {

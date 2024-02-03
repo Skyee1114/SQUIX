@@ -16,8 +16,15 @@ const UserSchema = new mongoose.Schema({
     },
     isverified: {
         type: Boolean,
-        required: true,
+        required: true,        
+    },
+    googleId: {
+        type: String
     },    
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

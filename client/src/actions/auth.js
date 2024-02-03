@@ -32,7 +32,6 @@ export const register = async ({ name, email, password }) => {
             localStorage.setItem('password', password);                
         }
 
-        console.log(res);
         return res;
         
     } catch (err) {
@@ -65,17 +64,19 @@ export const verifyuser = async (emailtoken ) => {
     }
     try {        
         const res = await axios.post('http://156.227.0.154:5000/api/users'); 
-        console.log(res.status);
-        const token = res.data.token;
 
-        // Store the token in local storage
-        localStorage.clear();
-        localStorage.setItem('token', token);
-        return await loadUser();
+        if(res.status === 200) {
+            const token = res.data.token;
+            // Store the token in local storage
+            localStorage.clear();
+            localStorage.setItem('token', token);
+            return await loadUser();
+        }
+        
   
     } catch (err) {
         const errors = err.response.data.errors;   
-        console.log(err.response.status);
+        //console.log(err.response.status);
         throw new Error(JSON.stringify(errors))
     }
 };
@@ -88,7 +89,6 @@ export const login = async ({email, password}) => {
             'Content-Type': 'application/json'
             },
         };
-        console.log(email, password);
         const res = await axios.post('http://156.227.0.154:5000/api/auth', {email, password}, config);    
         const token = res.data.token;
 
@@ -98,10 +98,19 @@ export const login = async ({email, password}) => {
     } catch (err) {
         const errors = err.response.data.errors;        
     }
-  }
+}
 
   //Logout 
 export const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem('token');
 };
   
+//Google login
+export const googleSign = async () => {
+    try {
+        const res = await axios.get('http://156.227.0.154:5000/api/google');
+        console.log(res);
+    } catch (err) {
+
+    }
+}

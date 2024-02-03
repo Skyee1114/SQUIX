@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Button from "./Buttons/Button";
 import Tag from "./Tag";
 import Arrow from "./Arrow";
@@ -233,9 +234,11 @@ export default function Gallery() {
                     </div>
                   </div>
                 </div>
-                <div className={`uppercase -mt-8 sm:mt-0 z-10 ${i18n.language === 'en' || i18n.language === 'kr' ? `text-base xl:text-lg` : ` text-xs xl:text-lg`}  font-bold text-left transition duration-300 hover:text-[#FFA801] cursor-pointer text-white`}>
-                  {t('viewallnews')} &gt;
-                </div>
+                <Link to={"/news/all"}>
+                  <div className={`uppercase -mt-8 sm:mt-0 z-10 ${i18n.language === 'en' || i18n.language === 'kr' ? `text-base xl:text-lg` : ` text-xs xl:text-lg`}  font-bold text-left transition duration-300 hover:text-[#FFA801] cursor-pointer text-white`}>
+                    {t('viewallnews')} &gt;
+                  </div>
+                </Link>                
               </div>
             </div>
           </div>

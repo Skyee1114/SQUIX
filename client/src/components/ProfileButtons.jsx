@@ -11,12 +11,12 @@ function classNames(...classes) {
 
 export default function ProfileButtons() {
   const { t } = useTranslation();
-  const {user} = useContext(UserContext)
+  const {user, setUser} = useContext(UserContext)
+  // console.log(user);
 
   const LogOut = () => {
     logout();
-    const { setUser } = useContext(UserContext)
-    setUser('');    
+    setUser(null);    
   }
 
   return (
@@ -78,6 +78,20 @@ export default function ProfileButtons() {
               </Link>
             )}
           </Menu.Item></>:<>
+          {user.isAdmin ? <Menu.Item>
+            {({ active }) => (
+              <Link
+                to={"/admin"}
+                className={classNames(
+                  active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
+                  "px-4 py-1 2xl:py-2 text-xs 2xl:text-sm text-white flex items-center gap-2 uppercase"
+                )}
+              >
+                {t('admin')}
+              </Link>
+            )}
+          </Menu.Item> : null}
+          
           <Menu.Item>
             {({ active }) => (
               <Link

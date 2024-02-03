@@ -7,6 +7,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
+const Profile = require('../../models/Profile');
 
 // @route    POST api/users
 // @desc     Register user
@@ -31,9 +32,10 @@ router.post(
     
     try {
       //Check in the DB whether user already exists or not
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ email });         
+
       if (user) { 
-        if(user.isverified === true) {
+        if(user.isverified === true || user.googleId) {
           return res
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
@@ -58,7 +60,8 @@ router.post(
           name,
           email,      
           password,
-          isverified: false
+          isverified: false,
+          googleId: ''
         });
 
         // Encrypt the password
@@ -67,6 +70,36 @@ router.post(
 
         // Save the user registration details to DB
         await user.save();
+
+        const profile = new Profile({
+          user: user._id,
+          personalInfo: [
+            {
+              username: name,
+              email: email,
+              firstname: '',
+              lastname: '',
+              phone: '',
+            }
+          ],
+          connectedSocials: [
+            {
+              twitter: '',
+              instagram: '',
+              telegram: '',
+              artstation: '',
+              tiktok: '',
+              discord: '',
+              facebook: '',          
+              reddit: '',          
+              googleAccount: '',          
+              linkedIn: '',          
+              youtube: '',
+            },
+          ],
+          avatar: '',
+        })
+        await profile.save();
 
         return res
           .status(200)

@@ -5,11 +5,9 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import VerifyErr from "../../components/VerifyErr";
 import VerifyThanks from "../../components/VerifyThanks";
-import { verifyuser, loadUser } from "../../actions/auth";
+import { verifyuser } from "../../actions/auth";
 import { UserContext } from "../../contexts/UserContext";
 import LoadingAnimation from "../../components/LoadingAnimation";
-
-
 
 export default function Verify() {
 
@@ -20,9 +18,9 @@ export default function Verify() {
 
   useEffect(() => {
     
-    verifyuser(emailtoken).then(data => { if(data){ setLoading(true); setUser(data);}}).catch(err => {console.error(err); setLoading(true); setUser(null);})
+    verifyuser(emailtoken).then(data => { setLoading(true); if(data){ setUser(data);}}).catch(err => {console.error(err); setLoading(true); setUser(null);})
     
-  }, [emailtoken,setUser])
+  }, [emailtoken])
 
   const { user } = useContext(UserContext)
 

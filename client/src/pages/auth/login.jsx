@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from '../../actions/auth';
+import { login, googleSign } from '../../actions/auth';
 import Button from "../../components/Buttons/Button";
 import InputText from "../../components/InputText";
 import FacebookIcon from "../../assets/img/socials/facebook.png";
@@ -15,8 +15,13 @@ export default function Login() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext)
-  const [emailerror, setEmialError] = useState('');  
+  const [emailerror, setEmailError] = useState('');  
   const [passworderror, setPasswordError] = useState('');
+  const [credentialerror, setCredentialError] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [formData, setFormdata] = useState({
     email: '',
@@ -34,23 +39,34 @@ export default function Login() {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
       // Set error message for invalid email
-      setEmialError('Please include a valid email');
+      setEmailError(t('emailerror'));
       return;
     }
     // Clear error message if email is valid
-    setEmialError('');
+    setEmailError('');
 
     if (password.length < 6) {
       // Set error message for short password
-      setPasswordError('Password should be 6 or more characters');
+      setPasswordError(t('passworderror'));
       return;
-    }
-  
-    // Clear error message if email and password are valid
-    setPasswordError('');       
+    } 
+    setPasswordError('');  
 
-    login({email, password}).then(data => {if(data) {setUser(data); navigate("/")}}).catch(err => console.error(err));
+    login({email, password}).then(data => {
+      if(data) {
+        setUser(data); navigate("/")
+      } 
+      else {
+        setCredentialError(t('credentialerror'))
+      }
+    }).catch(err => console.error(err));
+    setCredentialError('')
+    
   };
+
+  const googleClick  = () => {
+    googleSign();
+  }
 
   return (
     <div>
@@ -99,10 +115,13 @@ export default function Login() {
                         onChange={(e) => onChange(e)}
                       />
                       {passworderror && <div className="text-red-500">{t('passworderror')}</div>}
-                      <Button
-                        text={t('login')}
-                        className={"w-full text-center flex items-center justify-center"}
-                      />                    
+                      {credentialerror && !passworderror && <div className="text-red-500">{t('credentialerror')}</div>}
+                      <div className="w-full">
+                        <Button
+                          text={t('login')}
+                          className={"w-full text-center flex items-center justify-center"}
+                        /> 
+                      </div>                                         
                     </div>
                     
                     <div className="flex-col justify-start items-start gap-4 2xl:gap-[30px] flex">
@@ -172,7 +191,7 @@ export default function Login() {
                             alt=""
                           />
                         </div>
-                        <div className="relative bg-black rounded-[3px]  cursor-pointer ">
+                        <div className="relative bg-black rounded-[3px]  cursor-pointer" onClick={() => googleClick()}>
                           <img src={GoogleIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px]"/>
                           <img
                             src={GoogleHoverIcon}
