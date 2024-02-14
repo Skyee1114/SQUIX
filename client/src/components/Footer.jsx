@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+import { useNavigate } from 'react-router-dom';
 import SelectLang from "./SelectLang";
 import Button from "./Buttons/Button";
 import { Link } from "react-router-dom";
@@ -27,9 +28,33 @@ import YoutubeHoverIcon from "../assets/img/socials/youtube_.png";
 import FootBrandImg from "../assets/img/footer_brand.png";
 import LogoFooterImg from "../assets/img/logo_footer.svg";
 import { useTranslation } from 'react-i18next';
+import { UserContext } from "../contexts/UserContext";
+import { addSubscriber } from "../actions/subscriber";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [emailerror, setEmailError] = useState('');
+
+  const AddSubscriber = () => {
+    if(user) {
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        // Set error message for invalid email
+        setEmailError(t('emailerror'));
+        return;
+      }
+      setEmailError('');
+      addSubscriber({email});
+    }
+    else {
+      navigate("/auth/login");
+    }    
+    
+  };
+
   return (
     <div className="bg-[url('./assets/img/footer_back.png')] bg-cover bg-center bg-no-repeat overflow-hidden -mt-[1px]">
       <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative">
@@ -148,17 +173,24 @@ const Footer = () => {
                   <div className="py-4 2xl:py-12">
                     <input
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-[280px] 2xl:w-[380px] h-[42px] 2xl:h-[60px] py-2 px-4 2xl:px-8 text-[14px] 2xl:text-[20px] bg-[#1E2730] "
                       placeholder={t('email')}
                     />
+                    {emailerror && <div className="text-red-500">{emailerror}</div>}
                   </div>
                   
-                  <Button text={t('subscribe')} className="px-[100px] 2xl:px-[30px]" />
+                  <Button 
+                    text={t('subscribe')} 
+                    className="px-[100px] 2xl:px-[30px]" 
+                    onClick={() => AddSubscriber()}
+                  />
                 </div>
                 <div>
                   <img src={LogoFooterImg} alt="" className="mb-8 hidden 2xl:block" />
                   <div className="flex flex-row 2xl:flex-col justify-between gap-3 pt-4 2xl:pt-0">
-                    <div className={`flex flex-col justify-between items-start 2xl:items-end gap-3 ${i18n.language === 'ru' ? `text-[12px] lg:text-[18px]` : `text-[14px] lg:text-[18px]`} `}>
+                    <div className={`flex flex-col justify-between items-start 2xl:items-end gap-3 ${i18n.language === 'russian' ? `text-[12px] lg:text-[18px]` : `text-[14px] lg:text-[18px]`} `}>
                       <Link
                         to="/dashboard"
                         className="text-white  text-left 2xl:text-right font-bold uppercase transition duration-300 hover:text-[#FFA801]"
@@ -184,7 +216,7 @@ const Footer = () => {
                         {t('kickstarter')}
                       </Link>
                     </div>
-                    <div className={`flex flex-col justify-between items-start 2xl:items-end gap-3 ${i18n.language === 'ru' ? `text-[12px] lg:text-[18px]` : `text-[14px] lg:text-[18px]`} `}>
+                    <div className={`flex flex-col justify-between items-start 2xl:items-end gap-3 ${i18n.language === 'russian' ? `text-[12px] lg:text-[18px]` : `text-[14px] lg:text-[18px]`} `}>
                       <Link
                         to="/dashboard"
                         className="text-white  text-left 2xl:text-right font-bold uppercase transition duration-300 hover:text-[#FFA801]"

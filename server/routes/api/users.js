@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
-// const gravatar = require('gravatar');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { check, validationResult } = require('express-validator');
 const user = require('../../middleware/user');
 const User = require('../../models/User');
-const Profile = require('../../models/Profile');
 
 // @route    POST api/users
 // @desc     Verify user email

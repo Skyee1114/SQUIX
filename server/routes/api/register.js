@@ -56,12 +56,14 @@ router.post(
       }
       else {
         // Prepare user template to be stored in DB
+        const currentDate = new Date();
         user = new User({
           name,
           email,      
           password,
           isverified: false,
-          googleId: ''
+          googleId: '',
+          date: currentDate,
         });
 
         // Encrypt the password
@@ -73,30 +75,26 @@ router.post(
 
         const profile = new Profile({
           user: user._id,
-          personalInfo: [
-            {
-              username: name,
-              email: email,
-              firstname: '',
-              lastname: '',
-              phone: '',
-            }
-          ],
-          connectedSocials: [
-            {
-              twitter: '',
-              instagram: '',
-              telegram: '',
-              artstation: '',
-              tiktok: '',
-              discord: '',
-              facebook: '',          
-              reddit: '',          
-              googleAccount: '',          
-              linkedIn: '',          
-              youtube: '',
-            },
-          ],
+          personalInfo: {
+            username: name,
+            email: email,
+            firstname: '',
+            lastname: '',
+            phone: '',
+          },
+          connectedSocials: {
+            twitter: '',
+            instagram: '',
+            telegram: '',
+            artstation: '',
+            tiktok: '',
+            discord: '',
+            facebook: '',          
+            reddit: '',          
+            googleAccount: '',          
+            linkedIn: '',          
+            youtube: '',
+          },
           avatar: '',
         })
         await profile.save();

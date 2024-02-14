@@ -58,7 +58,7 @@ export default function RoadMap() {
                   {t('december')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`}  2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`}  2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />
@@ -125,7 +125,7 @@ export default function RoadMap() {
               </div>
             </div>
           </div>
-          <div className={`relative flex flex-row-reverse ${i18n.language === 'en' || i18n.language === 'kr' ? `md:-mt-[110px]` : ` md:-mt-[170px]`} 3xl:pr-[70px]`}>
+          <div className={`relative flex flex-row-reverse ${i18n.language === 'english' || i18n.language === 'korean' ? `md:-mt-[110px]` : ` md:-mt-[170px]`} 3xl:pr-[70px]`}>
             <img
               src="img/roadmap_january.svg"
               className=" absolute -mt-[45px] -z-10 mr-[420px] hidden 2xl:block"
@@ -144,7 +144,7 @@ export default function RoadMap() {
                   {t('january')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />
@@ -221,7 +221,7 @@ export default function RoadMap() {
                   {t('february')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />
@@ -270,7 +270,7 @@ export default function RoadMap() {
               </div>
             </div>
           </div>
-          <div className={`relative flex flex-row-reverse ${i18n.language === 'en' || i18n.language === 'kr' ? `md:-mt-[90px]` : `md:-mt-[150px]`} 3xl:pr-[70px]`}>
+          <div className={`relative flex flex-row-reverse ${i18n.language === 'english' || i18n.language === 'korean' ? `md:-mt-[90px]` : `md:-mt-[150px]`} 3xl:pr-[70px]`}>
             <img
               src="img/roadmap_march.svg"
               className=" absolute -mt-[45px] -z-10 mr-[420px] hidden 2xl:block"
@@ -289,7 +289,7 @@ export default function RoadMap() {
                   {t('march')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />
@@ -348,7 +348,7 @@ export default function RoadMap() {
                   {t('april')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />
@@ -388,7 +388,7 @@ export default function RoadMap() {
               </div>
             </div>
           </div>
-          <div className={`relative flex flex-row-reverse ${i18n.language === 'en' || i18n.language === 'kr' ? `md:pt-[80px]` : `pt-[0px] 2xl:pt-[80px]`} 3xl:pr-[70px]`}>
+          <div className={`relative flex flex-row-reverse ${i18n.language === 'english' || i18n.language === 'korean' ? `md:pt-[80px]` : `pt-[0px] 2xl:pt-[80px]`} 3xl:pr-[70px]`}>
             <img
               src="img/roadmap_may.svg"
               className=" absolute -mt-[45px] -z-10 mr-[420px] hidden 2xl:block"
@@ -407,7 +407,7 @@ export default function RoadMap() {
                   {t('may')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />
@@ -493,7 +493,7 @@ export default function RoadMap() {
                   {t('june')}
                 </div>
               </div>
-              <div className={`flex flex-col p-[10px] ${i18n.language === 'en' || i18n.language === 'kr' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
+              <div className={`flex flex-col p-[10px] ${i18n.language === 'english' || i18n.language === 'korean' ? `gap-[15px]` : `gap-[5px]`} 2xl:gap-[25px]`}>
                 <div className="flex flex-row items-center gap-[11px]">
                   <div className="w-[18px] h-[18px] relative">
                     <div className="w-[18px] h-[18px] left-0 top-0 absolute rounded-full border-2 border-[#9F7F4F]" />

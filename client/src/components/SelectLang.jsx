@@ -16,19 +16,19 @@ function classNames(...classes) {
 export default function SelectLang() {
 
   const langImages = {
-    en: ENGLISHImg,
-    ru: RUSSIANImg,
-    kr: KOREANImg,
-    es: SPANISHImg,
-    pt: PORTUGUESEImg,
+    english: ENGLISHImg,
+    russian: RUSSIANImg,
+    korean: KOREANImg,
+    spanish: SPANISHImg,
+    portuguese: PORTUGUESEImg,
   };
 
   const langlocales = {
-    en : 'ENGLISH',
-    ru : 'RUSSIAN',
-    kr : 'KOREAN',
-    es : 'SPANISH',
-    pt : 'PORTUGUESE'
+    english : 'ENGLISH',
+    russian : 'РУССКИЙ',
+    korean : '한국어',
+    spanish : 'ESPAÑOL',
+    portuguese : 'PORTUGUÊS'
   };
 
   const { i18n } = useTranslation(); 
@@ -36,7 +36,7 @@ export default function SelectLang() {
   const [lang, setLang] = useState('');
 
   useEffect(() => {
-    setLang(i18n.language ? i18n.language : 'en');
+    setLang(i18n.language ? i18n.language : 'english');
   }, []);
 
   
@@ -88,7 +88,7 @@ export default function SelectLang() {
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-5 py-[4px] 2xl:py-[10px] text-xs 2xl:text-sm text-white flex items-center gap-2 cursor-pointer"
                 )}
-                onClick={() =>LangButtonClick('en')}
+                onClick={() =>LangButtonClick('english')}
               >
                 <img src={ENGLISHImg} alt="english" className="w-[16px] 2xl:w-[20px]" />
                 English
@@ -102,10 +102,10 @@ export default function SelectLang() {
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-5 py-[4px] 2xl:py-[10px] text-xs 2xl:text-sm text-white flex items-center gap-2 cursor-pointer"
                 )}
-                onClick={() =>LangButtonClick('ru')}
+                onClick={() =>LangButtonClick('russian')}
               >
                 <img src={RUSSIANImg} alt="russian" className="w-[16px] 2xl:w-[20px]"/>
-                Russian
+                Русский
               </div>
             )}
           </Menu.Item>
@@ -116,10 +116,10 @@ export default function SelectLang() {
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-5 py-[4px] 2xl:py-[10px] text-xs 2xl:text-sm text-white flex items-center gap-2 cursor-pointer"
                 )}
-                onClick={() =>LangButtonClick('kr')}
+                onClick={() =>LangButtonClick('korean')}
               >
                 <img src={KOREANImg} alt="korean" className="w-[16px] 2xl:w-[20px]"/>
-                Korean
+                한국어
               </div>
             )}
           </Menu.Item>
@@ -130,10 +130,10 @@ export default function SelectLang() {
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-5 py-[4px] 2xl:py-[10px] text-xs 2xl:text-sm text-white flex items-center gap-2 cursor-pointer"
                 )}
-                onClick={() =>LangButtonClick('es')}
+                onClick={() =>LangButtonClick('spanish')}
               >
                 <img src={SPANISHImg} alt="spanish" className="w-[16px] 2xl:w-[20px]"/>
-                Spanish
+                Español
               </div>
             )}
           </Menu.Item>
@@ -144,10 +144,10 @@ export default function SelectLang() {
                   active ? "bg-[#202340] transition duration-300 hover:text-[#FFA801]" : "",
                   "px-5 py-[4px] 2xl:py-[10px] text-xs 2xl:text-sm text-white flex items-center gap-2 cursor-pointer"
                 )}
-                onClick={() =>LangButtonClick('pt')}
+                onClick={() =>LangButtonClick('portuguese')}
               >
                 <img src={PORTUGUESEImg} alt="portuguese" className="w-[16px] 2xl:w-[20px]"/>
-                Portuguese
+                Português
               </div>
             )}
           </Menu.Item>

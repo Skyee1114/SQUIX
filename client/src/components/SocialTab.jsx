@@ -23,7 +23,7 @@ function SocialTab({ text, icon, onOpenModal, onClose, active }) {
       >
         <img src={icon} alt={text} />
         <div className="font-bold text-black text-[14px] 2xl:text-[20px] leading-[20px] 2xl:leading-[28px]">
-        {i18n.language === 'kr' ? `${t(text)} ` : ''}{text === active ? `${t('unlink')}` : `${t('link')}`} {i18n.language !== 'kr' ? t(text) : ''}
+        {i18n.language === 'korean' ? `${t(text)} ` : ''}{text === active ? `${t('unlink')}` : `${t('link')}`} {i18n.language !== 'korean' ? t(text) : ''}
         </div>
       </div>
       {text === active && (

@@ -8,19 +8,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SelectDivision() {
+export default function SelectDivision({divisions, onDivisionChange }) {
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  const [division, setDivision] = useState('');
-  
+  const [division, setDivision] = useState(divisions[0]);
+
   useEffect(() => {
-    setDivision(t('design'));
-  }, [t]);
-
-  const DesignButtonClick = () => {
-    setDivision(t('design'));
-  }; 
+    onDivisionChange(divisions[0]);
+  }, []);
+  
+  const DivisionMenuClick = (selectedDivision) => {
+    setDivision(selectedDivision);
+    onDivisionChange(selectedDivision);
+  };
 
   return (
     <Menu as="div" className="relative inline-block -mt-1 text-left w-full ">
@@ -53,7 +54,8 @@ export default function SelectDivision() {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right divide-y divide-[#070811] bg-[#070811] shadow-lg focus:outline-none text-[16px] font-bold">
-          <Menu.Item>
+          {divisions.map((division) => ( 
+            <Menu.Item key={division}>
             {({ active }) => (
               <Link
                 href="#"
@@ -61,54 +63,14 @@ export default function SelectDivision() {
                   active ? "bg-[#202340] text-[#FFA801]" : "",
                   "px-4 py-2 text-[10px] text-white flex items-center gap-2 uppercase"
                 )}
-                onClick={DesignButtonClick}
+                onClick={() => DivisionMenuClick(division)}
               >
-                {t('design')}
+                {division}
               </Link>
             )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <Link
-                href="#"
-                className={classNames(
-                  active ? "bg-[#202340] text-[#FFA801]" : "",
-                  "px-4 py-2 text-[10px] text-white flex items-center gap-2 uppercase"
-                )}
-                onClick={DesignButtonClick}
-              >
-                {t('design')}
-              </Link>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <Link
-                href="#"
-                className={classNames(
-                  active ? "bg-[#202340] text-[#FFA801]" : "",
-                  "px-4 py-2 text-[10px] text-white flex items-center gap-2 uppercase"
-                )}
-                onClick={DesignButtonClick}
-              >
-                {t('design')}
-              </Link>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <Link
-                href="#"
-                className={classNames(
-                  active ? "bg-[#202340] text-[#FFA801]" : "",
-                  "px-4 py-2 text-[10px] text-white flex items-center gap-2 uppercase"
-                )}
-                onClick={DesignButtonClick}
-              >
-                {t('design')}
-              </Link>
-            )}
-          </Menu.Item>
+            </Menu.Item>
+          ))}          
+          
         </Menu.Items>
       </Transition>
     </Menu>

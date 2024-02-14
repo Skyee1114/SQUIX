@@ -34,7 +34,7 @@ import OptionRelatedImg from "../../assets/img/option_related.png";
 import { useTranslation } from 'react-i18next';
 
 function ChooseOption() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <>   
       <div className="absolute -z-10 w-full h-[800px] bg-[url('./assets/img/choose_option-bg-320.jpg')] sm:bg-[url('./assets/img/choose_option-bg-834.jpg')] xl:bg-[url('./assets/img/choose_option-bg-1920.jpg')] bg-no-repeat 5xl:bg-cover bg-top">

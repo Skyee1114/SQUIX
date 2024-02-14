@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -59,7 +58,7 @@ router.post(
                 subject: 'Email Verification',
                 html: `<div style="margin: 0px;">
                 <div style="background-image:url('http://156.227.0.154:3000/img/email/bg-email.png'); background-repeat:no-repeat; background-position: top; width:100%;">
-                    <div style=" max-width: 650px; margin-left: auto; margin-right: auto; position: relative; padding-bottom: 20px;">                              
+                    <div style=" max-width: 650px; margin-left: auto; margin-right: auto; position: relative; padding-bottom: 20px; border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">                              
                         <table style="width: 100%;">
                             <tbody>
                                 <tr style="display:flex;">
@@ -107,7 +106,7 @@ router.post(
                     </div>
                 </div>
                 <div style="background-image:url('http://156.227.0.154:3000/img/email/bg-footer.png'); background-repeat:no-repeat; background-position: top; width:100%;">
-                    <div style=" max-width: 650px; margin-left: auto; margin-right: auto; position: relative; padding-top: 50px;">
+                    <div style=" max-width: 650px; margin-left: auto; margin-right: auto; position: relative; padding-top: 50px; border-bottom: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">
                         <table style="width: 100%;">
                             <tbody>
                                 <tr style="display: flex; padding-left:100px; padding-right:100px;">

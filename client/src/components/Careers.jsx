@@ -10,15 +10,50 @@ import "react-drop-zone/dist/styles.css";
 import GoogleBlueIcon from "../assets/img/socials/blue_google.png";
 import GoogleHoverIcon from "../assets/img/socials/google_.png";
 import { useTranslation } from 'react-i18next';
-
+import { getJobsList } from "../actions/admin"
+ 
 
 const Careers = () => {
   
   const { t, i18n } = useTranslation();
-
+  const currentLanguage = i18n.language;
+  const [jobs, setJobs] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [selectedDivision, setSelectedDivision] = useState('');
+  const [selectedPosition, setSelectedPosition] = useState('');
   const [state, setState] = useState({ file: undefined });
 
   const [label, setLabel] = useState('');
+
+  useEffect(() => {    
+    getJobsList().then(data => {
+      if(data) {        
+        setJobs(data);               
+      }
+    }).catch(err => {
+      console.error(err); 
+    })
+  }, []) 
+
+  useEffect(() => {
+    if (selectedDivision !== '' && selectedPosition !== '') {
+      const filteredJobs = jobs.filter(job => job.division[currentLanguage] === selectedDivision && job.position[currentLanguage] === selectedPosition);
+      setFilteredJobs(filteredJobs);
+    } else {
+      setFilteredJobs(jobs);
+    }
+  }, [jobs, selectedDivision, selectedPosition, currentLanguage]);
+
+  const handleDivisionChange = (selectedDivision) => {
+    setSelectedDivision(selectedDivision);
+  };
+
+  const handlePositionChange = (selectedPosition) => {
+    setSelectedPosition(selectedPosition);
+  };
+
+  const divisions = [...new Set(jobs.map(job => job.division[currentLanguage]))];
+  const positions = [...new Set(jobs.map(job => job.position[currentLanguage]))];
 
   useEffect(() => {
     setLabel(`${t('dropfilehere')} *.pdf, *.jpg, *.png, *.pptx, 10mb max`);
@@ -68,8 +103,9 @@ const Careers = () => {
     setIsOpen(false);
   }  
 
-  return (
+  return (    
     <div className="bg-[#F5F1ED]">
+    {console.log(jobs)}
       <div className="text-white h-[200px] 2xl:h-[373px] bg-radial-gradient ">
         <img src="./img/careers_back.png" alt="" className="absolute right-0" />
         <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative">
@@ -79,11 +115,15 @@ const Careers = () => {
               <div className=" flex flex-row gap-[20px] 2xl:gap-[30px]">
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-[14px] 2xl:text-[20px]">{t('division')}</span>
-                  <SelectDivision />
+                  {divisions.length > 0 && (
+                    <SelectDivision divisions={divisions} onDivisionChange={handleDivisionChange}/>
+                  )}
                 </div>
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-[14px] 2xl:text-[20px]">{t('position')}</span>
-                  <SelectPosition />
+                  {positions.length > 0 && (
+                    <SelectPosition positions={positions} onPositionChange={handlePositionChange}/>
+                  )}
                 </div>
               </div>
             </div>
@@ -96,19 +136,18 @@ const Careers = () => {
           <div className="relative overflow-x-auto">
             <div className="w-full text-left">
               <div>
-                {["1", "2", "3", "4", "5"].map((item, index) => {
-                  return (
-                    <div key={index} className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24 bg-white border-b-4 border-[#F5F1ED]">
+                {filteredJobs.map(job  => (
+                    <div key={job.id} className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24 bg-white border-b-4 border-[#F5F1ED]">
                       <div
                         scope="row"
                         className="px-4 2xl:px-6 py-0 lg:py-4 text-black font-bold uppercase text-[20px] 2xl:text-[30px]"
                       >
-                        {t('environmentartist')}
+                        {job.titles[currentLanguage]}
                       </div>
                       <div className="flex flex-row gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24">
                         <div className="px-4 2xl:px-6 py-0 lg:py-4 text-[14px] 2xl:text-[25px] text-black">{t('remote')}</div>
                         <div className="px-4 2xl:px-6 py-0 lg:py-4 text-[14px] 2xl:text-[25px] text-black">
-                          {t('fulltime')}
+                          {selectedPosition}
                         </div>
                       </div>
                       
@@ -133,8 +172,7 @@ const Careers = () => {
                         <Button onClick={openModal} text={t('apply')} className="lg:px-[30px] w-full flex justify-center "></Button>
                       </div>
                     </div>
-                  );
-                })}
+                ))}
               </div>
             </div>
           </div>

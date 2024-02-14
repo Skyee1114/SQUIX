@@ -56,6 +56,12 @@ app.use('/api/profile', require('./routes/api/profile'));
 
 app.use('/api/payment', require('./routes/api/payment'));
 
+app.use('/api/admin', require('./routes/api/admin'));
+
+app.use('/api/subscriber', require('./routes/api/subscriber'));
+
+app.use('/uploads', express.static('uploads'));
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

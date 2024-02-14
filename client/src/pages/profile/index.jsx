@@ -390,53 +390,53 @@ function Profile() {
       });
       getCurrentProfile().then(data => {
         if(data) {
-          setName(data.personalInfo[0].username);
-          setEmail(data.personalInfo[0].email);
-          setFirstname(data.personalInfo[0].firstname);
-          setLastname(data.personalInfo[0].lastname);
-          setPhone(data.personalInfo[0].phone);
-          if(data.connectedSocials[0].twitter) {
-            setTwitterLink(data.connectedSocials[0].twitter);
+          setName(data.personalInfo.username);
+          setEmail(data.personalInfo.email);
+          setFirstname(data.personalInfo.firstname);
+          setLastname(data.personalInfo.lastname);
+          setPhone(data.personalInfo.phone);
+          if(data.connectedSocials.twitter) {
+            setTwitterLink(data.connectedSocials.twitter);
             setLinkedTwitter('twitter');
           }
-          if(data.connectedSocials[0].instagram) {
-            setInstagramLink(data.connectedSocials[0].instagram);
+          if(data.connectedSocials.instagram) {
+            setInstagramLink(data.connectedSocials.instagram);
             setLinkedInstagram('instagram');
           }
-          if(data.connectedSocials[0].telegram) {
-            setTelegramLink(data.connectedSocials[0].telegram);
+          if(data.connectedSocials.telegram) {
+            setTelegramLink(data.connectedSocials.telegram);
             setLinkedTelegram('telegram');
           }
-          if(data.connectedSocials[0].artstation) {
-            setArtstationLink(data.connectedSocials[0].artstation);
+          if(data.connectedSocials.artstation) {
+            setArtstationLink(data.connectedSocials.artstation);
             setLinkedArtstation('artstation');
           }
-          if(data.connectedSocials[0].tiktok) {
-            setTikTokLink(data.connectedSocials[0].tiktok);
+          if(data.connectedSocials.tiktok) {
+            setTikTokLink(data.connectedSocials.tiktok);
             setLinkedTikTok('tiktok');
           }
-          if(data.connectedSocials[0].discord) {
-            setDiscordLink(data.connectedSocials[0].discord);
+          if(data.connectedSocials.discord) {
+            setDiscordLink(data.connectedSocials.discord);
             setLinkedDiscord('discord');
           }
-          if(data.connectedSocials[0].facebook) {
-            setFacebookLink(data.connectedSocials[0].facebook);
+          if(data.connectedSocials.facebook) {
+            setFacebookLink(data.connectedSocials.facebook);
             setLinkedFacebook('facebook');
           }
-          if(data.connectedSocials[0].reddit) {
-            setRedditLink(data.connectedSocials[0].reddit);
+          if(data.connectedSocials.reddit) {
+            setRedditLink(data.connectedSocials.reddit);
             setLinkedReddit('reddit');
           }
-          if(data.connectedSocials[0].googleAccount) {
-            setGoogleAccountLink(data.connectedSocials[0].googleAccount);
+          if(data.connectedSocials.googleAccount) {
+            setGoogleAccountLink(data.connectedSocials.googleAccount);
             setLinkedGoogleAccount('googleaccount');
           }
-          if(data.connectedSocials[0].linkedIn) {
-            setLinkedInLink(data.connectedSocials[0].linkedIn);
+          if(data.connectedSocials.linkedIn) {
+            setLinkedInLink(data.connectedSocials.linkedIn);
             setLinkedLinkedIn('linkedin');
           }
-          if(data.connectedSocials[0].youtube) {
-            setYoutubeLink(data.connectedSocials[0].youtube);
+          if(data.connectedSocials.youtube) {
+            setYoutubeLink(data.connectedSocials.youtube);
             setLinkedYoutube('youtube');
           }
         }
@@ -717,7 +717,7 @@ function Profile() {
           <div className="bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 md:p-8 2xl:p-12 flex flex-col gap-4 2xl:gap-8 w-[280px] md:w-auto">
             <div className="w-[7.88px] 2xl:w-[15.12px] h-[51px] 2xl:h-[44.62px] bg-gradient-to-b from-amber-500 to-orange-500 rounded-[3px] absolute left-0 top-6 md:top-8 2xl:top-16" />
             <div className="uppercase font-bold text-black text-[18px] md:text-[24px] 2xl:text-[54px] leading-[16px] md:leading-[21px] 2xl:leading-[78px] text-left">
-              {i18n.language === 'kr' ? `${t(typeModal)} ${t('linkyour')}` : `${t('linkyour')} ${t(typeModal)}`}
+              {i18n.language === 'korean' ? `${t(typeModal)} ${t('linkyour')}` : `${t('linkyour')} ${t(typeModal)}`}
             </div>
             <div className="flex flex-col items-start w-full">
               <label className="text-[14px] leading-[20px] opacity-50 text-[#616485]">
@@ -728,7 +728,7 @@ function Profile() {
                 name="link"
                 value={sociallink}
                 onChange={handleSociallink}
-                placeholder={i18n.language === 'kr' ? `${t(typeModal)}${t('pastehereyour')}` : `${t('pastehereyour')} ${t(typeModal)}`}                
+                placeholder={i18n.language === 'korean' ? `${t(typeModal)}${t('pastehereyour')}` : `${t('pastehereyour')} ${t(typeModal)}`}                
               />
               {sociallinkerror && <div className="text-red-500">{t('sociallinkerror')}</div>}
             </div>

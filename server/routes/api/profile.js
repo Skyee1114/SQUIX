@@ -5,7 +5,7 @@ require('dotenv').config();
 const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const avatarUpload = require('../../middleware/upload');
+const avatarUpload = require('../../middleware/avatarupload');
 const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
@@ -94,22 +94,22 @@ router.post(
       }
       await user.save();
         
-      profile.personalInfo[0].username = name;
-      profile.personalInfo[0].email = email;
-      profile.personalInfo[0].firstname = firstname;
-      profile.personalInfo[0].lastname = lastname;
-      profile.personalInfo[0].phone = phone;
-      profile.connectedSocials[0].twitter = twitterlink;
-      profile.connectedSocials[0].instagram = instagramlink;
-      profile.connectedSocials[0].telegram = telegramlink;
-      profile.connectedSocials[0].artstation = artstationlink;
-      profile.connectedSocials[0].tiktok = tiktoklink;
-      profile.connectedSocials[0].discord = discordlink;
-      profile.connectedSocials[0].facebook = facebooklink;
-      profile.connectedSocials[0].reddit = redditlink;
-      profile.connectedSocials[0].googleAccount = googleaccountlink;
-      profile.connectedSocials[0].linkedIn = linkedinlink;
-      profile.connectedSocials[0].youtube = youtubelink;
+      profile.personalInfo.username = name;
+      profile.personalInfo.email = email;
+      profile.personalInfo.firstname = firstname;
+      profile.personalInfo.lastname = lastname;
+      profile.personalInfo.phone = phone;
+      profile.connectedSocials.twitter = twitterlink;
+      profile.connectedSocials.instagram = instagramlink;
+      profile.connectedSocials.telegram = telegramlink;
+      profile.connectedSocials.artstation = artstationlink;
+      profile.connectedSocials.tiktok = tiktoklink;
+      profile.connectedSocials.discord = discordlink;
+      profile.connectedSocials.facebook = facebooklink;
+      profile.connectedSocials.reddit = redditlink;
+      profile.connectedSocials.googleAccount = googleaccountlink;
+      profile.connectedSocials.linkedIn = linkedinlink;
+      profile.connectedSocials.youtube = youtubelink;
       await profile.save();
 
       return res

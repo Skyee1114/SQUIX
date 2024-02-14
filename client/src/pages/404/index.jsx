@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 import { useTranslation } from 'react-i18next';
 
 export default function Err404() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div>
             <Navbar colorMode="black"/> 

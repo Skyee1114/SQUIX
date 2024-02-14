@@ -52,9 +52,9 @@ export default function Register() {
     if (password.length < 6) {
       // Set error message for short password
       setPasswordError(t('passworderror'));
-      return;
+      return;    
     }  
-    setPasswordError('');    
+    setPasswordError('');
 
     if (!isTermsChecked) {
       // Set error message for unchecked checkbox

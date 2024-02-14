@@ -108,7 +108,12 @@ export const logout = () => {
 //Google login
 export const googleSign = async () => {
     try {
-        const res = await axios.get('http://156.227.0.154:5000/api/google');
+        const config = {
+            headers: {
+            'Content-Type': 'application/json'
+            },
+        };
+        const res = await axios.get('http://156.227.0.154:5000/api/google', config);
         console.log(res);
     } catch (err) {
 

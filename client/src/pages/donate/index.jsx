@@ -158,7 +158,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('sproud')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
@@ -194,7 +194,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('original')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
@@ -230,7 +230,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('pioneer')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
@@ -266,7 +266,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('founder')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
@@ -302,7 +302,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('oldman')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
@@ -338,7 +338,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('royal')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
@@ -374,7 +374,7 @@ const Donate = () => {
                       </div>
                     </div>
                     <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
-                      <div className={`text-right text-white ${i18n.language === 'ru' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
+                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
                         {t('ultimate')}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">

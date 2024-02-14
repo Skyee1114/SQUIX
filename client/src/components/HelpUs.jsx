@@ -31,7 +31,7 @@ export default function HelpUs() {
     fetchTotalAmount();
 
     // Update total amount every 60 seconds
-    const interval = setInterval(fetchTotalAmount, 6000);
+    const interval = setInterval(fetchTotalAmount, 60000);
 
     // Clear interval on component unmount
     return () => clearInterval(interval);
@@ -49,10 +49,10 @@ export default function HelpUs() {
             <div className="flex flex-col md:flex-row justify-between ">
               
               <div className="flex flex-col gap-[26px] w-[280px] xl:w-[405px] 3xl:w-[482px]">
-                <div className={`p-2.5 bg-white bg-opacity-60 rounded-[3px] text-black ${i18n.language === 'en' || i18n.language === 'kr' ? `text-sm` : `text-[10px]`} font-bold font-['Jost'] uppercase leading-[9.94px] w-fit`}>
+                <div className={`p-2.5 bg-white bg-opacity-60 rounded-[3px] text-black ${i18n.language === 'english' || i18n.language === 'korean' ? `text-sm` : `text-[10px]`} font-bold font-['Jost'] uppercase leading-[9.94px] w-fit`}>
                   {t('99999peoplesupportedproject')}
                 </div>
-                <div className={`text-black ${i18n.language === 'en' || i18n.language === 'kr' ? `text-[32px] md:text-[34px] xl:text-[97px] leading-[25px] xl:leading-[92px]` : `text-[32px] md:text-[34px] xl:text-[80px] leading-[25px] xl:leading-[72px]`}  font-bold font-['Jost'] uppercase  text-left`}>
+                <div className={`text-black ${i18n.language === 'english' || i18n.language === 'korean' ? `text-[32px] md:text-[34px] xl:text-[97px] leading-[25px] xl:leading-[92px]` : `text-[32px] md:text-[34px] xl:text-[80px] leading-[25px] xl:leading-[72px]`}  font-bold font-['Jost'] uppercase  text-left`}>
                   {t('helpusgrow')}
                 </div>
                 <div className=" text-black text-[16px] xl:text-[20px] 3xl:text-[23px] leading-[18px] xl:leading-[23px] 3xl:leading-[26px] font-normal font-['Jost'] text-left">

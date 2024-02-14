@@ -10,24 +10,24 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: {
+      english: {
         translation: enTranslation,
       },
-      pt: {
+      portuguese: {
         translation: ptTranslation,
       },
-      ru: {
+      russian: {
         translation: ruTranslation,
       },
-      es: {
+      spanish: {
         translation: esTranslation,
       },
-      kr: {
+      korean: {
         translation: krTranslation,
       },
     },
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: 'english',
+    fallbackLng: 'english',
     interpolation: {
       escapeValue: false,
     },

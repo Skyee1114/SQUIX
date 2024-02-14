@@ -23,7 +23,7 @@ export default function IntroSection() {
       <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto ">            
         <div className="relative flex flex-col md:flex-row justify-between">
           <div>
-            <div className={` ${i18n.language === 'en' ? `w-[250px] md:w-[500px] 2xl:w-[700px] 3xl:w-[800px]` : `w-[304px] md:w-[550px] 2xl:w-[750px] 3xl:w-[870px]`} flex flex-row gap-3 md:gap-7 2xl:gap-6`}>
+            <div className={` ${i18n.language === 'english' ? `w-[250px] md:w-[500px] 2xl:w-[700px] 3xl:w-[800px]` : `w-[304px] md:w-[550px] 2xl:w-[750px] 3xl:w-[870px]`} flex flex-row gap-3 md:gap-7 2xl:gap-6`}>
               <div className="min-w-[7px] md:min-w-[10px] 2xl:min-w-[15px] mt-0.5 -mb-14 md:my-1.5 3xl:my-2.5 bg-primary-gradient rounded"> </div>
               <div className="text-white font-bold text-[28px] md:text-[46px] 2xl:text-[64px] 3xl:text-[78px] leading-[31px] md:leading-[44px] 2xl:leading-[61px] 3xl:leading-[75px] text-left  relative ">
                 {t('introtitle')}

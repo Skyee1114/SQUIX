@@ -1,78 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Buttons/Button";
 import Tag from "./Tag";
 import Arrow from "./Arrow";
 import { useTranslation } from 'react-i18next';
+import { getNewsList, getNewsImage } from "../actions/admin";
 
 export default function Gallery() {
 
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();  
+  const currentLanguage = i18n.language;
 
-  const [currentPosition, setCurrentPosition] = React.useState(1);
-  const [progressStatus, setProgressStatus] = React.useState(0);
+  const [news, setNews] = useState([]);
+  const [newsImage, setNewsImage] = useState([]);
+  const [currentPosition, setCurrentPosition] = useState(1);
+  const [progressStatus, setProgressStatus] = useState(0);
 
-  const News_data = [
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}1`, `${t('tagforthesection')}1`],
-      date: `${t('december')} 23, 2023`,
-      title: `${t('news1')} 1`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}2`, `${t('tagforthesection')}2`],
-      date: `${t('december')} 24, 2023`,
-      title: `${t('news1')} 2`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}3`, `${t('tagforthesection')}3`],
-      date: `${t('december')} 25, 2023`,
-      title: `${t('news1')} 3`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}4`, `${t('tagforthesection')}4`],
-      date: `${t('december')} 26, 2023`,
-      title: `${t('news1')} 4`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}5`, `${t('tagforthesection')}5`],
-      date: `${t('december')} 27, 2023`,
-      title: `${t('news1')} 5`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}6`, `${t('tagforthesection')}6`],
-      date: `${t('december')} 28, 2023`,
-      title: `${t('news1')} 6`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}7`, `${t('tagforthesection')}7`],
-      date: `${t('december')} 29, 2023`,
-      title: `${t('news1')} 7`,
-      content: `${t('news1intro')}`,
-    },
-    {
-      image_url: "img/News_item.png",
-      tags: [`${t('tagforthesection')}8`, `${t('tagforthesection')}8`],
-      date: `${t('december')} 30, 2023`,
-      title: `${t('news1')} 8`,
-      content: `${t('news1intro')}`,
-    },
-  ];
-  const [currentNews, setCurrentNews] = React.useState(News_data[0]);
-  const [start, setStart] = React.useState(0);
-  const [end, setEnd] = React.useState(3);
+  const [currentNews, setCurrentNews] = useState(null);
+  const [currentNewsImage, setCurrentNewsImage] = useState(null);
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(3);
 
   const handleLeftClick = () => {
     if (currentPosition > 1) {
@@ -81,7 +28,7 @@ export default function Gallery() {
   };
 
   const handleRightClick = () => {
-    if (currentPosition < News_data.length) {
+    if (currentPosition < news.length) {
       setCurrentPosition(currentPosition + 1);
     } else {
       setCurrentPosition(1);
@@ -89,11 +36,44 @@ export default function Gallery() {
   };
 
   useEffect(() => {
-    if (currentPosition > News_data.length) {
+    getNewsList().then(data => {
+      if (data) {
+        setNews(data);
+        setCurrentNews(data[0]);
+  
+        const promises = data.map(newsItem => {
+          return getNewsImage({ id: newsItem.id }).then(data => {
+            if (data) {
+              const imageUrl = URL.createObjectURL(data);
+              return imageUrl;
+            }
+          });
+        });
+  
+        Promise.all(promises).then(imageUrls => {
+          setNewsImage(imageUrls);
+          setCurrentNewsImage(imageUrls[0]);
+        });        
+       
+      }
+    }).catch(err => {
+      console.error(err);
+    });
+  }, []);
+   
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  };
+
+  useEffect(() => {
+    if (currentPosition > news.length) {
       setCurrentPosition(1);
       return;
     }
-    setCurrentNews(News_data[currentPosition - 1]);
+    setCurrentNews(news[currentPosition - 1]);    
+    setCurrentNewsImage(newsImage[currentPosition - 1]);
     const interval = setInterval(() => {
       setProgressStatus((prevStatus) => {
         if (prevStatus < 100) {
@@ -133,7 +113,7 @@ export default function Gallery() {
             <div className="2xl:bg-[#020911] flex flex-col sm:flex-row justify-between items-center sm:items-stretch pb-[20px] xl:pb-[60px] 3xl:pb-[100px]">
               <div className="relative z-20 w-screen">
                 <img
-                  src={currentNews.image_url}
+                  src={currentNewsImage}
                   className="rounded-[10px]  w-[320px] sm:w-[376px] xl:w-[647px] 3xl:w-[750px] h-[289px] sm:h-[488px] xl:h-[655px] 3xl:h-[750px]  object-cover"
                   alt=""
                 />
@@ -147,12 +127,12 @@ export default function Gallery() {
                         <Arrow direction="right" onClick={handleRightClick} />
                       </div>
                       <div className="flex-auto text-lg sm:text-3xl font-bold text-right text-white">
-                        {currentPosition}/{News_data.length}
+                        {currentPosition}/{news.length}
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-row gap-[10px] 3xl:gap-[18px]  z-20 relative">
-                    {News_data.slice(start, end).map((news, index) => (
+                    {newsImage.slice(start, end).map((image, index) => (
                       <div
                         className={`flex flex-col text-red-900 cursor-pointer`}
                         onClick={() => setCurrentPosition(index + start + 1)}
@@ -169,7 +149,7 @@ export default function Gallery() {
                           </div>
                         )}
                         <img
-                          src={news.image_url}
+                          src={image}
                           alt=""
                           className="rounded-[3px] w-[89px] sm:w-[124px] xl:w-[220px] 3xl:w-[524px] h-[49px] sm:h-[67px] xl:h-[106px] 3xl:h-[122px] object-cover"
                           style={{
@@ -191,24 +171,26 @@ export default function Gallery() {
                     </div>
                     <div className="px-4 md:px-10 gap-[10px] xl:gap-[20px] 3xl:gap-[24px] flex flex-col bg-white rounded-[3px] pt-[18px] xl:pt-[24px] 3xl:pt-[32px]">
                       <div className="flex flex-col-reverse gap-2 md:flex-row justify-between">
-                        <div className="flex flex-row gap-[17px]">
-                          {currentNews.tags.map((tag, index) => (
-                            <Tag size={window.innerWidth > 835 ? "big" : "mobile"} text={tag} key={index} />
-                          ))}
-                        </div>
+                        {currentNews && currentNews.tags ? 
+                          <div className="flex flex-row gap-[17px]">
+                              {currentNews.tags[currentLanguage].map((tag, index) => (
+                                  <Tag key={index} size={window.innerWidth > 835 ? "big" : "mobile"} text={tag} />
+                              ))}                          
+                          </div> 
+                          : null
+                        }
                         <div className="flex items-center font-bold text-[15px] leading-4">
-                          {currentNews.date}
+                          {currentNews ? formatDate(currentNews.date) : ""}
                         </div>
                       </div>
                       <div className="font-bold text-[20px] md:text-[28px] xl:text-[47px] leading-[23px] md:leading-[32px] xl:leading-[54px] text-left bg-white">
-                        {currentNews.title}
+                        {currentNews ? currentNews.titles[currentLanguage] : ""}
                       </div>
                       <div className="font-normal text-[14px] md:text-[16px] xl:text-[23px] leading-[16px] md:leading-[18px] xl:leading-[27px] text-left">
-                        {currentNews.content}
+                        {currentNews ? currentNews.contents[currentLanguage] : ""}
                       </div>
                       <div className="flex flex-row items-center justify-between mb-4 xl:mb-8 3xl:mb-12">
                         <Button text={t('viewmore')} />
-
                         <div className="flex flex-row items-center h-fit gap-[10px] transition duration-300 hover:text-[#FFA801] cursor-pointer">
                           <div className="text-xs md:text-sm font-bold uppercase">{t('share')}</div>
                           <div>
@@ -235,7 +217,7 @@ export default function Gallery() {
                   </div>
                 </div>
                 <Link to={"/news/all"}>
-                  <div className={`uppercase -mt-8 sm:mt-0 z-10 ${i18n.language === 'en' || i18n.language === 'kr' ? `text-base xl:text-lg` : ` text-xs xl:text-lg`}  font-bold text-left transition duration-300 hover:text-[#FFA801] cursor-pointer text-white`}>
+                  <div className={`uppercase -mt-8 sm:mt-0 z-10 ${i18n.language === 'english' || i18n.language === 'korean' ? `text-base xl:text-lg` : ` text-xs xl:text-lg`}  font-bold text-left transition duration-300 hover:text-[#FFA801] cursor-pointer text-white`}>
                     {t('viewallnews')} &gt;
                   </div>
                 </Link>                
