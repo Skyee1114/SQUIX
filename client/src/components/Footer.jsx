@@ -65,92 +65,114 @@ const Footer = () => {
             </div>
             <div className="flex flex-wrap gap-3 my-4 w-[280px] 2xl:w-[483px]">
               <div className="relative">
-                <img src={TwitterIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={TwitterHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://twitter.com/squixgg"}>
+                  <img src={TwitterIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={TwitterHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={ReditIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={ReditHoverIcon}
-                  className="absolute  top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.reddit.com/r/squixgg/"}>
+                  <img src={ReditIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={ReditHoverIcon}
+                    className="absolute  top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={TiktokIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={TiktokHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.tiktok.com/@squix.gg"}>
+                  <img src={TiktokIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={TiktokHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={YoutubeIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"/>
-                <img
-                  src={YoutubeHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.youtube.com/@Squixgg"}>
+                  <img src={YoutubeIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"/>
+                  <img
+                    src={YoutubeHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={FacebookIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"/>
-                <img
-                  src={FacebookHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"/"}>
+                  <img src={FacebookIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"/>
+                  <img
+                    src={FacebookHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={InstagramIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={InstagramHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.instagram.com/squixgg/"}>
+                  <img src={InstagramIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={InstagramHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={GoogleIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={GoogleHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.artstation.com/squixgg"}>
+                  <img src={GoogleIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={GoogleHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={DiscordIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={DiscordHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"/"}>
+                  <img src={DiscordIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={DiscordHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={WhazAppIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"/>
-                <img
-                  src={WhazAppHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.twitch.tv/squixgg"}>
+                  <img src={WhazAppIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"/>
+                  <img
+                    src={WhazAppHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={TelegramIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={TelegramHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"/"}>
+                  <img src={TelegramIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={TelegramHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative">
-                <img src={LinkedinIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
-                <img
-                  src={LinkedinHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.linkedin.com/company/squix"}>
+                  <img src={LinkedinIcon} alt="" className="w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[50px] cursor-pointer" />
+                  <img
+                    src={LinkedinHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] 2xl:w-[50px] h-[29px] 2xl:h-[52px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
             </div>
             <div className="flex flex-row 2xl:flex-col items-start gap-2 2xl:gap-12 pt-4 lg:pt-8 2xl:pt-8 pb-4 lg:pb-40 2xl:pb-20 w-[280px]">

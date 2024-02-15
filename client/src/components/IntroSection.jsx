@@ -52,52 +52,64 @@ export default function IntroSection() {
             <div className="text-sm font-bold text-white">{t('followus')}</div>
             <div className="flex flex-row md:flex-col gap-[11px]">
               <div className="relative z-10">
-                <img src={TwitterIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"/>
-                <img
-                  src={TwitterHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://twitter.com/squixgg"}>
+                  <img src={TwitterIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"/>
+                  <img
+                    src={TwitterHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative z-10">
-                <img src={ReditIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
-                <img
-                  src={ReditHoverIcon}
-                  className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition duration-300 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.reddit.com/r/squixgg/"}>
+                  <img src={ReditIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
+                  <img
+                    src={ReditHoverIcon}
+                    className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition duration-300 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative z-10">
-                <img src={InstagramIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
-                <img
-                  src={InstagramHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.instagram.com/squixgg/"}>
+                  <img src={InstagramIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
+                  <img
+                    src={InstagramHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative z-10">
-                <img src={TiktokIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
-                <img
-                  src={TiktokHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.tiktok.com/@squix.gg"}>
+                  <img src={TiktokIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
+                  <img
+                    src={TiktokHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative z-10">
-                <img src={GoogleIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
-                <img
-                  src={GoogleHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.artstation.com/squixgg"}>
+                  <img src={GoogleIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
+                  <img
+                    src={GoogleHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
+                    alt=""
+                  />
+                </Link>                
               </div>
               <div className="relative z-10">
-                <img src={YoutubeIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
-                <img
-                  src={YoutubeHoverIcon}
-                  className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
-                  alt=""
-                />
+                <Link to={"https://www.youtube.com/@Squixgg"}>
+                  <img src={YoutubeIcon} alt="" className="w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer" />
+                  <img
+                    src={YoutubeHoverIcon}
+                    className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100 w-[29px] md:w-[50px] h-[29px] md:h-[50px] cursor-pointer"
+                    alt=""
+                  />  
+                </Link>                
               </div>
             </div>          
           </div>        
