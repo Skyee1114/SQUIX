@@ -190,7 +190,9 @@ export default function Gallery() {
                         {currentNews ? currentNews.contents[currentLanguage] : ""}
                       </div>
                       <div className="flex flex-row items-center justify-between mb-4 xl:mb-8 3xl:mb-12">
-                        <Button text={t('viewmore')} />
+                        <Link to={"/choose/option"}>
+                          <Button text={t('viewmore')} />
+                        </Link>                        
                         <div className="flex flex-row items-center h-fit gap-[10px] transition duration-300 hover:text-[#FFA801] cursor-pointer">
                           <div className="text-xs md:text-sm font-bold uppercase">{t('share')}</div>
                           <div>
@@ -226,7 +228,7 @@ export default function Gallery() {
           </div>
         </div>
       </div>
-  <div className="bg-[#020911] w-screen absolute top-[450px] h-0 sm:h-40 lg:h-96 2xl:h-0"></div>
+  <div className="bg-[#020911] w-screen absolute top-[450px] h-0 sm:h-40 xl:h-96 2xl:h-0"></div>
   </div>
   );
 }

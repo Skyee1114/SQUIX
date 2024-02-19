@@ -32,8 +32,6 @@ function App() {
     const { user, setUser } = useContext(UserContext);
     const [ loading, setLoading ] = useState(false)
 
-    // console.log(user);
-
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {

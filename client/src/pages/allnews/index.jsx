@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import NewsImg_1920 from "../../assets/img/news-1920.jpg";
-import NewsImg_834 from "../../assets/img/news-834.jpg"
-import NewsImg_320 from "../../assets/img/news-320.jpg"
 import Button from "../../components/Buttons/Button";
 import Tag from "../../components/Tag";
 import TopPostImg from "../../assets/img/top-posts.jpg";
@@ -40,13 +38,13 @@ function AllNews() {
   const [newsImage, setNewsImage] = useState([]);
 
   const formatDate = (dateString) => {
-    console.log("dateString:", dateString);
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Intl.DateTimeFormat('en-US', options).format(date);
   };
 
   useEffect(() => {
+        
     getNewsList().then(data => {
       if (data) {
         setNews(data);
@@ -55,7 +53,6 @@ function AllNews() {
             if (data) {
               const imageUrl = URL.createObjectURL(data);
               setNewsImage(prevImages => [...prevImages, imageUrl]);
-              console.log(imageUrl);
             }
           });
         });
@@ -118,7 +115,9 @@ function AllNews() {
                       {newsItem.contents[currentLanguage]}
                     </div>
                     <div className="flex flex-row items-center justify-between mb-4 md:mb-12">
-                      <Button text={t('viewmore')} />
+                      <Link to={"/choose/option"}>
+                        <Button text={t('viewmore')} />
+                      </Link>                      
                       <div className="hidden md:block">
                         <div className="flex flex-row items-center h-fit gap-[10px] hover:text-[#FFA801] cursor-pointer">
                           <div className="text-sm font-bold uppercase">{t('share')}</div>

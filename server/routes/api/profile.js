@@ -17,7 +17,6 @@ const User = require('../../models/User');
 router.get('/', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({user: req.user.id}).select('-password');
-    // console.log(user);
     res.json(profile);
   } catch (err) {
     console.error(err.message);
@@ -37,7 +36,6 @@ router.get('/avatar', auth, async (req, res) => {
 
     // Send the avatar file to the frontend
     const avatarPath = profile.avatar;
-    console.log(avatarPath);
     if (avatarPath) {
       const avatarFilePath = path.join(__dirname, '..', '..', avatarPath); // Construct the full file path
       res.sendFile(avatarFilePath); // Send the file to the client

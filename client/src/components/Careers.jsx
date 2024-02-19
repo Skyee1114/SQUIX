@@ -105,7 +105,6 @@ const Careers = () => {
 
   return (    
     <div className="bg-[#F5F1ED]">
-    {console.log(jobs)}
       <div className="text-white h-[200px] 2xl:h-[373px] bg-radial-gradient ">
         <img src="./img/careers_back.png" alt="" className="absolute right-0" />
         <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative">
@@ -142,7 +141,9 @@ const Careers = () => {
                         scope="row"
                         className="px-4 2xl:px-6 py-0 lg:py-4 text-black font-bold uppercase text-[20px] 2xl:text-[30px]"
                       >
-                        {job.titles[currentLanguage]}
+                        <Link to={"/roles"}>
+                          {job.titles[currentLanguage]}
+                        </Link>                        
                       </div>
                       <div className="flex flex-row gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24">
                         <div className="px-4 2xl:px-6 py-0 lg:py-4 text-[14px] 2xl:text-[25px] text-black">{t('remote')}</div>
@@ -152,7 +153,7 @@ const Careers = () => {
                       </div>
                       
                       <div className="px-4 2xl:px-6 py-0 lg:py-4 text-[25px] text-[#00A3FF] ">
-                        <Link to={""} className="flex items-center gap-1 text-[14px] 2xl:text-[20px]">
+                        <Link to={"https://www.artstation.com/squixgg"} className="flex items-center gap-1 text-[14px] 2xl:text-[20px]">
                           <div className="relative">
                             <img
                               src={GoogleBlueIcon}

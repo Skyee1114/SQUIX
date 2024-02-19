@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Tag from "../../components/Tag";
@@ -27,6 +27,10 @@ import { useTranslation } from 'react-i18next';
 
 function Roles() {
   const { t } = useTranslation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="absolute -z-10 w-full h-[800px] bg-[url('./assets/img/choose_option-bg-320.jpg')] sm:bg-[url('./assets/img/choose_option-bg-834.jpg')] xl:bg-[url('./assets/img/choose_option-bg-1920.jpg')] bg-no-repeat 5xl:bg-cover bg-top">
@@ -36,12 +40,12 @@ function Roles() {
         <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto pt-4 xl:pt-16">   
 
           <div className="flex flex-col lg:flex-row justify-between pb-10 sm:pb-32 md:pb-12 lg:pb-24 xl:pb-72 2xl:pb-20">            
-            <div>
-              <Link >
-                <div className='font-bold text-[14px] md:text-[16px] 2xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase text-start pl-5 md:pl-10'>
-                  <p>&lt; {t('otherroles')}</p>              
-                </div>
-              </Link>
+            <div>              
+              <div className='text-start pl-5 md:pl-10'>
+                <Link to={"/"}>
+                  <p className="font-bold text-[14px] md:text-[16px] 2xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase inline-block">&lt; {t('otherroles')}</p>
+                </Link>
+              </div>              
               <div className="flex flex-row gap-3 md:gap-7 2xl:gap-6 pt-4">
                 <div className="min-w-[7px] lg:min-w-[10px] xl:min-w-[15px] mt-0.5 -mb-28 xl:-mb-24 bg-primary-gradient rounded"> </div>            
                 <div className="text-white font-bold text-[32px] md:text-[46px] 2xl:text-[78px] leading-[31px] md:leading-[44px] 2xl:leading-[75px] text-left  relative ">
@@ -221,20 +225,21 @@ function Roles() {
 
                 <div className="flex flex-col md:flex-row gap-2 md:gap-12 items-center w-full md:w-auto pt-4">
                   <Button icon={PDFIcon} text={t('downloadpdfstyleportfolio')} className={"w-full md:w-auto flex justify-center"}/>
-                  <div className="flex gap-1 items-center text-[#00A3FF] text-[20px]">
-                    <div className="relative">
-                      <img src={GoogleBlueIcon} alt="" width={50} height={50} />
-                      <img
-                        src={GoogleBlueHoverIcon}
-                        className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100"
-                        alt=""
-                        width={50}
-                        height={50}
-                      />
+                  <Link to={"https://www.artstation.com/squixgg"}>
+                    <div className="flex gap-1 items-center text-[#00A3FF] text-[20px]">
+                      <div className="relative">
+                        <img src={GoogleBlueIcon} alt="" width={50} height={50} />
+                        <img
+                          src={GoogleBlueHoverIcon}
+                          className="absolute top-0 left-0 transition duration-300 opacity-0 hover:opacity-100"
+                          alt=""
+                          width={50}
+                          height={50}
+                        />
+                      </div>
+                      <p>{t('viewonartstation')}</p>                    
                     </div>
-                    <p>{t('viewonartstation')}</p>
-                    
-                  </div>
+                  </Link>                  
                 </div>
               </div>
 

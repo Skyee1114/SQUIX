@@ -1,15 +1,17 @@
 export default function SpinCircle() {
     return (    
-        <div className="absolute left-[-120px] top-[-280px] hidden 4xl:block">
-            <div className="w-[1369px] absolute h-[1369px] mx-auto flex items-center justify-center">
-                <svg className="animate-spin" style={{ animation: 'spin 180s linear infinite' }} width="906" height="905" viewBox="0 0 906 905" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="453.143" cy="452.407" r="450.715" stroke="#A9A08A" strokeWidth="3"/>
-                    <circle cx="764.414" cy="776.216" r="25.8608" stroke="#A9A08A"/>
-                    <circle cx="764.416" cy="776.218" r="10.5898" fill="#A9A08A"/>
-                    <circle cx="142.755" cy="128.252" r="13.6519" fill="#A9A08A"/>
-                </svg>
+        <div className="flex justify-center">
+            <div className="absolute w-[1369px] h-[1369px] mx-auto flex items-center justify-center top-[-280px] ">
+                <div className="hidden 2xl:block">
+                    <svg className="animate-spin" style={{ animation: 'spin 180s linear infinite' }} width="906" height="905" viewBox="0 0 906 905" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="453.143" cy="452.407" r="450.715" stroke="#A9A08A" strokeWidth="3"/>
+                        <circle cx="764.414" cy="776.216" r="25.8608" stroke="#A9A08A"/>
+                        <circle cx="764.416" cy="776.218" r="10.5898" fill="#A9A08A"/>
+                        <circle cx="142.755" cy="128.252" r="13.6519" fill="#A9A08A"/>
+                    </svg>
+                </div>                
             </div>
-            <div className="absolute">
+            <div className="absolute top-[-280px] hidden 2xl:block">
                 <svg className="animate-spin" style={{ animation: 'spin 180s linear infinite reverse' }} width="1369" height="1369" viewBox="0 0 1369 1369" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="684.144" cy="684.407" r="683.567" stroke="#A9A08A"/>
                     <circle cx="684.144" cy="684.409" r="403.006" stroke="#A9A08A"/>

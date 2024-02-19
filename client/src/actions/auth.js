@@ -76,7 +76,6 @@ export const verifyuser = async (emailtoken ) => {
   
     } catch (err) {
         const errors = err.response.data.errors;   
-        //console.log(err.response.status);
         throw new Error(JSON.stringify(errors))
     }
 };
@@ -113,8 +112,7 @@ export const googleSign = async () => {
             'Content-Type': 'application/json'
             },
         };
-        const res = await axios.get('http://156.227.0.154:5000/api/google', config);
-        console.log(res);
+        const res = await axios.get('http://156.227.0.154:5000/api/google', config);    
     } catch (err) {
 
     }

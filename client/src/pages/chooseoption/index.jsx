@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from 'react-router-dom'
+import React, {useEffect} from "react";
+import { Link } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import Tag from "../../components/Tag";
 import Button from "../../components/Buttons/Button";
@@ -35,6 +35,10 @@ import { useTranslation } from 'react-i18next';
 
 function ChooseOption() {
   const { t } = useTranslation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>   
       <div className="absolute -z-10 w-full h-[800px] bg-[url('./assets/img/choose_option-bg-320.jpg')] sm:bg-[url('./assets/img/choose_option-bg-834.jpg')] xl:bg-[url('./assets/img/choose_option-bg-1920.jpg')] bg-no-repeat 5xl:bg-cover bg-top">
@@ -46,11 +50,11 @@ function ChooseOption() {
 
           <div className="flex flex-col lg:flex-row justify-between">            
             <div>
-              <Link >
-                <div className='font-bold text-[14px] lg:text-[16px] 2xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase text-start pl-5 md:pl-10'>
-                  <p>&lt; {t('back')}</p>              
-                </div>
-              </Link>
+              <div className='text-start pl-5 md:pl-10'>
+                <Link to={"/"}>
+                  <p className="font-bold text-[14px] lg:text-[16px] 2xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase inline-block">&lt; {t('back')}</p> 
+                </Link>                               
+              </div>
               <div className="w-[300px] md:w-[450px] xl:w-[680px] 2xl:w-[1120px] flex flex-row gap-3 md:gap-7 2xl:gap-6 pt-4">
                 <div className="min-w-[7px] lg:min-w-[10px] xl:min-w-[15px] mt-0.5 -mb-28 lg:my-1.5 xl:my-2.5 bg-primary-gradient rounded"> </div>            
                 <div className="text-white font-bold text-[32px] lg:text-[46px] 2xl:text-[78px] leading-[31px] lg:leading-[44px] 2xl:leading-[75px] text-left  relative ">

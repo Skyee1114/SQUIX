@@ -5,7 +5,6 @@ export const getCurrentProfile = async () => {
     try {
       const res = await axios.get('http://156.227.0.154:5000/api/profile/');  
       return res.data;
-      // console.log(res);
     } catch (err) {
       // dispatch({ type: CLEAR_PROFIlE });
       
@@ -22,7 +21,6 @@ export const updateCurrentProfile = async ({name, email, password, firstname, la
     };
     const res = await axios.post('http://156.227.0.154:5000/api/profile/', { name, email, password, firstname, lastname, phone, twitterlink, artstationlink, facebooklink, linkedinlink, instagramlink, tiktoklink, redditlink, youtubelink, telegramlink, discordlink, googleaccountlink }, config);  
     return res.data;
-    // console.log(res);
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
     
@@ -34,7 +32,6 @@ export const getCurrentAvatar = async () => {
   try {
     const res = await axios.get('http://156.227.0.154:5000/api/profile/avatar', { responseType: 'blob' });  
     return res.data;
-    // console.log(res);
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
     
@@ -51,7 +48,6 @@ export const updateCurrentAvatar = async (formData) => {
     };
     const res = await axios.post('http://156.227.0.154:5000/api/profile/avatar', formData, config);  
     return res.data;
-    // console.log(res);
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
     

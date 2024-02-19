@@ -10,7 +10,6 @@ export const addSubscriber = async ({email}) => {
     };
     const res = await axios.post('http://156.227.0.154:5000/api/subscriber/', { email }, config);  
     return res.data;
-    // console.log(res);
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
     

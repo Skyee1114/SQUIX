@@ -44,7 +44,6 @@ export default function SelectLang() {
   const LangButtonClick = (index) => {
     setLang(index);
     i18n.changeLanguage(index)  
-    console.log(i18n.language);
   };  
 
   return (

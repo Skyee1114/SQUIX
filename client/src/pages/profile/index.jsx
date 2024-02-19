@@ -382,7 +382,6 @@ function Profile() {
         if(data) {
           const imageUrl = URL.createObjectURL(data)
           setAvatar(imageUrl);
-          console.log(imageUrl);
         }
         else {
           setAvatar(defaultAvatar);

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import Modal from "react-modal";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Navbar from "../../components/Navbar";
 import Arrow from "../../components/Arrow";
 import Button from "../../components/Buttons/Button";
@@ -19,6 +19,10 @@ const Donate = () => {
   const navigate = useNavigate();
   
   const [option, setOption] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   useEffect(() => {
     setOption(t('sproud'));
@@ -82,8 +86,8 @@ const Donate = () => {
 
   const [eyepopup, setEyePopup] = useState(false);
   
-    const eyeClick = () => {
-      setEyePopup(!eyepopup);        
+  const eyeClick = () => {
+    setEyePopup(!eyepopup);        
   };
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -109,12 +113,11 @@ const Donate = () => {
       <Navbar colorMode="light"/>
       <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative" >
         <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto pt-4 xl:pt-16">   
-          <Link >
-            <div className='font-bold text-[14px] md:text-[16px] xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase text-start pl-5 md:pl-10'>
-              <p className='hidden md:block'>&lt; {t('backtomain')}</p>
-              <p className='block md:hidden'>&lt; {t('back')}</p>              
-            </div>
-          </Link>
+          <div className='text-start pl-5 md:pl-10'>
+            <Link to={"/"}>              
+              <p className='font-bold text-[14px] md:text-[16px] xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase inline-block'>&lt; {t('back')}</p>         
+            </Link>     
+          </div>          
           <div className="w-[280px] md:w-[450px] xl:w-[680px] 2xl:w-[950px] flex flex-row gap-3 md:gap-7 2xl:gap-6 pt-4">
             <div className="min-w-[7px] md:min-w-[10px] xl:min-w-[15px] mt-0.5 -mb-28 md:my-1.5 xl:my-2.5 bg-primary-gradient rounded"> </div>            
             <div className="text-white font-bold text-[32px] md:text-[46px] xl:text-[78px] leading-[31px] md:leading-[44px] xl:leading-[75px] text-left  relative ">
@@ -137,12 +140,12 @@ const Donate = () => {
           </div>     
           <div className="flex items-start" >            
             <div className=" flex flex-row gap-[13px] pt-4">
-              <div className="bg-[url('./assets/img/sproud.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px]">
+              <div className="bg-[url('./assets/img/sproud.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px]">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
                       src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
+                      className="w-[20px] 2xl:w-[31px]"
                       alt=""
                     />
                   </div>
@@ -169,11 +172,11 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/original.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="bg-[url('./assets/img/original.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
@@ -205,11 +208,11 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
@@ -241,11 +244,11 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
@@ -277,11 +280,11 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
@@ -313,11 +316,11 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
@@ -349,11 +352,11 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.jpg')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
                 <div className="flex flex-col h-full justify-between">
                   <div className="flex p-[10px] 2xl:p-[18px]">
                     <img
@@ -385,7 +388,7 @@ const Donate = () => {
                   <img
                     src="img/rectangle.svg"
                     alt=""
-                    className=" absolute -bottom-[6px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
+                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
                   />
                 </div>
               </div>
@@ -1199,7 +1202,7 @@ const Donate = () => {
               
               <div className="bg-[url('./assets/img/optioneye_model.svg')] flex flex-row px-6 pt-6 pb-16 gap-4 w-[671px] h-[515px]">
                 <div>
-                  <img src="./img/pioneer.jpg" alt="" className='w-[281px] h-[430px]'/>                     
+                  <img src="./img/pioneer.png" alt="" className='w-[281px] h-[430px]'/>                     
                 </div>                                
                 <div className='flex flex-col justify-between text-white text-start w-[290px]'>
                     <div>
@@ -1248,7 +1251,7 @@ const Donate = () => {
                 <div className="w-[8px] md:w-[15.12px] h-[24px] md:h-[44.62px] bg-gradient-to-b from-amber-500 to-orange-500 rounded-[3px] absolute left-0 top-6 md:top-20" />
                 <div className='flex flex-col md:flex-row gap-4'>
                   <div>
-                    <img src="./img/sproud.jpg" alt="" className='w-[174px] lg:w-[281px] h-[276px] lg:h-[430px]'/>
+                    <img src="./img/sproud.png" alt="" className='w-[174px] lg:w-[281px] h-[276px] lg:h-[430px]'/>
                   </div>
                   <div className='flex flex-col gap-4 w-[250px] lg:w-[200px] text-[16px] leading-[18px]'>
                     <p>{t('option1')}</p>                   

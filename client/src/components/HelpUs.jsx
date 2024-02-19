@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import Arrow from "./Arrow";
 import Button from "./Buttons/Button";
 import { useTranslation } from 'react-i18next';
@@ -58,17 +59,19 @@ export default function HelpUs() {
                 <div className=" text-black text-[16px] xl:text-[20px] 3xl:text-[23px] leading-[18px] xl:leading-[23px] 3xl:leading-[26px] font-normal font-['Jost'] text-left">
                   {t('helpintro')}
                 </div>
-                <Button
-                  text={t('viewmoredetails')}
-                  type={"black"}
-                  className={
-                    "px-[65px] md:px-[30px] rounded-[3px] text-white text-sm 2xl:text-xl font-bold font-['Jost'] uppercase w-fit"
-                  }
-                />
+                <Link to={"/donate"}>
+                  <Button
+                    text={t('viewmoredetails')}
+                    type={"black"}
+                    className={
+                      "px-[65px] md:px-[30px] rounded-[3px] text-white text-sm 2xl:text-xl font-bold font-['Jost'] uppercase w-fit"
+                    }
+                  />  
+                </Link>                
               </div>
               <div className="flex flex-col mt-[280px] md:-mt-[90px] 4xl:-mt-[140px] gap-[19px] pl-0 md:pl-[300px] xl:pl-[480px] 3xl:pl-[500px] absolute">
-                <div className=" flex flex-row gap-[13px] ">
-                  <div className={`bg-[url('./assets/img/sproud.jpg')] relative cursor-pointer shadow-3xl overflow-hidden bg-cover w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]`}>
+                <div className=" flex flex-row gap-[13px]">
+                  <div className={`bg-[url('./assets/img/sproud.png')] relative cursor-pointer shadow-3xl overflow-hidden  bg-cover w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]`}>
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -104,7 +107,7 @@ export default function HelpUs() {
                       />
                     </div>
                   </div>
-                  <div className="bg-[url('./assets/img/original.jpg')] relative cursor-pointer shadow-3xl  overflow-hidden  bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                  <div className="bg-[url('./assets/img/original.png')] relative cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -142,7 +145,7 @@ export default function HelpUs() {
                       />
                     </div>
                   </div>
-                  <div className="bg-[url('./assets/img/pioneer.jpg')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                  <div className="bg-[url('./assets/img/pioneer.png')] relative shadow-3xl overflow-hidden   bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -180,7 +183,7 @@ export default function HelpUs() {
                       />
                     </div>
                   </div>
-                  <div className="bg-[url('./assets/img/pioneer.jpg')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                  <div className="bg-[url('./assets/img/pioneer.png')] relative shadow-3xl overflow-hidden   bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -193,7 +196,7 @@ export default function HelpUs() {
                         <div className="flex flex-col-reverse">
                           <div className="flex flex-row gap-1 py-2 xl:py-4 px-2 xl:px-5 z-10 ">
                             <div className="text-white text-[21px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                              80
+                              150
                             </div>
                             <div className="text-right text-white text-[12px] xl:text-[17px] font-bold font-['Jost'] leading-3">
                               €
@@ -218,7 +221,7 @@ export default function HelpUs() {
                       />
                     </div>
                   </div>
-                  <div className="bg-[url('./assets/img/pioneer.jpg')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                  <div className="bg-[url('./assets/img/pioneer.png')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -231,7 +234,7 @@ export default function HelpUs() {
                         <div className="flex flex-col-reverse">
                           <div className="flex flex-row gap-1 py-2 xl:py-4 px-2 xl:px-5 z-10 ">
                             <div className="text-white text-[21px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                              80
+                              250
                             </div>
                             <div className="text-right text-white text-[12px] xl:text-[17px] font-bold font-['Jost'] leading-3">
                               €
@@ -256,7 +259,7 @@ export default function HelpUs() {
                       />
                     </div>
                   </div>
-                  <div className="bg-[url('./assets/img/pioneer.jpg')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                  <div className="bg-[url('./assets/img/pioneer.png')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -269,7 +272,7 @@ export default function HelpUs() {
                         <div className="flex flex-col-reverse">
                           <div className="flex flex-row gap-1 py-2 xl:py-4 px-2 xl:px-5 z-10 ">
                             <div className="text-white text-[21px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                              80
+                              500
                             </div>
                             <div className="text-right text-white text-[12px] xl:text-[17px] font-bold font-['Jost'] leading-3">
                               €
@@ -294,7 +297,7 @@ export default function HelpUs() {
                       />
                     </div>
                   </div>
-                  <div className="bg-[url('./assets/img/pioneer.jpg')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                  <div className="bg-[url('./assets/img/pioneer.png')] relative shadow-3xl  overflow-hidden  bg-cover  cursor-pointer w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                     <div className="flex flex-col h-full justify-between">
                       <div className="flex p-[10px] xl:p-[18px]">
                         <img
@@ -307,7 +310,7 @@ export default function HelpUs() {
                         <div className="flex flex-col-reverse">
                           <div className="flex flex-row gap-1 py-2 xl:py-4 px-2 xl:px-5 z-10 ">
                             <div className="text-white text-[21px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                              80
+                              1000
                             </div>
                             <div className="text-right text-white text-[12px] xl:text-[17px] font-bold font-['Jost'] leading-3">
                               €

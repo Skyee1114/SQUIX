@@ -1,5 +1,4 @@
-import React, {useState, useContext} from "react";
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from "react";
 import SelectLang from "./SelectLang";
 import Button from "./Buttons/Button";
 import { Link } from "react-router-dom";
@@ -28,30 +27,27 @@ import YoutubeHoverIcon from "../assets/img/socials/youtube_.png";
 import FootBrandImg from "../assets/img/footer_brand.png";
 import LogoFooterImg from "../assets/img/logo_footer.svg";
 import { useTranslation } from 'react-i18next';
-import { UserContext } from "../contexts/UserContext";
 import { addSubscriber } from "../actions/subscriber";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [emailerror, setEmailError] = useState('');
 
   const AddSubscriber = () => {
-    if(user) {
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!emailPattern.test(email)) {
-        // Set error message for invalid email
-        setEmailError(t('emailerror'));
-        return;
-      }
-      setEmailError('');
-      addSubscriber({email});
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      // Set error message for invalid email
+      setEmailError(t('emailerror'));
+      return;
     }
-    else {
-      navigate("/auth/login");
-    }    
+    setEmailError('');
+    addSubscriber({email}).then(data => {
+      if(data){
+        console.log(data);
+      }
+    });
     
   };
 

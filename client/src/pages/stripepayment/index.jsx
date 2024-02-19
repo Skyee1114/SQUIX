@@ -16,8 +16,6 @@ const StripePayment = () => {
   const location = useLocation();
   const amount = location.state && location.state.amount; 
 
-  console.log(amount);  
-
   useEffect(() => {    
     window.scrollTo(0, 0);
   }, []);

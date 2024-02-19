@@ -11,8 +11,7 @@ function classNames(...classes) {
 
 export default function ProfileButtons() {
   const { t } = useTranslation();
-  const {user, setUser} = useContext(UserContext)
-  // console.log(user);
+  const {user, setUser} = useContext(UserContext)  
 
   const LogOut = () => {
     logout();

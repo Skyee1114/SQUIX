@@ -91,7 +91,6 @@ export const saveNewsImage = async (formData) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    console.log('formData:', formData);
     const res = await axios.post('http://156.227.0.154:5000/api/admin/savenewsimage', formData, config);  
     return res.data;
   } catch (err) {
@@ -137,7 +136,6 @@ export const saveJobs = async ({jobs}) => {
       'Content-Type': 'application/json',
       },
     };
-    console.log(jobs);
     const res = await axios.post('http://156.227.0.154:5000/api/admin/savejobs', { jobs }, config);  
     return res.data;
   } catch (err) {

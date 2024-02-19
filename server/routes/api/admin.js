@@ -202,7 +202,7 @@ router.post('/subscribers', auth, async (req, res) => {
         subscribers.forEach(async subscriber => { 
             const mailOptions = {
                 from: process.env.gmailUser,
-                to: subscriber.subscriber,
+                to: subscriber.email,
                 subject: 'SQUIX News',
                 html: `<div style="margin: 0px;">
                 <div style="background-image:url('http://156.227.0.154:3000/img/newsteller/bg-newsteller.png'); background-repeat:no-repeat; background-position: top; width:100%;">
@@ -221,7 +221,7 @@ router.post('/subscribers', auth, async (req, res) => {
                                 </tr>
                                 <tr>
                                     <td style="padding-top: 100px; padding-left: 70px; padding-right: 70px;">
-                                        <p style="font-weight: bold; font-family: Tahoma; font-size: 32px; line-height: 38px; color: black;">Hello, ${subscriber.name}!</p>
+                                        <p style="font-weight: bold; font-family: Tahoma; font-size: 32px; line-height: 38px; color: black;">Hello!</p>
                                         <p style="font-weight: bold; font-family: Tahoma; font-size: 20px; line-height: 24px; color: black;">${news.titles.english}</p>
                                         <p style="font-family: Tahoma; font-size: 20px; line-height: 24px; color: black;">${news.contents.english}</p>
                                         <img src='http://156.227.0.154:5000/${news.image}' style="width: 500px;" alt="">
@@ -278,9 +278,9 @@ router.post('/subscribers', auth, async (req, res) => {
     
             try {
                 await transporter.sendMail(mailOptions);
-                console.log(`Email sent to ${subscriber.subscriber}`);
+                console.log(`Email sent to ${subscriber.email}`);
             } catch (error) {
-                console.error(`Failed to send email to ${subscriber.subscriber}: ${error}`);
+                console.error(`Failed to send email to ${subscriber.email}: ${error}`);
             }
         })
 
