@@ -1,6 +1,5 @@
+import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -9,22 +8,25 @@ import Arrow from "./Arrow";
 
 
 const ImageSlider = ({ title, imgList, className }) => {
-    let swiper
+    const swiperRef = useRef(null);
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const totalSlides = imgList.length;
+
+
     return (
         <>
             <div className="flex justify-between md:px-8 w-full items-center py-8">
                 <div className="text-black font-bold text-[14px] md:text-[36px] leading-[14px] md:leading-[36px] text-left w-[60%]">{title}</div>
                 <div className="flex items-center">
-                    <Arrow direction="left" onClick={() => {
-                        swiper?.slidePrev();
-                    }} />
-                    <Arrow direction="right" onClick={() => {
-                        swiper?.slideNext();
-                    }} />
-                    <div className="font-bold text-[16px] md:text-[32px] ms-2">3/7</div>
+                    <Arrow direction="left" onClick={() => swiperRef.current.slidePrev()} />
+                    <Arrow direction="right" onClick={() => swiperRef.current.slideNext()} />
+
+                    <div className="font-bold text-[16px] md:text-[32px] ms-2">{currentSlide + 1}/{totalSlides}</div>
                 </div>
             </div>
             <Swiper
+                ref={swiperRef}
                 style={
                     {
                         "--swiper-pagination-bottom": 0,
@@ -34,9 +36,13 @@ const ImageSlider = ({ title, imgList, className }) => {
                         overflowY: "visible"
                     }
                 }
-                onSwiper={(swiperInstance) => {
-                    swiper = swiperInstance;
+                onSwiper={(swiper) => {
+                    if (swiperRef.current !== swiper) {
+                        swiperRef.current = swiper;                        
+                    }
                 }}
+                onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+
                 id="image-slider"
                 speed={1500}
                 spaceBetween={-20}
@@ -78,7 +84,7 @@ const ImageSlider = ({ title, imgList, className }) => {
 
                     })
                 }
-            </Swiper ></>
+            </Swiper></>
     )
 }
 

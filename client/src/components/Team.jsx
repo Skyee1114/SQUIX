@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 const Team = () => {
     const { t } = useTranslation();
-    const [currentImage, setCurrentImage] = useState('img/teams/02.png')
+    const [currentImage, setCurrentImage] = useState('img/teams/02__.png')
 
     const handleHover = (image) => {
         setCurrentImage(image);

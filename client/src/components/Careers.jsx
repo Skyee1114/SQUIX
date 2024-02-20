@@ -80,7 +80,8 @@ const Careers = () => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "0px",
-      height: "70vh",
+      height: "110vh",
+      overflow: "hidden",
     },
     overlay: {
       backgroundColor: "#000000b0",
@@ -185,7 +186,7 @@ const Careers = () => {
             style={customStyles}
           >
             <div className="w-[300px] md:w-[600px] lg:w-[654px] p-8 md:p-20 gap-[20px] md:gap-[70px] bg-white rounded-tl-[3px] rounded-bl-[3px]  flex-col  items-start inline-flex relative z-50">
-              <img src="img/close.svg" className='absolute right-2 top-2 w-[10px] md:w-[20px]' alt="" onClick={closeModal}/>
+              <img src="img/close.svg" className='absolute right-2 top-2 w-[10px] md:w-[20px] cursor-pointer' alt="" onClick={closeModal}/>
               <div className="text-black text-[20px] md:text-[54px] font-bold font-['Jost'] uppercase leading-none ">
                 {t('apply')}
               </div>
@@ -254,7 +255,7 @@ const Careers = () => {
             <span className="text-black font-bold text-[20px] 2xl:text-[40px] uppercase">
               {t('didnotfindsuitablerole')}
             </span>
-            <Button text={t('sendusyourcv')}></Button>
+            <Button onClick={openModal} text={t('sendusyourcv')}></Button>
           </div>
         </div>
       </div>

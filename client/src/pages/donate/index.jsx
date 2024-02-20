@@ -9,7 +9,6 @@ import Button from "../../components/Buttons/Button";
 import Footer from "../../components/Footer";
 import { useTranslation } from 'react-i18next';
 import { UserContext } from "../../contexts/UserContext";
-import { AnimationUtils } from 'three';
 
 const Donate = () => {
   const { t, i18n } = useTranslation();
@@ -49,9 +48,7 @@ const Donate = () => {
     else {
       navigate("/auth/login");
     }
-  }
-
-  
+  }  
   
   const customStyles = {
     content: {
@@ -62,7 +59,7 @@ const Donate = () => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "0px",
-      height: "60vh",
+      height: "96vh",
     },
     overlay: {
       backgroundColor: "#000000b0",
@@ -78,16 +75,17 @@ const Donate = () => {
     [`${t('option14')}`]: 4,  
   };
 
-  const [currentEye, setCurrentEye] = useState('')
+  const [currentEye, setCurrentEye] = useState(null)
+  const [eyepopup, setEyePopup] = useState(false);
 
-  const eyeOptionClick = (index) => {
+  const handleHover = (index) => {
     setCurrentEye(index);
+    setEyePopup(true);
   };
 
-  const [eyepopup, setEyePopup] = useState(false);
-  
-  const eyeClick = () => {
-    setEyePopup(!eyepopup);        
+  const handleLeave = () => {
+    setCurrentEye(null);
+    setEyePopup(false);
   };
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -105,6 +103,18 @@ const Donate = () => {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const images = ['sproud', 'original', 'pioneer', 'founder', 'oldman', 'royal', 'ultimate'];
+  const prices = ['25', '50', '80', '150', '250', '500', '1000'];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleLeftArrowClick = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const handleRightArrowClick = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
 
   return (
     <div className='overflow-hidden'>
@@ -135,14 +145,15 @@ const Donate = () => {
           </div>
           
           <div className="flex rounded-[3px] justify-end">
-            <Arrow direction="left" />
-            <Arrow direction="right" />
+            <Arrow direction="left" onClick={handleLeftArrowClick} />
+            <Arrow direction="right" onClick={handleRightArrowClick}/>
           </div>     
           <div className="flex items-start" >            
             <div className=" flex flex-row gap-[13px] pt-4">
-              <div className="bg-[url('./assets/img/sproud.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px]">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px]">
+                <img src={`img/${images[currentImageIndex]}.png`} alt="Sproud" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px]"
@@ -153,16 +164,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 px-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          25
+                          {prices[currentImageIndex]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('sproud')}
+                        {t(images[currentImageIndex])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')} &gt;
@@ -176,9 +187,10 @@ const Donate = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/original.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+                <img src={`img/${images[(currentImageIndex+1+images.length)%images.length]}.png`} alt="Original" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px] "
@@ -189,16 +201,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          50
+                          {prices[(currentImageIndex+1+prices.length)%prices.length]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('original')}
+                        {t(images[(currentImageIndex+1+images.length)%images.length])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')} &gt;
@@ -212,9 +224,10 @@ const Donate = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+                <img src={`img/${images[(currentImageIndex+2+images.length)%images.length]}.png`} alt="Pioneer" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px] "
@@ -225,16 +238,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          80
+                          {prices[(currentImageIndex+2+prices.length)%prices.length]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('pioneer')}
+                        {t(images[(currentImageIndex+2+images.length)%images.length])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')} &gt;
@@ -248,9 +261,10 @@ const Donate = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+                <img src={`img/${images[(currentImageIndex+3+images.length)%images.length]}.png`} alt="Founder" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px] "
@@ -261,16 +275,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          150
+                          {prices[(currentImageIndex+3+prices.length)%prices.length]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('founder')}
+                        {t(images[(currentImageIndex+3+images.length)%images.length])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')} &gt;
@@ -284,9 +298,10 @@ const Donate = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+                <img src={`img/${images[(currentImageIndex+4+images.length)%images.length]}.png`} alt="Oldman" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px] "
@@ -297,16 +312,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          250
+                          {prices[(currentImageIndex+4+prices.length)%prices.length]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('oldman')}
+                        {t(images[(currentImageIndex+4+images.length)%images.length])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')} &gt;
@@ -320,9 +335,10 @@ const Donate = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+                <img src={`img/${images[(currentImageIndex+5+images.length)%images.length]}.png`} alt="Royal" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px] "
@@ -333,16 +349,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          500
+                          {prices[(currentImageIndex+5+prices.length)%prices.length]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('royal')}
+                        {t(images[(currentImageIndex+5+images.length)%images.length])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')} &gt;
@@ -356,9 +372,10 @@ const Donate = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[url('./assets/img/pioneer.png')] cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
+                <img src={`img/${images[(currentImageIndex+6+images.length)%images.length]}.png`} alt="Ultimate" className="absolute w-full h-full object-cover" />
                 <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px]">
+                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
                     <img
                       src="img/triangle.svg"
                       className="w-[20px] 2xl:w-[31px] "
@@ -369,16 +386,16 @@ const Donate = () => {
                     <div className="flex flex-col-reverse">
                       <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
                         <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          1000
+                          {prices[(currentImageIndex+6+prices.length)%prices.length]}
                         </div>
                         <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
                           €
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5">
+                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
                       <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t('ultimate')}
+                        {t(images[(currentImageIndex+6+images.length)%images.length])}
                       </div>
                       <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
                         {t('viewdetails')}&gt;
@@ -752,10 +769,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option10'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option10'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option10')}</p>
@@ -800,10 +815,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option11'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option11'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option11')}</p>
@@ -848,10 +861,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option12'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option12'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option12')}</p>
@@ -890,10 +901,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option13'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option13'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option13')}</p>
@@ -932,10 +941,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option14'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option14'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option14')}</p>
@@ -1196,7 +1203,7 @@ const Donate = () => {
                 </tbody>
               </table>
             </div>
-            <div className='absolute z-10 pt-5 2xl:pt-0 hidden lg:block' style={{ transform: `translateY(${-1000 + currentEyePosition[currentEye] * 60}px) translateX(20px)` }}>
+            <div className={`absolute z-10 pt-5 2xl:pt-0 hidden lg:block transition-opacity duration-300 ${eyepopup ? 'opacity-100' : 'opacity-0'}`} style={{ transform: `translateY(${-1000 + currentEyePosition[currentEye] * 60}px) translateX(20px)` }}>
               {
               eyepopup && 
               
@@ -1446,10 +1453,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option11'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option10'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option10')}</p>
@@ -1473,10 +1478,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option11'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option11'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option11')}</p>
@@ -1500,10 +1503,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option12'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option12'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option12')}</p>
@@ -1527,10 +1528,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option13'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option13'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option13')}</p>
@@ -1554,10 +1553,8 @@ const Donate = () => {
                         <img 
                           src="img/option_eye.svg" 
                           alt="" 
-                          onClick={() => {
-                            eyeOptionClick(t('option14'));
-                            eyeClick();
-                          }}
+                          onMouseEnter={() => handleHover(t('option14'))}
+                          onMouseLeave={handleLeave}
                           className='cursor-pointer'
                         />
                         <p className='text-[12px] leading-[13px]'>{t('option14')}</p>

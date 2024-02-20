@@ -21,7 +21,6 @@ import GoogleBlueIcon from "../../assets/img/socials/blue_google.png";
 import GoogleBlueHoverIcon from "../../assets/img/socials/google_.png";
 import ImageSlider from "../../components/ImageSlider";
 import OptionImg4_1920 from "../../assets/img/option4-1920.jpg";
-import OptionImg4_320 from "../../assets/img/option4-320.jpg";
 import Footer from "../../components/Footer";
 import { useTranslation } from 'react-i18next';
 
@@ -148,7 +147,7 @@ function Roles() {
                   
                 </div>
 
-                <div className="w-full hidden md:block ">
+                <div className="w-full">
                   <ImageSlider
                     title={t('roletitle2')}
                     imgList={[
@@ -158,23 +157,9 @@ function Roles() {
                       { img: OptionImg4_1920, position: "bg-top" },
                       { img: OptionImg4_1920, position: "bg-top" },
                     ]}
-                    className={"w-full h-[580px] "}
+                    className={"w-full h-[300px] md:h-[580px] "}
                   />
-                </div>
-
-                <div className="w-full block md:hidden">
-                  <ImageSlider
-                    title={t('roletitle2')}
-                    imgList={[
-                      { img: OptionImg4_320, position: "bg-top" },
-                      { img: OptionImg4_320, position: "bg-top" },
-                      { img: OptionImg4_320, position: "bg-top" },
-                      { img: OptionImg4_320, position: "bg-top" },
-                      { img: OptionImg4_320, position: "bg-top" },
-                    ]}
-                    className={"w-full h-[250px]"}
-                  />
-                </div>
+                </div>                
 
                 <div className="text-[32px] lg:text-[36px] leading-[38px] lg:leading-[43px] text-black font-bold text-start">
                   {t('roletitle3')}
@@ -249,81 +234,91 @@ function Roles() {
                 </div>
                 <div className="flex flex-col gap-[52px]">
                   <div className="flex flex-col gap-[35px] ps-2">
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t('december')} 23, 2023
+                    <Link to={"/roles"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t('december')} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t('post11')}
+                          <br /> {t('post12')}
+                        </div>
+                        <Tag size="big" text={t('tagforthesection')} />
                       </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t('post11')}
-                        <br /> {t('post12')}
+                    </Link>
+                    <Link to={"/roles"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t('december')} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t('post11')}
+                          <br /> {t('post12')}
+                        </div>
+                        <Tag size="big" text={t('tagforthesection')} />
                       </div>
-                      <Tag size="big" text={t('tagforthesection')} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t('december')} 23, 2023
+                    </Link>
+                    <Link to={"/roles"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t('december')} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t('post11')}
+                          <br /> {t('post12')}
+                        </div>
+                        <Tag size="big" text={t('tagforthesection')} />
                       </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t('post11')}
-                        <br /> {t('post12')}
+                    </Link>                    
+                    <Link to={"/roles"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t('december')} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t('post11')}
+                          <br /> {t('post12')}
+                        </div>
+                        <Tag size="big" text={t('tagforthesection')} />
                       </div>
-                      <Tag size="big" text={t('tagforthesection')} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t('december')} 23, 2023
+                    </Link>                    
+                    <Link to={"/roles"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t('december')} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t('post11')}
+                          <br /> {t('post12')}
+                        </div>
+                        <Tag size="big" text={t('tagforthesection')} />
                       </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t('post11')}
-                        <br /> {t('post12')}
-                      </div>
-                      <Tag size="big" text={t('tagforthesection')} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t('december')} 23, 2023
-                      </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t('post11')}
-                        <br /> {t('post12')}
-                      </div>
-                      <Tag size="big" text={t('tagforthesection')} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t('december')} 23, 2023
-                      </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t('post11')}
-                        <br /> {t('post12')}
-                      </div>
-                      <Tag size="big" text={t('tagforthesection')} />
-                    </div>
+                    </Link>                    
                   </div>
                 </div>
               </div>

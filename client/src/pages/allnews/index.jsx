@@ -161,81 +161,91 @@ function AllNews() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-[35px] ps-2">
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t("december")} 23, 2023
+                    <Link to={"/choose/option"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t("december")} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t("post11")}
+                          <br /> {t("post12")}
+                        </div>
+                        <Tag size="big" text={t("tagforthesection")} />
                       </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t("post11")}
-                        <br /> {t("post12")}
+                    </Link>                    
+                    <Link to={"/choose/option"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t("december")} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t("post11")}
+                          <br /> {t("post12")}
+                        </div>
+                        <Tag size="big" text={t("tagforthesection")} />
                       </div>
-                      <Tag size="big" text={t("tagforthesection")} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t("december")} 23, 2023
+                    </Link>                    
+                    <Link to={"/choose/option"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t("december")} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t("post11")}
+                          <br /> {t("post12")}
+                        </div>
+                        <Tag size="big" text={t("tagforthesection")} />
                       </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t("post11")}
-                        <br /> {t("post12")}
+                    </Link>                    
+                    <Link to={"/choose/option"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t("december")} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t("post11")}
+                          <br /> {t("post12")}
+                        </div>
+                        <Tag size="big" text={t("tagforthesection")} />
                       </div>
-                      <Tag size="big" text={t("tagforthesection")} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t("december")} 23, 2023
+                    </Link>                    
+                    <Link to={"/choose/option"}>
+                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                        <img
+                          src={NewsTagImg}
+                          alt=""
+                          className="absolute top-0 left-0"
+                        />
+                        <div className="font-bold text-black text-[16px] uppercase">
+                          {t("december")} 23, 2023
+                        </div>
+                        <div className="text-[16px] text-black text-left">
+                          {t("post11")}
+                          <br /> {t("post12")}
+                        </div>
+                        <Tag size="big" text={t("tagforthesection")} />
                       </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t("post11")}
-                        <br /> {t("post12")}
-                      </div>
-                      <Tag size="big" text={t("tagforthesection")} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t("december")} 23, 2023
-                      </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t("post11")}
-                        <br /> {t("post12")}
-                      </div>
-                      <Tag size="big" text={t("tagforthesection")} />
-                    </div>
-                    <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                      <img
-                        src={NewsTagImg}
-                        alt=""
-                        className="absolute top-0 left-0"
-                      />
-                      <div className="font-bold text-black text-[16px] uppercase">
-                        {t("december")} 23, 2023
-                      </div>
-                      <div className="text-[16px] text-black text-left">
-                        {t("post11")}
-                        <br /> {t("post12")}
-                      </div>
-                      <Tag size="big" text={t("tagforthesection")} />
-                    </div>
+                    </Link>                    
                   </div>
                 </div>
               </div>

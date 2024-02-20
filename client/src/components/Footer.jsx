@@ -26,29 +26,34 @@ import YoutubeIcon from "../assets/img/socials/youtube.png";
 import YoutubeHoverIcon from "../assets/img/socials/youtube_.png";
 import FootBrandImg from "../assets/img/footer_brand.png";
 import LogoFooterImg from "../assets/img/logo_footer.svg";
+import FalseIcon from "../assets/img/false.svg";
+import TrueIcon from "../assets/img/true.svg";
 import { useTranslation } from 'react-i18next';
 import { addSubscriber } from "../actions/subscriber";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const [email, setEmail] = useState('');
-  const [emailerror, setEmailError] = useState('');
+  const [emailerror, setEmailError] = useState(null);
 
   const AddSubscriber = () => {
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
       // Set error message for invalid email
-      setEmailError(t('emailerror'));
+      setEmailError(true);
       return;
     }
-    setEmailError('');
+    
     addSubscriber({email}).then(data => {
       if(data){
-        console.log(data);
+        setEmailError(false);
       }
-    });
-    
+      else {
+        setEmailError(true);
+      }
+    });    
+    setEmailError(null);
   };
 
   return (
@@ -184,19 +189,27 @@ const Footer = () => {
           <div className="relative w-full">
             <div className="2xl:absolute top-0 left-0 z-0 w-full h-full py-8 ps-0 lg:ps-16 ">
               <div className="flex flex-col 2xl:flex-row justify-between">
-                <div className="2xl:w-[483px] font-bold text-white uppercase text-left">
-                  <div className="text-[20px] 2xl:text-[40px] leading-[25px] 2xl:leading-[50px] uppercase">{t('subscribe')}
+                <div className="2xl:w-[483px] text-white uppercase text-left">
+                  <div className="font-bold text-[20px] 2xl:text-[40px] leading-[25px] 2xl:leading-[50px] uppercase">{t('subscribe')}
                     <br /> {t('tonewsteller')}
                   </div>
-                  <div className="py-4 2xl:py-12">
+                  <div className="py-4 2xl:py-12 relative">
                     <input
                       type="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-[280px] 2xl:w-[380px] h-[42px] 2xl:h-[60px] py-2 px-4 2xl:px-8 text-[14px] 2xl:text-[20px] bg-[#1E2730] "
+                      onChange={(e) => {setEmail(e.target.value); setEmailError(null)}}
+                      className={`w-[280px] 2xl:w-[380px] h-[42px] 2xl:h-[60px] py-2 pl-4 2xl:pl-8 pr-12 2xl:pr-20 text-[14px] 2xl:text-[20px] font-['Jost'] rounded ${email ? 'bg-[#2F4254]' : 'bg-[#1E2730]'} outline-none focus:border ${emailerror === true ? 'border border-[#A45050] focus:border-[#A45050] focus:border-opacity-100' : 'focus:border-white focus:border-opacity-20'} ${emailerror === false ? 'border border-[#89A450] focus:border-[#89A450] focus:border-opacity-100' : 'focus:border-white focus:border-opacity-20'}`}
                       placeholder={t('email')}
                     />
-                    {emailerror && <div className="text-red-500">{emailerror}</div>}
+                    {emailerror === true ?
+                     <img src={FalseIcon} alt="error" className="absolute top-[27px] left-[245px] 2xl:top-[66px] 2xl:left-[330px] w-5 2xl:w-auto" style={{ pointerEvents: 'none' }} />
+                     : null
+                    }
+                    {emailerror === false ?
+                     <img src={TrueIcon} alt="error" className="absolute top-[27px] left-[245px] 2xl:top-[66px] 2xl:left-[330px] w-5 2xl:w-auto" style={{ pointerEvents: 'none' }} />
+                     : null
+                    }
+
                   </div>
                   
                   <Button 
