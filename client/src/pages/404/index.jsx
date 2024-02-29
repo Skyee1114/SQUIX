@@ -24,7 +24,7 @@ export default function Err404() {
                             <br />
                             {t("404error")}
                         </div>
-                        <Link className="">
+                        <Link to={'/'}>
                             <Button text={t("gotomainpage")} />
                         </Link>
                     </div>

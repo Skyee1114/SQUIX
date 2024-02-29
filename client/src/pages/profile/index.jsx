@@ -70,6 +70,7 @@ function Profile() {
   const [googleaccountlink, setGoogleAccountLink] = useState("");
 
   const [name, setName] = useState('Mellosa');
+  const [membership, setMembership] = useState('');
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -390,6 +391,7 @@ function Profile() {
       getCurrentProfile().then(data => {
         if(data) {
           setName(data.personalInfo.username);
+          setMembership(data.membership);
           setEmail(data.personalInfo.email);
           setFirstname(data.personalInfo.firstname);
           setLastname(data.personalInfo.lastname);
@@ -479,7 +481,10 @@ function Profile() {
               />
             </div>
             <div className="font-bold text-black text-left text-[20px] 2xl:text-[54px] leading-[28px] 2xl:leading-[78px]">
-              {name}
+              {name}                        
+            </div>
+            <div className="font-bold text-red-700 text-[20px] 2xl:text-[54px] leading-[28px] 2xl:leading-[78px]">
+              {membership}                        
             </div>
           </div>
           <div className="flex flex-col 2xl:flex-row items-center 2xl:items-stretch pt-4 2xl:pt-12">

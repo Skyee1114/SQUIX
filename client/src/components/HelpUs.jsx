@@ -276,7 +276,7 @@ export default function HelpUs() {
                     </div>
                   </div> 
                   <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
+                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
                       <img src={`img/${images[(currentImageIndex+5+images.length)%images.length]}.png`} alt="Royal" className="absolute w-full h-full object-cover" />
                       <div className="flex flex-col h-full justify-between">
                         <div className="flex p-[10px] xl:p-[18px] z-10">

@@ -16,13 +16,31 @@ const JobSchema = new mongoose.Schema({
         korean: {
             type: String,       
         },
+        spanish: {
+            type: String,
+        },
         portuguese: {
             type: String,
+        },        
+    },
+    summary: {
+        english: {
+            type: String,
+            required: true,
+        },
+        russian: {
+            type: String,            
+        },
+        korean: {
+            type: String,       
         },
         spanish: {
             type: String,
         },
-    },
+        portuguese: {
+            type: String,
+        },        
+    },    
     division: {
         english: {
             type: String,
@@ -34,12 +52,12 @@ const JobSchema = new mongoose.Schema({
         korean: {
             type: String,
         },
-        portuguese: {
-            type: String,
-        },
         spanish: {
             type: String,
-        },        
+        },  
+        portuguese: {
+            type: String,
+        },              
     },    
     position: {
         english: {
@@ -52,13 +70,31 @@ const JobSchema = new mongoose.Schema({
         korean: {
             type: String,
         },
+        spanish: {
+            type: String,
+        },   
         portuguese: {
             type: String,
+        },             
+    },    
+    contents: {
+        english: {
+            type: String,
+            required: true,
+        },
+        russian: {
+            type: String,            
+        },
+        korean: {
+            type: String,       
         },
         spanish: {
             type: String,
+        },
+        portuguese: {
+            type: String,
         },        
-    },    
+    },
     date: {
         type: Date,
         default: "",

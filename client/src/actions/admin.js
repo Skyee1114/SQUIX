@@ -45,7 +45,8 @@ export const getNews = async ({id}) => {
       headers: {
       'Content-Type': 'application/json',
       },
-    };    
+    };  
+    console.log(id);  
     const res = await axios.post('http://156.227.0.154:5000/api/admin/news/', {id}, config);  
     return res.data;
   } catch (err) {
@@ -53,7 +54,7 @@ export const getNews = async ({id}) => {
   }
 };
 
-export const getNewsImage = async ({id}) => {
+export const getNewsCoverImage = async ({id}) => {
   try {
     const config = {
       headers: {
@@ -61,7 +62,7 @@ export const getNewsImage = async ({id}) => {
       },
       responseType: 'blob' // Set the response type as Blob
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/newsimage', {id}, config);  
+    const res = await axios.post('http://156.227.0.154:5000/api/admin/newscoverimage', {id}, config);  
     return res.data;
   } catch (err) {
     console.error(err);
@@ -77,6 +78,7 @@ export const saveNews = async ({news}) => {
       'Content-Type': 'application/json',
       },
     };
+    console.log(news);
     const res = await axios.post('http://156.227.0.154:5000/api/admin/savenews', { news }, config);  
     return res.data;
   } catch (err) {
@@ -84,14 +86,28 @@ export const saveNews = async ({news}) => {
   }
 };
 
-export const saveNewsImage = async (formData) => {
+export const saveNewsCoverImage = async (formData) => {
   try {
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/savenewsimage', formData, config);  
+    const res = await axios.post('http://156.227.0.154:5000/api/admin/savenewscoverimage', formData, config);  
+    return res.data;
+  } catch (err) {
+    
+  }
+};
+
+export const saveNewsContentsImage = async (formData) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+    };
+    const res = await axios.post('http://156.227.0.154:5000/api/admin/savenewscontentsimage', formData, config);  
     return res.data;
   } catch (err) {
     
@@ -158,13 +174,56 @@ export const deleteJobs = async ({selectedJobs}) => {
   }
 };
 
-// get Current News
+// get Current Jobs
+export const getJobs = async ({id}) => {
+  try {
+    const config = {
+      headers: {
+      'Content-Type': 'application/json',
+      },
+    };  
+    console.log(id);  
+    const res = await axios.post('http://156.227.0.154:5000/api/admin/jobs/', {id}, config);  
+    return res.data;
+  } catch (err) {
+    
+  }
+};
+
+// get Jobs list
 export const getJobsList = async () => {
   try {
     
     const res = await axios.get('http://156.227.0.154:5000/api/admin/jobslist/');   
     return res.data;
   } catch (err) {
+  }
+};
+
+// get Subscribers list
+export const getSubscribersList = async () => {
+  try {
+    
+    const res = await axios.get('http://156.227.0.154:5000/api/subscriber/subscriberslist/');   
+    return res.data;
+  } catch (err) {
+  }
+};
+
+// Delete Selected Subscribers
+export const deleteSubscribers = async ({selectedSubscribers}) => {
+  try {        
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+    };
+    const res = await axios.delete(`http://156.227.0.154:5000/api/subscriber/deletesubscriber/${selectedSubscribers}`, config);  
+    
+    return res.data;
+  } catch (err) {
+    // dispatch({ type: CLEAR_PROFIlE });
+    
   }
 };
 

@@ -1,21 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
 import { IoIosClose } from "react-icons/io";
+import { useLocation } from 'react-router-dom'
 import Footer from "../../components/Footer";
 import AdminNavbar from "../../components/AdminNavbar";
-import { getNews, getNewsImage, saveNews, saveNewsImage, sendtoSubscribers } from "../../actions/admin";
+import TextEditor from "../../components/TextEditor";
+import { getNews, getNewsCoverImage, saveNews, saveNewsCoverImage, sendtoSubscribers } from "../../actions/admin";
 
 function NewsEdit() {
 
     const location = useLocation();
-    const id = location.state && location.state.id; 
-
+    const id = location.state && location.state.id;     
     const [language, setLanguage] = useState("english"); 
     const [titleerror, setTitleError] = useState('');
-    const [contenterror, setContentError] = useState('');  
+    const [summaryerror, setSummaryError] = useState('');
     const [imageerror, setImageError] = useState('');
+    const [contenterror, setContentError] = useState('');  
     const [saving, setSaving] = useState(false);
-    
 
     const [news, setNews] = useState(
         {
@@ -24,34 +24,41 @@ function NewsEdit() {
                 english: "",
                 russian: "",
                 korean: "",
-                portuguese: "",
-                spanish: ""
+                spanish: "",
+                portuguese: ""                
+            },
+            summary: {
+                english: "",
+                russian: "",
+                korean: "",
+                spanish: "",
+                portuguese: ""                
             },
             contents: {
                 english: "",
                 russian: "",
                 korean: "",
-                portuguese: "",
-                spanish: ""
+                spanish: "",
+                portuguese: ""                
             },
             tags: {
                 english: [],
                 russian: [],
                 korean: [],
-                portuguese: [],
-                spanish: []
+                spanish: [],
+                portuguese: []
             },
             date: "",
             subscription: "",
         }
-    );
+    );    
 
     const [tags, setTags] = useState({
         english: "",
         russian: "",
         korean: "",
-        portuguese: "",
-        spanish: ""
+        spanish: "",
+        portuguese: ""        
     });
 
     const [newsImageFile, setNewsImageFile] = useState(null);
@@ -73,16 +80,26 @@ function NewsEdit() {
         }));
     };
 
-    const handleContentChange = (e, language) => {
+    const handleSummaryChange = (e, language) => {
         const { value } = e.target;
         setNews(prevNews => ({
             ...prevNews,
-            contents: {
-                ...prevNews.contents,
+            summary: {
+                ...prevNews.summary,
                 [language]: value
             }
         }));
     };
+    
+    const handleEditorData = (data, language) => {
+        setNews(prevNews => ({
+            ...prevNews,
+            contents: {
+                ...prevNews.contents,
+                [language]: data
+            }
+        }));
+    };   
 
     const handleTagChange = (e, language) => {
         const { value } = e.target;
@@ -100,8 +117,8 @@ function NewsEdit() {
                 english: [...prevNews.tags.english, tags.english],
                 russian: [...prevNews.tags.russian, tags.russian],
                 korean: [...prevNews.tags.korean, tags.korean],
-                portuguese: [...prevNews.tags.portuguese, tags.portuguese],
-                spanish: [...prevNews.tags.spanish, tags.spanish]
+                spanish: [...prevNews.tags.spanish, tags.spanish],
+                portuguese: [...prevNews.tags.portuguese, tags.portuguese]                
             }
         }));
 
@@ -110,8 +127,8 @@ function NewsEdit() {
             english: "",
             russian: "",
             korean: "",
-            portuguese: "",
-            spanish: ""
+            spanish: "",
+            portuguese: ""
         });
 
     };
@@ -130,7 +147,6 @@ function NewsEdit() {
             };
         });
     };
-    
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -153,13 +169,13 @@ function NewsEdit() {
         }          
         setTitleError('');
 
-        if (!news.contents.english) {
+        if (!news.summary.english) {
             // Set error message for short password
-            setContentError('Please input news content');
+            setSummaryError('Please input news summary');
             return;    
         }        
-        setContentError('');        
-
+        setSummaryError('');
+        
         if (!newsImage) {
             // Set error message for short password
             setImageError('Please input news image');
@@ -167,26 +183,33 @@ function NewsEdit() {
         }          
         setImageError('');
 
+        if (!news.contents.english) {
+            // Set error message for short password
+            setContentError('Please input news content');
+            return;    
+        }        
+        setContentError('');  
+
         saveNews({news}).then( data => {
-          if(data) {
-            setNews(data);
-          }
-        }).catch(err => {
-          console.error(err); 
+            if(data) {
+              setNews(data);
+            }
+          }).catch(err => {
+            console.error(err); 
         })
 
         if(newsImageFile) {
             const formData = new FormData();
             formData.append('image', newsImageFile);
             formData.append('id', id);
-            saveNewsImage(formData);
-        }   
-        
+            saveNewsCoverImage(formData);
+        }  
+
         if(!news.subscription){
             setSaving(true);
-        }  
+        } 
     };      
-
+    
     const handleSubscribers = () => { 
         sendtoSubscribers({id: id}).then(data => {
             if(data) {
@@ -201,6 +224,7 @@ function NewsEdit() {
         getNews({id}).then( data => {
             if(data) {
                 setNews(data);
+                console.log('data:', data);
                 if(data.subscription) {
                     setSaving(false);
                 }
@@ -211,8 +235,8 @@ function NewsEdit() {
         }).catch(err => {
             console.error(err);
         })
-
-        getNewsImage({id}).then(data => {
+        
+        getNewsCoverImage({id}).then(data => {
             if(data) {
             const imageUrl = URL.createObjectURL(data)
             setNewsImage(imageUrl);
@@ -233,7 +257,7 @@ function NewsEdit() {
                                 <div className="font-bold text-[32px] 2xl:text-[54px] leading-[28px] 2xl:leading-[54px] uppercase">
                                     <p>Edit News</p>
                                 </div>
-                                <div className="flex gap-4">
+                                <div className="flex gap-4"> 
                                     <select 
                                         value={language}
                                         onChange={handleLanguageChange}
@@ -242,10 +266,10 @@ function NewsEdit() {
                                         <option value="english">English</option>
                                         <option value="russian">Russian</option>
                                         <option value="korean">Korean</option>
-                                        <option value="portuguese">Portuguese</option>
                                         <option value="spanish">Spanish</option>
-                                    </select>
-                                    <button className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onClick={() => handleSaveNews()}>
+                                        <option value="portuguese">Portuguese</option>                                        
+                                    </select>                                   
+                                    <button className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleSaveNews()}>
                                     Save            
                                     </button>
                                     <button                 
@@ -258,73 +282,79 @@ function NewsEdit() {
                                     Send to subscribers           
                                     </button>                  
                                 </div>                                
-                            </div>
-                            <div className="flex flex-col gap-8">
-                                <div className="flex flex-col items-start gap-4">
-                                    <div className="font-bold text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
-                                        <p>Title</p>
+                            </div>                            
+
+                            <div className="flex flex-row gap-8 justify-between">
+                                <div className="flex flex-col gap-12 w-3/4">
+                                    <div className="flex flex-col gap-4">
+                                        <div className="font-bold text-left text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
+                                            <p>Title</p>
+                                        </div>
+                                        <div className="w-full">
+                                            <input 
+                                                type="text" 
+                                                value={news.titles[language]}
+                                                onChange={(e) => handleTitleChange(e, language)}
+                                                className="w-full p-4 rounded text-4xl font-bold"
+                                            />        
+                                        </div>
+                                        {titleerror && <div className="text-red-500 text-left">{titleerror}</div>}
                                     </div>
-                                    <div className="w-full">
-                                        <input 
-                                            type="text" 
-                                            value={news.titles[language]}
-                                            onChange={(e) => handleTitleChange(e, language)}
-                                            className="w-full p-4 rounded text-4xl"
-                                        />        
+                                    <div className="flex flex-col gap-4">
+                                        <div className="font-bold text-left text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
+                                            <p>Summary</p>
+                                        </div>
+                                        <div className="w-full">
+                                            <textarea 
+                                                type="text" 
+                                                rows={4}
+                                                value={news.summary[language]}
+                                                onChange={(e) => handleSummaryChange(e, language)}
+                                                className="w-full p-4 rounded text-2xl"
+                                            />        
+                                        </div>
+                                        {summaryerror && <div className="text-red-500 text-left">{summaryerror}</div>}
                                     </div>
-                                    {titleerror && <div className="text-red-500">{titleerror}</div>}
-                                </div>
-                                <div className="flex flex-col items-start gap-4">
-                                    <div className="font-bold text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
-                                        <p>Content</p>
+
+                                    <div className="flex flex-col items-start gap-4">
+                                        <div className="font-bold text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
+                                            <p>Tag for the section</p>
+                                        </div>
+                                        <div className="w-full">
+                                            <input 
+                                                type="text" 
+                                                value={tags[language]}
+                                                onChange={(e) => handleTagChange(e, language)}
+                                                className="w-full p-4 rounded text-2xl"
+                                            />                                         
+                                        </div>
+                                        <div className="w-full flex justify-end">
+                                            <button 
+                                                className={`uppercase ${!(tags.english && tags.russian && tags.korean && tags.spanish && tags.portuguese) ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-700" } text-white font-bold py-2 px-4 rounded`}
+                                                onClick={() => handleAddTag()}
+                                                disabled={!(tags.english && tags.russian && tags.korean && tags.spanish && tags.portuguese)}
+                                            >
+                                            Add tag            
+                                            </button>
+                                        </div>
+                                        <div className="flex gap-8">
+                                            {news.tags[language].map((tag, index) => (
+                                                <div key={index} className="flex items-center border border-black gap-4 px-2 rounded">
+                                                    <p className="text-2xl">{tag}</p>
+                                                    <IoIosClose  className="cursor-pointer text-2xl" onClick={() => deleteTag(index)}/>
+                                                </div>
+                                                
+                                            ))}
+                                        </div>                                    
                                     </div>
-                                    <div className="w-full">
-                                        <textarea 
-                                            type="text" 
-                                            rows={8}
-                                            value={news.contents[language]}
-                                            onChange={(e) => handleContentChange(e, language)}
-                                            className="w-full p-4 rounded text-2xl"
-                                        />                                        
+
+                                </div>                                
+
+                                <div className="flex flex-col gap-4 w-1/4">
+                                    <div className="font-bold text-left text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
+                                        <p>Cover Image</p>
                                     </div>
-                                    {contenterror && <div className="text-red-500">{contenterror}</div>}
-                                </div>
-                                <div className="flex flex-col items-start gap-4">
-                                    <div className="font-bold text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
-                                        <p>Tag for the section</p>
-                                    </div>
-                                    <div className="w-full">
-                                        <input 
-                                            type="text" 
-                                            value={tags[language]}
-                                            onChange={(e) => handleTagChange(e, language)}
-                                            className="w-full p-4 rounded text-2xl"
-                                        />                                         
-                                    </div>
-                                    <div className="w-full flex justify-end">
-                                        <button 
-                                            className={`uppercase ${!(tags.english && tags.russian && tags.korean && tags.spanish && tags.portuguese) ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-700" } text-white font-bold py-2 px-4 rounded`}
-                                            onClick={() => handleAddTag()}
-                                            disabled={!(tags.english && tags.russian && tags.korean && tags.spanish && tags.portuguese)}
-                                        >
-                                        Add tag            
-                                        </button>
-                                    </div>
-                                    <div className="flex gap-8">
-                                        {news.tags[language].map((tag, index) => (
-                                            <div key={index} className="flex items-center border border-black gap-4 px-2 rounded">
-                                                <p className="text-2xl">{tag}</p>
-                                                <IoIosClose  className="cursor-pointer text-2xl" onClick={() => deleteTag(index)}/>
-                                            </div>
-                                            
-                                        ))}
-                                    </div>                                    
-                                </div>
-                                <div className="flex flex-col items-start gap-4">
-                                    <div className="font-bold text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
-                                        <p>Image</p>
-                                    </div>
-                                    <div className="w-full h-[480px] cursor-pointer">
+                                    <div className="w-auto h-full cursor-pointer">
                                         <label htmlFor="imageinput">
                                             <div className="cursor-pointer overflow-hidden w-full h-full">
                                                 <img
@@ -341,10 +371,36 @@ function NewsEdit() {
                                             onChange={(e) => handleImageChange(e)}
                                         />
                                     </div>
-                                    {imageerror && <div className="text-red-500">{imageerror}</div>}
+                                    {imageerror && <div className="text-red-500 text-left">{imageerror}</div>}
                                 </div>
-                                                
-                            </div>                     
+                            </div> 
+
+                            <div className="flex flex-col gap-4">
+                                <div className="font-bold text-left text-[24px] 2xl:text-[32px] leading-[20px] 2xl:leading-[28px] uppercase">
+                                    <p>Contents</p>
+                                </div>
+                                <div className={`${language === 'english' ? "block" : "hidden"}`}>                                
+                                    <TextEditor handleEditorData={handleEditorData} news={news} language={'english'}/>                                  
+                                </div>
+
+                                <div className={`${language === 'russian' ? "block" : "hidden"}`}>                                
+                                    <TextEditor handleEditorData={handleEditorData} news={news} language={'russian'}/>  
+                                </div>
+
+                                <div className={`${language === 'korean' ? "block" : "hidden"}`}>                                
+                                    <TextEditor handleEditorData={handleEditorData} news={news} language={'korean'}/>  
+                                </div>
+
+                                <div className={`${language === 'spanish' ? "block" : "hidden"}`}>
+                                    <TextEditor handleEditorData={handleEditorData} news={news} language={'spanish'}/>  
+                                </div>
+
+                                <div className={`${language === 'portuguese' ? "block" : "hidden"}`}>                                
+                                    <TextEditor handleEditorData={handleEditorData} news={news} language={'portuguese'}/>  
+                                </div>  
+                                {contenterror && <div className="text-red-500 text-left">{contenterror}</div>}
+                            </div>
+                            
                         </div> 
                     </div>
                 </div>
@@ -352,6 +408,9 @@ function NewsEdit() {
             
             <Footer />
         </>
+
+        
+        
     );
 }
 

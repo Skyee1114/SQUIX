@@ -10,6 +10,7 @@ import Button from "../../components/Buttons/Button";
 import { useTranslation } from 'react-i18next';
 import { register } from '../../actions/auth';
 import { useNavigate } from 'react-router-dom';
+import { addSubscriber } from '../../actions/subscriber';
 
 export default function Register() {
   const { t } = useTranslation();
@@ -63,9 +64,13 @@ export default function Register() {
     }
     setCheckboxError('');
 
+    if(isSubscribeChecked) {
+      addSubscriber({email});
+    }
+
     register({ name, email, password }).then(data => {
       if(data) {
-        navigate("/please-verify")
+        navigate("/please-verify")       
       } 
       else 
       {

@@ -43,23 +43,23 @@ function Lore() {
                     onMouseLeave={handleLeave}
                     >
                     <div
-                        className="absolute w-full h-full z-20 bg-transparent"
+                        className="absolute w-full h-full z-10 bg-transparent"
                     ></div>
                     {activeIndex === index || hoverIndex === index ? <>
                         <img
                         src={Hover2560}
                         alt={""}
-                        className="absolute z-20 -mt-2.5 hidden 2xl:block"                  
+                        className="absolute z-10 -mt-2.5 hidden 2xl:block"                  
                         />
                         <img
                         src={Hover834}
                         alt={""}
-                        className="absolute z-20 -mt-[7px] hidden md:block 2xl:hidden"                  
+                        className="absolute z-10 -mt-[7px] hidden md:block 2xl:hidden"                  
                         />
                         <img
                         src={Hover320}
                         alt={""}
-                        className="absolute z-20 -mt-[5px] block md:hidden"                  
+                        className="absolute z-10 -mt-[5px] block md:hidden"                  
                         />
                         <img
                         src={ModelHover}

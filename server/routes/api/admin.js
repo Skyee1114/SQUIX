@@ -59,10 +59,11 @@ router.get('/newslist', async (req, res) => {
     }
 });
 
-router.post('/news', auth, async (req, res) => {
+router.post('/news', async (req, res) => {
     try {
         const { id } = req.body; 
         const news = await News.findOne({id: id}).select('-image');   
+        console.log(news)
         res.json(news);
     } catch (err) {
         console.error(err.message);
@@ -70,7 +71,7 @@ router.post('/news', auth, async (req, res) => {
     }
 });
 
-router.post('/newsimage', async (req, res) => {
+router.post('/newscoverimage', async (req, res) => {
     try {
         const {id} = req.body;
         const news = await News.findOne({id: id}).select('image');
@@ -97,11 +98,13 @@ router.post('/savenews', auth, async (req, res) => {
     try {
         const { news } = req.body;
         // Set the date field of each news object to the current date
+        console.log(news);
         const currentDate = new Date();
         let savednews = null;
         if(news._id) {
             const existnews=  await News.findById(news._id).select('-image');
             existnews.titles = news.titles;
+            existnews.summary = news.summary;
             existnews.contents = news.contents;
             existnews.tags = news.tags;
             existnews.date = currentDate;
@@ -111,7 +114,8 @@ router.post('/savenews', auth, async (req, res) => {
         else {
             const newnews = new News({
                 id: news.id,
-                titles: news.titles,      
+                titles: news.titles,
+                summary: news.summary,
                 contents: news.contents,
                 tags: news.tags,
                 image: '',
@@ -133,7 +137,7 @@ router.post('/savenews', auth, async (req, res) => {
 });
 
 router.post(
-    '/savenewsimage',
+    '/savenewscoverimage',
     auth,
     newsImageUpload.single('image'),
     async (req, res) => {
@@ -155,6 +159,32 @@ router.post(
         news.image = filePath;
         await news.save();  
     
+        res.status(200).json({ message: 'News preview image uploaded successfully', filePath });
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+      }
+    }
+  );
+
+router.post(
+    '/savenewscontentsimage',
+    auth,
+    newsImageUpload.single('image'),
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      try {
+        if (!req.file) {
+          return res.status(400).json({ message: 'Please provide an image file' });
+        }
+    
+        // Save the file path to the database or perform any necessary processing
+        const filePath = 'http://156.227.0.154:5000/uploads/news/' + req.file.filename;
+        
         res.status(200).json({ message: 'Avatar uploaded successfully', filePath });
       } catch (err) {
         console.error(err.message);
@@ -170,7 +200,7 @@ router.delete('/deletenews/:selectedNews', auth, async (req, res) => {
         const deletenews = req.params.selectedNews.split(',');
 
         await News.deleteMany({ id: { $in: deletenews }});      
-        const news = await News.find().select('-image');
+        const news = await News.find().select('-contents');
 
         res.json(news);
     
@@ -223,7 +253,7 @@ router.post('/subscribers', auth, async (req, res) => {
                                     <td style="padding-top: 100px; padding-left: 70px; padding-right: 70px;">
                                         <p style="font-weight: bold; font-family: Tahoma; font-size: 32px; line-height: 38px; color: black;">Hello!</p>
                                         <p style="font-weight: bold; font-family: Tahoma; font-size: 20px; line-height: 24px; color: black;">${news.titles.english}</p>
-                                        <p style="font-family: Tahoma; font-size: 20px; line-height: 24px; color: black;">${news.contents.english}</p>
+                                        <p style="font-family: Tahoma; font-size: 20px; line-height: 24px; color: black;">${news.summary.english}</p>
                                         <img src='http://156.227.0.154:5000/${news.image}' style="width: 500px;" alt="">
                                     </td>                        
                                 </tr>    
@@ -301,23 +331,20 @@ router.post('/savejobs', auth, async (req, res) => {
 
         // Update the date of all jobs to the current date
         const currentDate = new Date();
-        jobs.forEach(job => {
-            job.date = currentDate;
-        });
 
-        for (const job of jobs) {
-            if (job._id) {
-                // If the job has _id, update the existing record
-                await Jobs.findByIdAndUpdate(job._id, job);
-            } else {
-                // If the job doesn't have _id, save as a new record
-                const newJob = new Jobs(job);
-                await newJob.save();
-            }
-        }
+        jobs.date = currentDate;
+        
+        if (jobs._id) {
+            // If the job has _id, update the existing record
+            await Jobs.findByIdAndUpdate(jobs._id, jobs);
+        } else {
+            // If the job doesn't have _id, save as a new record
+            const newJob = new Jobs(jobs);
+            await newJob.save();
+        }       
 
-        const alljobs = await Jobs.find();   
-        res.json(alljobs);      
+        const savedjobs = await Jobs.findOne({id: jobs.id});   
+        res.json(savedjobs);      
 
     } catch (err) {
         console.error(err.message);
@@ -335,6 +362,18 @@ router.delete('/deletejobs/:selectedJobs', auth, async (req, res) => {
 
         res.json(jobs);
     
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+router.post('/jobs', async (req, res) => {
+    try {
+        const { id } = req.body; 
+        const jobs = await Jobs.findOne({id: id});   
+        console.log(jobs)
+        res.json(jobs);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');

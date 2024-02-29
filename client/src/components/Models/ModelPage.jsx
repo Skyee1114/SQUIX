@@ -26,7 +26,7 @@ const ModelPage = () => {
         <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto">        
           <div className="flex flex-col lg:flex-row items-center  gap-[40px] 3xl:gap-[150px] overflow-auto pb-12">
             <img src="img/logoP3.png" alt="logoP3" className=" w-[99px] md:w-[132px] 2xl:w-[237px] absolute lg:relative" />
-            <div className="uppercase flex flex-row justify-between gap-3 2xl:gap-8 mx-auto pt-32 lg:pt-0 relative z-30 ">
+            <div className="uppercase flex flex-row justify-between gap-3 2xl:gap-8 mx-auto pt-32 lg:pt-0 relative z-10 ">
               {[ `${t('3dmodel')}`, `${t('conceptarts')}`, `${t('video')}`, `${t('lore')}`].map(
                 (item, index) => {
                   const isActive = viewType === item;

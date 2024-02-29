@@ -4,7 +4,7 @@ import Button from "./Buttons/Button";
 import Tag from "./Tag";
 import Arrow from "./Arrow";
 import { useTranslation } from 'react-i18next';
-import { getNewsList, getNewsImage } from "../actions/admin";
+import { getNewsList, getNewsCoverImage } from "../actions/admin";
 
 export default function Gallery() {
 
@@ -33,7 +33,7 @@ export default function Gallery() {
     } else {
       setCurrentPosition(1);
     }
-  };
+  };  
 
   useEffect(() => {
     getNewsList().then(data => {
@@ -42,7 +42,7 @@ export default function Gallery() {
         setCurrentNews(data[0]);
   
         const promises = data.map(newsItem => {
-          return getNewsImage({ id: newsItem.id }).then(data => {
+          return getNewsCoverImage({ id: newsItem.id }).then(data => {
             if (data) {
               const imageUrl = URL.createObjectURL(data);
               return imageUrl;
@@ -187,10 +187,10 @@ export default function Gallery() {
                         {currentNews ? currentNews.titles[currentLanguage] : ""}
                       </div>
                       <div className="font-normal text-[14px] md:text-[16px] xl:text-[23px] leading-[16px] md:leading-[18px] xl:leading-[27px] text-left">
-                        {currentNews ? currentNews.contents[currentLanguage] : ""}
+                        {currentNews ? currentNews.summary[currentLanguage] : ""}
                       </div>
                       <div className="flex flex-row items-center justify-between mb-4 xl:mb-8 3xl:mb-12">
-                        <Link to={"/choose/option"}>
+                        <Link to={`/news/${currentNews ? currentNews.id : ''}`}>
                           <Button text={t('viewmore')} />
                         </Link>                        
                         <div className="flex flex-row items-center h-fit gap-[10px] transition duration-300 hover:text-[#FFA801] cursor-pointer">

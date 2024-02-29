@@ -7,7 +7,7 @@ import Tag from "../../components/Tag";
 import TopPostImg from "../../assets/img/top-posts.jpg";
 import NewsTagImg from "../../assets/img/news_tag.svg";
 import { useTranslation } from 'react-i18next';
-import { getNewsList, getNewsImage } from "../../actions/admin";
+import { getNewsList, getNewsCoverImage } from "../../actions/admin";
 
 function AllNews() {
   const { t, i18n } = useTranslation();  
@@ -20,16 +20,23 @@ function AllNews() {
         english: "",
         russian: "",
         korean: "",
-        portuguese: "",
-        spanish: ""
+        spanish: "",
+        portuguese: ""
       },
-      contents: {
+      summary: {
         english: "",
         russian: "",
         korean: "",
-        portuguese: "",
-        spanish: ""
+        spanish: "",
+        portuguese: ""        
       },
+      tags: {
+        english: [],
+        russian: [],
+        korean: [],
+        spanish: [],
+        portuguese: []
+    },
       date: "",
       subscription: "",
     }
@@ -43,13 +50,16 @@ function AllNews() {
     return new Intl.DateTimeFormat('en-US', options).format(date);
   };
 
+
   useEffect(() => {
+
+    window.scrollTo(0, 0);
         
     getNewsList().then(data => {
       if (data) {
         setNews(data);
         data.forEach((newsItem) => {
-          getNewsImage({id: newsItem.id}).then(data => {
+          getNewsCoverImage({id: newsItem.id}).then(data => {
             if (data) {
               const imageUrl = URL.createObjectURL(data);
               setNewsImage(prevImages => [...prevImages, imageUrl]);
@@ -69,7 +79,7 @@ function AllNews() {
       <div className="bg-white md:bg-[#F5F1ED] py-[24px] md:py-[40px] 2xl:py-[80px]">
         <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative" >
           <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto">
-            <div className="4xl:flex flew-row justify-between">
+            <div className="4xl:flex flew-row gap-4 justify-between">
               <div className="4xl:max-w-[1135px] flex flex-col gap-[20px] md:gap-[50px]">
                 <div className="flex flex-col md:flex-row items-start md:items-end gap-6 md:gap-10">
                   <div className="font-bold text-[32px] 2xl:text-[54px] leading-[28px] 2xl:leading-[54px] uppercase">
@@ -94,7 +104,7 @@ function AllNews() {
                     <div className="pt-[8] flex flex-col lg:flex-row justify-between gap-4 lg:gap-0">
                       <div className="flex flex-row gap-[17px] order-last lg:order-first">
 
-                      {newsItem && newsItem.tags ? 
+                        {newsItem && newsItem.tags ? 
                           <div className="flex flex-row gap-[17px]">
                               {newsItem.tags[currentLanguage].map((tag, index) => (
                                   <Tag key={index} size={window.innerWidth > 835 ? "big" : "mobile"} text={tag} />
@@ -112,12 +122,12 @@ function AllNews() {
                       {newsItem.titles[currentLanguage]}
                     </div>
                     <div className=" text-[14px] lg:text-[16px] 2xl:text-[23px] leading-[16px] lg:leading-[18px] 2xl:leading-[26px] text-left">
-                      {newsItem.contents[currentLanguage]}
+                      {newsItem.summary[currentLanguage]}
                     </div>
                     <div className="flex flex-row items-center justify-between mb-4 md:mb-12">
-                      <Link to={"/choose/option"}>
+                      <Link to={`/news/${newsItem.id}`}>
                         <Button text={t('viewmore')} />
-                      </Link>                      
+                      </Link>                        
                       <div className="hidden md:block">
                         <div className="flex flex-row items-center h-fit gap-[10px] hover:text-[#FFA801] cursor-pointer">
                           <div className="text-sm font-bold uppercase">{t('share')}</div>
@@ -156,96 +166,39 @@ function AllNews() {
                   <div className="relative">
                     <img src={TopPostImg} alt="" />
                     <div className="text-white font-bold text-[32px] max-w-[270px] leading-[92%] text-left absolute bottom-[28px] left-[28px] flex flex-col gap-2 items-start">
-                      {t("meetproject")}
-                      <Button text={t("viewmore")} />
+                      {news[0].titles[currentLanguage]}
+                      <Link to={`/news/${news[0].id}`}>
+                        <Button text={t("viewmore")} />
+                      </Link>                      
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[35px] ps-2">
-                    <Link to={"/choose/option"}>
-                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
+                  <div className="flex flex-col gap-[35px] ps-2">                  
+                  {news
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .map((newsItem, index) => (        
+                    <Link to={`/news/${newsItem.id}`} key={newsItem.id} className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[32px] cursor-pointer">
                         <img
-                          src={NewsTagImg}
-                          alt=""
-                          className="absolute top-0 left-0"
+                        src={NewsTagImg}
+                        alt=""
+                        className="absolute top-0 left-2"
                         />
                         <div className="font-bold text-black text-[16px] uppercase">
-                          {t("december")} 23, 2023
+                          { newsItem.date ? formatDate(newsItem.date) : null}
                         </div>
                         <div className="text-[16px] text-black text-left">
-                          {t("post11")}
-                          <br /> {t("post12")}
+                        {newsItem.titles[currentLanguage]}
                         </div>
-                        <Tag size="big" text={t("tagforthesection")} />
-                      </div>
-                    </Link>                    
-                    <Link to={"/choose/option"}>
-                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                        <img
-                          src={NewsTagImg}
-                          alt=""
-                          className="absolute top-0 left-0"
-                        />
-                        <div className="font-bold text-black text-[16px] uppercase">
-                          {t("december")} 23, 2023
-                        </div>
-                        <div className="text-[16px] text-black text-left">
-                          {t("post11")}
-                          <br /> {t("post12")}
-                        </div>
-                        <Tag size="big" text={t("tagforthesection")} />
-                      </div>
-                    </Link>                    
-                    <Link to={"/choose/option"}>
-                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                        <img
-                          src={NewsTagImg}
-                          alt=""
-                          className="absolute top-0 left-0"
-                        />
-                        <div className="font-bold text-black text-[16px] uppercase">
-                          {t("december")} 23, 2023
-                        </div>
-                        <div className="text-[16px] text-black text-left">
-                          {t("post11")}
-                          <br /> {t("post12")}
-                        </div>
-                        <Tag size="big" text={t("tagforthesection")} />
-                      </div>
-                    </Link>                    
-                    <Link to={"/choose/option"}>
-                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                        <img
-                          src={NewsTagImg}
-                          alt=""
-                          className="absolute top-0 left-0"
-                        />
-                        <div className="font-bold text-black text-[16px] uppercase">
-                          {t("december")} 23, 2023
-                        </div>
-                        <div className="text-[16px] text-black text-left">
-                          {t("post11")}
-                          <br /> {t("post12")}
-                        </div>
-                        <Tag size="big" text={t("tagforthesection")} />
-                      </div>
-                    </Link>                    
-                    <Link to={"/choose/option"}>
-                      <div className="flex flex-col items-start gap-2 relative pt-[30px] pb-[20px] px-[20px]">
-                        <img
-                          src={NewsTagImg}
-                          alt=""
-                          className="absolute top-0 left-0"
-                        />
-                        <div className="font-bold text-black text-[16px] uppercase">
-                          {t("december")} 23, 2023
-                        </div>
-                        <div className="text-[16px] text-black text-left">
-                          {t("post11")}
-                          <br /> {t("post12")}
-                        </div>
-                        <Tag size="big" text={t("tagforthesection")} />
-                      </div>
-                    </Link>                    
+                        {newsItem && newsItem.tags ? 
+                          <div className="flex flex-row gap-[4px]">
+                              {newsItem.tags[currentLanguage].map((tag, index) => (
+                                  <Tag key={index} size={window.innerWidth > 835 ? "big" : "mobile"} text={tag} />
+                              ))}                          
+                          </div> 
+                          : null
+                        }
+                    </Link>
+                    
+                  ))}
                   </div>
                 </div>
               </div>

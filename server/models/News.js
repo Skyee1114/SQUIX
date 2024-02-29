@@ -16,12 +16,30 @@ const NewsSchema = new mongoose.Schema({
         korean: {
             type: String,       
         },
+        spanish: {
+            type: String,
+        },
         portuguese: {
             type: String,
+        },        
+    },
+    summary: {
+        english: {
+            type: String,
+            required: true,
+        },
+        russian: {
+            type: String,            
+        },
+        korean: {
+            type: String,       
         },
         spanish: {
             type: String,
         },
+        portuguese: {
+            type: String,
+        },        
     },
     contents: {
         english: {
@@ -29,15 +47,15 @@ const NewsSchema = new mongoose.Schema({
             required: true,
         },
         russian: {
-            type: String,
+            type: String,            
         },
         korean: {
+            type: String,       
+        },
+        spanish: {
             type: String,
         },
         portuguese: {
-            type: String,
-        },
-        spanish: {
             type: String,
         },        
     },
@@ -51,12 +69,12 @@ const NewsSchema = new mongoose.Schema({
         korean: [
             { type: String }
         ],
-        portuguese: [
-            { type: String }
-        ],
         spanish: [
             { type: String }
         ],
+        portuguese: [
+            { type: String }
+        ],        
     },
     image: {
         type: String,

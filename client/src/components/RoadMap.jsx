@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from 'react-i18next';
+import { useLocation } from "react-router-dom";
 
 export default function RoadMap() {
   const { t, i18n } = useTranslation();
+
+  const roadmapRef = useRef(null);
+
+  const location = useLocation()
+
+  useEffect(() => {
+    if(location?.hash == "#roadmap") {
+      setTimeout(() => {
+        roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 800); 
+    }
+  }, [location])
+
   return (
-    <div className="bg-[url('./assets/img/roadmap-bg.jpg')] relative  bg-cover bg-center h-[2300px] sm:h-[2400px] 2xl:h-[3567px] -mt-[200px] overflow-hidden">
+    <div ref={roadmapRef} id="roadmap" className="bg-[url('./assets/img/roadmap-bg.jpg')] relative  bg-cover bg-center h-[2300px] sm:h-[2400px] 2xl:h-[3567px] -mt-[200px] overflow-hidden">
       <img
         src="img/roadmap_tree.png"
         className="absolute z-10 h-[2450px] 2xl:h-[3747px] top-28 2xl:top-0 object-cover w-full hidden sm:block"

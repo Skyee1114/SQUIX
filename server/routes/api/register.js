@@ -95,6 +95,7 @@ router.post(
             linkedIn: '',          
             youtube: '',
           },
+          membership: '',
           avatar: '',
         })
         await profile.save();

@@ -17,7 +17,9 @@ import StripePayment from "./pages/stripepayment";
 import Admin from "./pages/admin";
 import News from "./pages/admin/news";
 import NewsEdit from "./pages/admin/newsedit";
+import JobsEdit from "./pages/admin/jobsedit";
 import Job from "./pages/admin/job";
+import Subscribers from "./pages/admin/subscribers";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import { UserContext } from "./contexts/UserContext";
@@ -55,8 +57,8 @@ function App() {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/donate" element={<Donate />} />
                     <Route path="/news/all" element={<AllNews />} />
-                    <Route path="/choose/option" element={<ChooseOption />} />
-                    <Route path="/roles" element={<Roles />} />                
+                    <Route path="/news/:id" element={<ChooseOption />} />
+                    <Route path="/roles/:id" element={<Roles />} />                
                     <Route path="/auth" element={<Auth />}>
                         <Route path="login" element={<Login />} />
                         <Route path="register" element={<Register />} />
@@ -69,6 +71,8 @@ function App() {
                     <Route path="/admin/news" element={ loading ? <AdminRoute element={<News />} /> : null} />
                     <Route path="/admin/news/edit" element={ loading ? <AdminRoute element={<NewsEdit />} /> : null} />
                     <Route path="/admin/jobpost" element={ loading ? <AdminRoute element={<Job />} /> : null} />
+                    <Route path="/admin/jobs/edit" element={ loading ? <AdminRoute element={<JobsEdit />} /> : null} />
+                    <Route path="/admin/subscribers" element={ loading ? <AdminRoute element={<Subscribers />} /> : null} />
                     
                     <Route path="/*" element={<Err404 />} />
                 </Routes>

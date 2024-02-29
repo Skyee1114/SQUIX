@@ -45,4 +45,31 @@ router.post(
   }
 );
 
+router.get('/subscriberslist', async (req, res) => {
+  try {
+      const subscribers = await Subscriber.find();   
+
+      res.json(subscribers);
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+  }
+});
+
+router.delete('/deletesubscriber/:selectedSubscribers', auth, async (req, res) => {
+  try {
+      
+      const deletesubscribers = req.params.selectedSubscribers.split(',');
+
+      await Subscriber.deleteMany({ _id: { $in: deletesubscribers } });        
+      const subscribers = await Subscriber.find();
+
+      res.json(subscribers);
+  
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

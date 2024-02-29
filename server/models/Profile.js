@@ -59,6 +59,9 @@ const ProfileSchema = new mongoose.Schema({
       type: String,
     },
   },
+  membership: {
+    type: String,
+  },
   avatar: {
     type: String,
   },

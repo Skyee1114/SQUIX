@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SelectDivision from "./SelectDivision";
 import SelectPosition from "./SelectPosition";
 import Button from "./Buttons/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Modal from "react-modal";
 import InputText from "./InputText";
 import { StyledDropZone } from "react-drop-zone";
@@ -24,6 +24,18 @@ const Careers = () => {
   const [state, setState] = useState({ file: undefined });
 
   const [label, setLabel] = useState('');
+
+  const roadmapRef = useRef(null);
+
+  const location = useLocation()
+
+  useEffect(() => {
+    if(location?.hash == "#careers") {
+      setTimeout(() => {
+        roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 800); 
+    }
+  }, [location])
 
   useEffect(() => {    
     getJobsList().then(data => {
@@ -105,7 +117,7 @@ const Careers = () => {
   }  
 
   return (    
-    <div className="bg-[#F5F1ED]">
+    <div ref={roadmapRef} id="careers" className="bg-[#F5F1ED]">
       <div className="text-white h-[200px] 2xl:h-[373px] bg-radial-gradient ">
         <img src="./img/careers_back.png" alt="" className="absolute right-0" />
         <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative">
@@ -142,7 +154,7 @@ const Careers = () => {
                         scope="row"
                         className="px-4 2xl:px-6 py-0 lg:py-4 text-black font-bold uppercase text-[20px] 2xl:text-[30px]"
                       >
-                        <Link to={"/roles"}>
+                        <Link to={`/roles/${job ? job.id : ''}`}>
                           {job.titles[currentLanguage]}
                         </Link>                        
                       </div>

@@ -31,8 +31,10 @@ export default function IntroSection() {
             </div>
             <div className="flex flex-col items-center sm:items-stretch lg:flex-row lg:px-10 py-4 md:py-6 2xl:p-12 3xl:p-8 gap-[17px] md:gap-[40px] 2xl:gap-[95px]">
               <div className="order-last lg:order-first inline-flex flex-col w-fit">
-                <Button icon={DonateIcon} text={t('donateviastripe')} />
-                <Link >
+                <Link to={'/donate'}>
+                  <Button icon={DonateIcon} text={t('donateviastripe')} />
+                </Link>
+                <Link to={"/#contacts"}>
                   <div className="pt-[20px] 2xl:pt-[35px] font-bold text-[14px] 2xl:text-[18px] ">
                     <p className="relative z-10 transition duration-300 hover:text-[#FFA801] text-white uppercase text-left">{t('orsubscribetonewsteller')}</p> 
                   </div>

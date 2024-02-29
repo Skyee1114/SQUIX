@@ -11,7 +11,8 @@ import { useTranslation } from 'react-i18next';
 function Navbar({colorMode}) {
 
     const { t } = useTranslation();
-    const [mobileMenu, setMobileMenu] = useState(false);
+
+    const [mobileMenu, setMobileMenu] = useState(false);    
   
     const mobileMenuButtonClick = () => {
         setMobileMenu(!mobileMenu);
@@ -38,19 +39,19 @@ function Navbar({colorMode}) {
                                         {t('playtest')}
                                     </Link>
                                     <Link
-                                        to={"/"}
+                                        to={"/#roadmap"}
                                         className="font-bold uppercase text-[18px] text-white pt-3 transition duration-300 hover:text-[#FFA801] h-fit"
                                     >
                                         {t('roadmap')}
                                     </Link>
                                     <Link
-                                        to={"/"}
+                                        to={"/#careers"}
                                         className="font-bold uppercase text-[18px] text-white pt-3 transition duration-300 hover:text-[#FFA801] h-fit"
                                     >
                                         {t('careers')}
                                     </Link>
                                     <Link
-                                        to={"/"}
+                                        to={"/#contacts"}
                                         className="font-bold uppercase text-[18px] text-white pt-3 transition duration-300 hover:text-[#FFA801] h-fit"
                                     >
                                         {t('contacts')}
@@ -59,19 +60,19 @@ function Navbar({colorMode}) {
                                     <ProfileButtons />
                                     </div>
                                 </div> 
-                                <div className="w-full block 2xl:hidden" onClick={mobileMenuButtonClick}>
+                                <div className="w-full block 2xl:hidden cursor-pointer" onClick={mobileMenuButtonClick}>
                                     <img src={MenuNavSvg} alt="menu"/>
                                 </div>  
                                 {
                                     mobileMenu && 
-                                    <div className="fixed top-0 left-0 w-full h-full bg-black flex flex-col gap-10 z-50">
+                                    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex flex-col gap-10 z-50">
                                     <div className="flex justify-between pt-4 px-5">
                                         <Link to={"/"}>
                                             <div>
                                                 <img src={LogoNavSvgSmall} alt="logo"/>
                                             </div>
                                         </Link>                                        
-                                        <div className="pt-4" onClick={mobileMenuButtonClick}>
+                                        <div className="pt-4 cursor-pointer" onClick={mobileMenuButtonClick}>
                                             <img src={MenuNavSvg} alt="menu"/>
                                         </div>
 
@@ -84,19 +85,19 @@ function Navbar({colorMode}) {
                                         {t('playtest')}
                                         </Link>
                                         <Link
-                                        to={"/"}
+                                        to={'/#roadmap'}
                                         className="font-bold uppercase text-[14px] text-white pt-3 pr-5 transition duration-300 hover:text-[#FFA801] h-fit"
                                         >
                                         {t('roadmap')}
                                         </Link>
                                         <Link
-                                        to={"/"}
+                                        to={"/#careers"}
                                         className="font-bold uppercase text-[14px] text-white pt-3 pr-5 transition duration-300 hover:text-[#FFA801] h-fit"
                                         >
                                         {t('careers')}
                                         </Link>
                                         <Link
-                                        to={"/"}
+                                        to={"/#contacts"}
                                         className="font-bold uppercase text-[14px] text-white pt-3 pr-5 transition duration-300 hover:text-[#FFA801] h-fit"
                                         >
                                         {t('contacts')}

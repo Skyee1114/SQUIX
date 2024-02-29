@@ -34,5 +34,7 @@ module.exports = withMT({
       '6xl': '2560px',
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 });

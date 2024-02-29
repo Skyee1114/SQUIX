@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import SelectLang from "./SelectLang";
 import Button from "./Buttons/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import TwitterIcon from "../assets/img/socials/twitter.png";
 import TwitterHoverIcon from "../assets/img/socials/twitter_.png";
 import ReditIcon from "../assets/img/socials/redit.png";
@@ -56,8 +56,20 @@ const Footer = () => {
     setEmailError(null);
   };
 
+  const roadmapRef = useRef(null);
+
+  const location = useLocation()
+
+  useEffect(() => {
+    if(location?.hash == "#contacts") {
+      setTimeout(() => {
+        roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 800); 
+    }
+  }, [location])
+
   return (
-    <div className="bg-[url('./assets/img/footer_back.png')] bg-cover bg-center bg-no-repeat overflow-hidden -mt-[1px]">
+    <div ref={roadmapRef} id="contacts" className="bg-[url('./assets/img/footer_back.png')] bg-cover bg-center bg-no-repeat overflow-hidden -mt-[1px]">
       <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative">
         <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto flex flex-col lg:flex-row justify-between">
           <div className="flex flex-col items-start pt-8 me-8 2xl:me-12 gap-0 2xl:gap-4">

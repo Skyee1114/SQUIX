@@ -48,6 +48,12 @@ function AdminNavbar({colorMode}) {
                                         className="font-bold uppercase text-[18px] text-white pt-3 transition duration-300 hover:text-[#FFA801] h-fit"
                                     >
                                         <p>Job Post</p>
+                                    </Link>
+                                    <Link
+                                        to={"/admin/subscribers"}
+                                        className="font-bold uppercase text-[18px] text-white pt-3 transition duration-300 hover:text-[#FFA801]"
+                                    >
+                                        <p>Subscribers</p>
                                     </Link>                                    
                                     <ProfileButtons />
                                     </div>

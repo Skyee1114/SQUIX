@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import AdminNavbar from "../../components/AdminNavbar";
-import { PiPlusCircle } from "react-icons/pi";
 import { getNewsList, deleteNews } from "../../actions/admin";
 import LoadingAnimation from "../../components/LoadingAnimation";
 
@@ -15,13 +14,6 @@ function News() {
     {
       id: 1,
       titles: {
-        english: "",
-        russian: "",
-        korean: "",
-        portuguese: "",
-        spanish: ""
-      },
-      contents: {
         english: "",
         russian: "",
         korean: "",
@@ -69,7 +61,6 @@ function News() {
   };
 
   const editNews = (id) => {
-    // const editnews = news.filter(item => item.id === id);
     navigate("/admin/news/edit", {state: {id: id}});
     
   }
@@ -139,9 +130,8 @@ function News() {
                               checked={selectedNews.includes(row.id)}
                             />
                           </td>
-                          <td className="border-b border-gray-400">{index + 1}</td>
-                          <td className="border-b border-gray-400">{row.titles.english}</td>                  
-                          
+                          <td className="border-b border-gray-400">{index + 1}</td>            
+                          <td className="border-b border-gray-400">{row.titles.english}</td>                
                           <td className="border-b border-gray-400">{row.date}</td>
                           <td className="border-b border-gray-400">
                             <button className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onClick={() => editNews(row.id)}>
