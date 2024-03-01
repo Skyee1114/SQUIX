@@ -6,11 +6,6 @@ const session = require('express-session');
 require('./middleware/passport');
 const app = express();
 
-// const corsOptions = {
-//   origin: 'http://156.227.0.154:3000', // Replace with the actual origin of your frontend
-//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
-
 app.use(cors());
 
 // Connect Database

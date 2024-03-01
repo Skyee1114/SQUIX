@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from 'react-i18next';
 
-const stripePromise = loadStripe('pk_test_51OeHijCVpo5CgMaxJdrVDrPH3Bv78LiYJzW8mrkLndn74MYZRjDWOFQQuC5z2XS8BkGgbbwPXfaitPqU8aOCM9Fi00WFj3NPWJ');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const StripePayment = () => { 
 

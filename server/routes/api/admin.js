@@ -183,7 +183,7 @@ router.post(
         }
     
         // Save the file path to the database or perform any necessary processing
-        const filePath = 'http://156.227.0.154:5000/uploads/news/' + req.file.filename;
+        const filePath = `http://156.227.0.154:5000/uploads/news/` + req.file.filename;
         
         res.status(200).json({ message: 'Avatar uploaded successfully', filePath });
       } catch (err) {

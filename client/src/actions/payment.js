@@ -7,7 +7,7 @@ export const donate = async ({amount}) => {
       'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/payment/', {amount}, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/payment/`, {amount}, config);  
     return res.data;
   } catch (err) {
     const errors = err.response.data.errors;    
@@ -24,7 +24,7 @@ export const updatedonatelist = async ({confirmed_amount}) => {
       'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/payment/updatelist', {confirmed_amount}, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/payment/updatelist`, {confirmed_amount}, config);  
     return res.data;   
   } catch (err) {
     const errors = err.response.data.errors;   
@@ -40,7 +40,7 @@ export const donatetotalamount = async () => {
       'Content-Type': 'application/json',
       },
     };
-    const res = await axios.get('http://156.227.0.154:5000/api/payment/totalamount', config);  
+    const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/payment/totalamount`, config);  
     return res.data;
     
   } catch (err) {

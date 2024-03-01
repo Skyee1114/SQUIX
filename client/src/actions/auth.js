@@ -7,7 +7,7 @@ export const loadUser = async () => {
         setAuthToken(localStorage.token);
     }
     try {
-        const res = await axios.get('http://156.227.0.154:5000/api/auth');
+        const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/auth`);
         return res.data    
     } catch (err) {
         const errors = err.response.data.errors;    
@@ -23,7 +23,7 @@ export const register = async ({ name, email, password }) => {
             'Content-Type': 'application/json',
             },
         };
-        const res = await axios.post('http://156.227.0.154:5000/api/register', { name, email, password }, config); 
+        const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/register`, { name, email, password }, config); 
 
         if (res.status === 200) {
             // Save the name, email, and password into local storage
@@ -49,7 +49,7 @@ export const pleaseverify = async ({ name, email, password }) => {
             },
         };
 
-        const res = await axios.post('http://156.227.0.154:5000/api/pleaseverify', { name, email, password }, config); 
+        const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/pleaseverify`, { name, email, password }, config); 
   
     } catch (err) {
         const errors = err.response.data.errors;   
@@ -63,7 +63,7 @@ export const verifyuser = async (emailtoken ) => {
         setAuthToken(emailtoken);
     }
     try {        
-        const res = await axios.post('http://156.227.0.154:5000/api/users'); 
+        const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/users`); 
 
         if(res.status === 200) {
             const token = res.data.token;
@@ -88,7 +88,7 @@ export const login = async ({email, password}) => {
             'Content-Type': 'application/json'
             },
         };
-        const res = await axios.post('http://156.227.0.154:5000/api/auth', {email, password}, config);    
+        const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/auth`, {email, password}, config);    
         const token = res.data.token;
 
         localStorage.clear();
@@ -112,7 +112,7 @@ export const googleSign = async () => {
             'Content-Type': 'application/json'
             },
         };
-        const res = await axios.get('http://156.227.0.154:5000/api/google', config);    
+        const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/google`, config);    
     } catch (err) {
 
     }

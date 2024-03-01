@@ -3,7 +3,7 @@ import axios from 'axios';
 // Get Current User Profile
 export const getCurrentProfile = async () => {
     try {
-      const res = await axios.get('http://156.227.0.154:5000/api/profile/');  
+      const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/profile/`);  
       return res.data;
     } catch (err) {
       // dispatch({ type: CLEAR_PROFIlE });
@@ -19,7 +19,7 @@ export const updateCurrentProfile = async ({name, email, password, firstname, la
       'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/profile/', { name, email, password, firstname, lastname, phone, twitterlink, artstationlink, facebooklink, linkedinlink, instagramlink, tiktoklink, redditlink, youtubelink, telegramlink, discordlink, googleaccountlink }, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/profile/`, { name, email, password, firstname, lastname, phone, twitterlink, artstationlink, facebooklink, linkedinlink, instagramlink, tiktoklink, redditlink, youtubelink, telegramlink, discordlink, googleaccountlink }, config);  
     return res.data;
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
@@ -30,7 +30,7 @@ export const updateCurrentProfile = async ({name, email, password, firstname, la
 // Get Current User Avatar
 export const getCurrentAvatar = async () => {
   try {
-    const res = await axios.get('http://156.227.0.154:5000/api/profile/avatar', { responseType: 'blob' });  
+    const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/profile/avatar`, { responseType: 'blob' });  
     return res.data;
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
@@ -46,7 +46,7 @@ export const updateCurrentAvatar = async (formData) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/profile/avatar', formData, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/profile/avatar`, formData, config);  
     return res.data;
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });

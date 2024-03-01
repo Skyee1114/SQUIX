@@ -3,7 +3,7 @@ import axios from 'axios';
 // Get All User
 export const getUsers = async () => {
   try {        
-      const res = await axios.get('http://156.227.0.154:5000/api/admin/users/');  
+      const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/admin/users/`);  
       return res.data;
   } catch (err) {
     // dispatch({ type: CLEAR_PROFIlE });
@@ -19,7 +19,7 @@ export const deleteUsers = async ({selectedUsers}) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.delete(`http://156.227.0.154:5000/api/admin/deleteuser/${selectedUsers}`, config);  
+    const res = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/admin/deleteuser/${selectedUsers}`, config);  
     
     return res.data;
   } catch (err) {
@@ -32,7 +32,7 @@ export const deleteUsers = async ({selectedUsers}) => {
 export const getNewsList = async () => {
   try {
     
-    const res = await axios.get('http://156.227.0.154:5000/api/admin/newslist/');   
+    const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/admin/newslist/`);   
     return res.data;
   } catch (err) {
   }
@@ -47,7 +47,7 @@ export const getNews = async ({id}) => {
       },
     };  
     console.log(id);  
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/news/', {id}, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/news/`, {id}, config);  
     return res.data;
   } catch (err) {
     
@@ -62,7 +62,7 @@ export const getNewsCoverImage = async ({id}) => {
       },
       responseType: 'blob' // Set the response type as Blob
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/newscoverimage', {id}, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/newscoverimage`, {id}, config);  
     return res.data;
   } catch (err) {
     console.error(err);
@@ -79,7 +79,7 @@ export const saveNews = async ({news}) => {
       },
     };
     console.log(news);
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/savenews', { news }, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/savenews`, { news }, config);  
     return res.data;
   } catch (err) {
     
@@ -93,7 +93,7 @@ export const saveNewsCoverImage = async (formData) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/savenewscoverimage', formData, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/savenewscoverimage`, formData, config);  
     return res.data;
   } catch (err) {
     
@@ -107,7 +107,7 @@ export const saveNewsContentsImage = async (formData) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/savenewscontentsimage', formData, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/savenewscontentsimage`, formData, config);  
     return res.data;
   } catch (err) {
     
@@ -122,7 +122,7 @@ export const deleteNews = async ({selectedNews}) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.delete(`http://156.227.0.154:5000/api/admin/deletenews/${selectedNews}`, config);  
+    const res = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/admin/deletenews/${selectedNews}`, config);  
     return res.data;
   } catch (err) {
     
@@ -137,7 +137,7 @@ export const sendtoSubscribers = async ({id}) => {
       'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/subscribers', { id }, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/subscribers`, { id }, config);  
     return res.data;
   } catch (err) {
     
@@ -152,7 +152,7 @@ export const saveJobs = async ({jobs}) => {
       'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/savejobs', { jobs }, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/savejobs`, { jobs }, config);  
     return res.data;
   } catch (err) {
     
@@ -167,7 +167,7 @@ export const deleteJobs = async ({selectedJobs}) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.delete(`http://156.227.0.154:5000/api/admin/deletejobs/${selectedJobs}`, config);  
+    const res = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/admin/deletejobs/${selectedJobs}`, config);  
     return res.data;
   } catch (err) {
     
@@ -183,7 +183,7 @@ export const getJobs = async ({id}) => {
       },
     };  
     console.log(id);  
-    const res = await axios.post('http://156.227.0.154:5000/api/admin/jobs/', {id}, config);  
+    const res = await axios.post(`${process.env.REACT_APP_DOMAIN}/api/admin/jobs/`, {id}, config);  
     return res.data;
   } catch (err) {
     
@@ -194,7 +194,7 @@ export const getJobs = async ({id}) => {
 export const getJobsList = async () => {
   try {
     
-    const res = await axios.get('http://156.227.0.154:5000/api/admin/jobslist/');   
+    const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/admin/jobslist/`);   
     return res.data;
   } catch (err) {
   }
@@ -204,7 +204,7 @@ export const getJobsList = async () => {
 export const getSubscribersList = async () => {
   try {
     
-    const res = await axios.get('http://156.227.0.154:5000/api/subscriber/subscriberslist/');   
+    const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/subscriber/subscriberslist/`);   
     return res.data;
   } catch (err) {
   }
@@ -218,7 +218,7 @@ export const deleteSubscribers = async ({selectedSubscribers}) => {
         'Content-Type': 'multipart/form-data'
       },
     };
-    const res = await axios.delete(`http://156.227.0.154:5000/api/subscriber/deletesubscriber/${selectedSubscribers}`, config);  
+    const res = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/subscriber/deletesubscriber/${selectedSubscribers}`, config);  
     
     return res.data;
   } catch (err) {
