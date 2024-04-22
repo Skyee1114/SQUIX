@@ -1,16 +1,13 @@
 import React from 'react'
 import { useState } from "react";
 import { Link } from 'react-router-dom'
-import SelectLang from './SelectLang'
 import ProfileButtons from './ProfileButtons'
 import NavLogoSvg from '../assets/img/logo_nav.svg'
 import MenuNavSvg from "../assets/img/menu_nav.svg"
 import LogoNavSvgSmall from "../assets/img/logo_nav_small.svg"
-import { useTranslation } from 'react-i18next';
 
 function AdminNavbar({colorMode}) {
 
-    const { t } = useTranslation();
     const [mobileMenu, setMobileMenu] = useState(false);
   
     const mobileMenuButtonClick = () => {

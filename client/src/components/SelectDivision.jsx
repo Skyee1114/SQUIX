@@ -2,15 +2,12 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { useEffect, useState} from "react";
-import { useTranslation } from 'react-i18next';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function SelectDivision({divisions, onDivisionChange }) {
-
-  const { t } = useTranslation();
 
   const [division, setDivision] = useState(divisions[0]);
 

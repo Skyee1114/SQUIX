@@ -4,6 +4,8 @@ import Arrow from "./Arrow";
 import Button from "./Buttons/Button";
 import { useTranslation } from 'react-i18next';
 import {donatetotalamount} from '../actions/payment'
+import HelpUsCard from "./HelpUsCard";
+import HelpUsSlider from "./HelpUsSlider";
 
 export default function HelpUs() {
   const { t, i18n } = useTranslation();
@@ -47,9 +49,8 @@ export default function HelpUs() {
       <div className="absolute w-full h-full bg-no-repeat z-0 bg-contain bg-[url('./assets/img/Elf_Female_mage.png')] hidden 2xl:block"></div>
       <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative">
         <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto">
-          <div className="pb-8 pt-[40px] xl:pt-[77px] flex flex-col gap-96 md:gap-4">
-            <div className="flex flex-col md:flex-row justify-between ">
-              
+          <div className="flex flex-col gap-96 md:gap-4 pb-8 pt-[40px] xl:pt-[77px]">
+            <div className="flex flex-col md:flex-row justify-between ">              
               <div className="flex flex-col gap-[26px] w-[280px] xl:w-[405px] 3xl:w-[482px]">
                 <div className={`p-2.5 bg-white bg-opacity-60 rounded-[3px] text-black ${i18n.language === 'english' || i18n.language === 'korean' ? `text-sm` : `text-[10px]`} font-bold font-['Jost'] uppercase leading-[9.94px] w-fit`}>
                   {t('99999peoplesupportedproject')}
@@ -69,304 +70,6 @@ export default function HelpUs() {
                     }
                   />  
                 </Link>                
-              </div>
-              <div className="flex flex-col mt-[280px] md:-mt-[90px] 4xl:-mt-[140px] gap-[19px] pl-0 md:pl-[300px] xl:pl-[480px] 3xl:pl-[500px] absolute">
-                <div className=" flex flex-row gap-[180px] xl:gap-[300px] 4xl:gap-[330px]">
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden bg-cover w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[currentImageIndex]}.png`} alt="Sproud" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[currentImageIndex]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[currentImageIndex])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          alt=""
-                          className="absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[(currentImageIndex+1+images.length)%images.length]}.png`} alt="Original" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[(currentImageIndex+1+prices.length)%prices.length]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[(currentImageIndex+1+images.length)%images.length])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          width={170}
-                          height={176}
-                          alt=""
-                          className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div>                 
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[(currentImageIndex+2+images.length)%images.length]}.png`} alt="Pioneer" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[(currentImageIndex+2+prices.length)%prices.length]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[(currentImageIndex+2+images.length)%images.length])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          width={170}
-                          height={176}
-                          alt=""
-                          className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div> 
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[(currentImageIndex+3+images.length)%images.length]}.png`} alt="Founder" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[(currentImageIndex+3+prices.length)%prices.length]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[(currentImageIndex+3+images.length)%images.length])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          width={170}
-                          height={176}
-                          alt=""
-                          className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div> 
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[(currentImageIndex+4+images.length)%images.length]}.png`} alt="Oldman" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[(currentImageIndex+4+prices.length)%prices.length]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[(currentImageIndex+4+images.length)%images.length])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          width={170}
-                          height={176}
-                          alt=""
-                          className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div> 
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[(currentImageIndex+5+images.length)%images.length]}.png`} alt="Royal" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[(currentImageIndex+5+prices.length)%prices.length]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[(currentImageIndex+5+images.length)%images.length])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          width={170}
-                          height={176}
-                          alt=""
-                          className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div> 
-                  <div>
-                    <div className="absolute cursor-pointer shadow-3xl overflow-hidden   bg-cover  w-[174px] xl:w-[281px] 4xl:w-[315.35px] h-[276px] xl:h-[430px] 4xl:h-[482.25px]">
-                      <img src={`img/${images[(currentImageIndex+6+images.length)%images.length]}.png`} alt="Ultimate" className="absolute w-full h-full object-cover" />
-                      <div className="flex flex-col h-full justify-between">
-                        <div className="flex p-[10px] xl:p-[18px] z-10">
-                          <img
-                            src="img/triangle.svg"
-                            className="w-[20px] xl:w-[31px] 4xl:w-[35px] "
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-row justify-between">
-                          <div className="flex flex-col-reverse">
-                            <div className="flex flex-row gap-1 py-2 xl:py-4 pl-2 z-10 ">
-                              <div className="text-white text-[16px] xl:text-[32px] font-bold font-['Jost'] leading-[23px]">
-                                {prices[(currentImageIndex+6+prices.length)%prices.length]}
-                              </div>
-                              <div className="text-right text-white text-[8px] xl:text-[17px] font-bold font-['Jost'] leading-3">
-                                €
-                              </div>
-                            </div>
-                          </div>
-                          <div className=" flex flex-col gap-3 xl:gap-6 pr-6 z-10">
-                            <div className="text-right text-white text-[25px] xl:text-[35px] 4xl:text-[43px] font-bold font-['Jost'] leading-[17px] xl:leading-[24px] 4xl:leading-[30.53px]">
-                              {t(images[(currentImageIndex+6+images.length)%images.length])}
-                            </div>
-                            <div className="text-right text-yellow-400 text-[11px] xl:text-[16px] 3xl:text-[20px] font-bold font-['Jost'] leading-[7px] xl:leading-[11px] 3xl:leading-[14.20px] pb-[20px] xl:pb-[34px]">
-                              {t('viewdetails')} &gt;
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="img/rectangle.svg"
-                          width={170}
-                          height={176}
-                          alt=""
-                          className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] xl:w-[151px] 4xl:w-[169px] h-[97px] xl:h-[157px] 4xl:h-[176px]"
-                        />
-                      </div>
-                    </div>
-                  </div> 
-                </div>
-                <div className="relative flex gap-[10px] items-center top-[277px] xl:top-[430px] 3xl:top-[440px] 4xl:top-[490px]">
-                  <div className="flex bg-black rounded-[3px]">
-                    <Arrow direction="left" onClick={handleLeftArrowClick} />
-                    <Arrow direction="right" onClick={handleRightArrowClick}/>
-                  </div>
-                  <div className="text-right text-white text-[16px] sm:text-[32px] font-bold font-['Jost'] leading-[18px] sm:leading-[37.22px]">
-                    {`${currentImageIndex + 1}/${images.length}`}
-                  </div>
-                </div>
               </div>
             </div>
             <div>
@@ -398,12 +101,27 @@ export default function HelpUs() {
                   alt="" 
                   className="h-8 md:h-12 w-auto max-w-full sm:block xl:hidden" 
                 />
-              </div>            
-              
+              </div> 
             </div>
           </div>
         </div>
       </div>
+      
+      <div className="absolute top-[330px] md:-top-10 xl:-top-16 left-[15px] md:left-[350px] xl:left-[500px] 2xl:left-[600px] 4xl:left-[750px] 5xl:left-[1000px] 6xl:left-[1200px] w-[720px] md:w-[800px] xl:w-[1200px] 4xl:w-[1400px]">
+        <HelpUsSlider
+          cardList={[
+              { card: <HelpUsCard role="sproud" /> }, 
+              { card: <HelpUsCard role="original" /> },         
+              { card: <HelpUsCard role="pioneer" /> },      
+              { card: <HelpUsCard role="founder" /> },   
+              { card: <HelpUsCard role="oldman" /> },   
+              { card: <HelpUsCard role="royal" /> },   
+              { card: <HelpUsCard role="ultimate" /> },   
+              
+          ]}
+        />        
+      </div>     
+
     </div>
   );
 }

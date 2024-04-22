@@ -43,10 +43,7 @@ const Model3D = () => {
               onMouseEnter={() => handleHover(index)}
               onMouseLeave={handleLeave}
             >
-              <div
-                className="absolute w-full h-full z-20 bg-transparent"
-              ></div>
-              {activeIndex === index || hoverIndex === index ? <>
+              {(activeIndex === index || hoverIndex === index) && <>
                 <img
                   src={Hover2560}
                   alt={""}
@@ -62,18 +59,15 @@ const Model3D = () => {
                   alt={""}
                   className="absolute z-20 -mt-[5px] block md:hidden"                  
                 />
-                <img
-                  src={ModelHover}
-                  alt={""}
-                  className={`w-full h-full z-0 `}
-                />
-              </>
-              : <img
-                src={Model}
+              </>}
+              <div
+                  className={`absolute inset-0 bg-[#3b362b] transition-opacity duration-300 ease-in-out ${(activeIndex === index || hoverIndex === index) ? "opacity-0" : "opacity-50"} z-20`}
+              ></div>
+              <img
+                src={ModelHover}
                 alt={""}
                 className={`w-full h-full z-0 `}
               />
-              }
               
             </div>
           ))}

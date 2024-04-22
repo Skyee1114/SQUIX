@@ -10,7 +10,7 @@ export default function RoadMap() {
   const location = useLocation()
 
   useEffect(() => {
-    if(location?.hash == "#roadmap") {
+    if(location?.hash === "#roadmap") {
       setTimeout(() => {
         roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
       }, 800); 

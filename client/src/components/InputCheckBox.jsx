@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import CheckedIcon from "../assets/img/checkedIcon.svg";
 
 const InputCheckBox = ({ isChecked, setIsChecked }) => {
-  // const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);

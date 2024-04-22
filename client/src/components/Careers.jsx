@@ -21,7 +21,6 @@ const Careers = () => {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedDivision, setSelectedDivision] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
-  const [state, setState] = useState({ file: undefined });
 
   const [label, setLabel] = useState('');
 
@@ -30,7 +29,7 @@ const Careers = () => {
   const location = useLocation()
 
   useEffect(() => {
-    if(location?.hash == "#careers") {
+    if(location?.hash === "#careers") {
       setTimeout(() => {
         roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
       }, 800); 
@@ -71,18 +70,6 @@ const Careers = () => {
     setLabel(`${t('dropfilehere')} *.pdf, *.jpg, *.png, *.pptx, 10mb max`);
   }, [t]);
 
-  // const [label, setLabel] = useState(
-  //   `${t('dropfilehere')} *.pdf, *.jpg, *.png, *.pptx, 10mb max`
-  // );
-
-  const setFile = (file, text) => {
-    setState({ file });
-  };
-
-  // useEffect(() => {
-  //   if (state.file) setLabel(state.file.name);
-  //   else setLabel("Drop file here</br>*.pdf, *.jpg, *.png, *.pptx, 10mb max");
-  // }, [state]);
   const customStyles = {
     content: {
       top: "50%",
@@ -92,7 +79,7 @@ const Careers = () => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "0px",
-      height: "110vh",
+      height: "auto",
       overflow: "hidden",
     },
     overlay: {
@@ -100,7 +87,7 @@ const Careers = () => {
       zIndex:10
     },
   };
-  let subtitle;
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -108,8 +95,7 @@ const Careers = () => {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = "#f00";
+    
   }
 
   function closeModal() {
@@ -151,14 +137,13 @@ const Careers = () => {
                 {filteredJobs.map(job  => (
                     <div key={job.id} className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24 bg-white border-b-4 border-[#F5F1ED]">
                       <div
-                        scope="row"
-                        className="px-4 2xl:px-6 py-0 lg:py-4 text-black font-bold uppercase text-[20px] 2xl:text-[30px]"
+                        className="w-[300px] md:w-[400px] px-4 2xl:px-6 py-0 lg:py-4 text-black font-bold uppercase text-[20px] 2xl:text-[30px]"
                       >
                         <Link to={`/roles/${job ? job.id : ''}`}>
                           {job.titles[currentLanguage]}
                         </Link>                        
                       </div>
-                      <div className="flex flex-row gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24">
+                      <div className="flex flex-row items-center gap-2 lg:gap-6 2xl:gap-12 3xl:gap-24">
                         <div className="px-4 2xl:px-6 py-0 lg:py-4 text-[14px] 2xl:text-[25px] text-black">{t('remote')}</div>
                         <div className="px-4 2xl:px-6 py-0 lg:py-4 text-[14px] 2xl:text-[25px] text-black">
                           {selectedPosition}

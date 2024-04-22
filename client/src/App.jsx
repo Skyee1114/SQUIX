@@ -31,7 +31,7 @@ if (localStorage.token) {
 }
 
 function App() {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [ loading, setLoading ] = useState(false)
 
     useEffect(() => {

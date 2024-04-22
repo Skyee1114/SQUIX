@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
 import { useEffect, useState} from "react";
 import PORTUGUESEImg from "../assets/img/portugal.svg";
 import ENGLISHImg from "../assets/img/united-kingdom.svg";

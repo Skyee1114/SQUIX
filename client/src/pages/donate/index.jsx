@@ -7,6 +7,8 @@ import Navbar from "../../components/Navbar";
 import Arrow from "../../components/Arrow";
 import Button from "../../components/Buttons/Button";
 import Footer from "../../components/Footer";
+import DonateCard from '../../components/DonateCard';
+import DonateSlider from '../../components/DonateSlider';
 import { useTranslation } from 'react-i18next';
 import { UserContext } from "../../contexts/UserContext";
 
@@ -122,7 +124,7 @@ const Donate = () => {
       </div>      
       <Navbar colorMode="light"/>
       <div className="container sm:max-w-[834px] lg:max-w-[1380px] 3xl:max-w-[1690px] 5xl:max-w-[1550px] mx-auto relative" >
-        <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto pt-4 xl:pt-16">   
+        <div className="max-w-[88%] sm:max-w-[95%] 3xl:max-w-[90%] 5xl:max-w-[100%] mx-auto pt-4 xl:pt-16 pb-72 2xl:pb-96">   
           <div className='text-start pl-5 md:pl-10'>
             <Link to={"/"}>              
               <p className='font-bold text-[14px] md:text-[16px] xl:text-[32px] transition duration-300 hover:text-[#FFA801] text-white uppercase inline-block'>&lt; {t('back')}</p>         
@@ -143,274 +145,22 @@ const Donate = () => {
               {t('donateintro2')}
             </div>          
           </div>
-          
-          <div className="flex rounded-[3px] justify-end">
-            <Arrow direction="left" onClick={handleLeftArrowClick} />
-            <Arrow direction="right" onClick={handleRightArrowClick}/>
-          </div>     
-          <div className="flex items-start" >            
-            <div className=" flex flex-row gap-[13px] pt-4">
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px]">
-                <img src={`img/${images[currentImageIndex]}.png`} alt="Sproud" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px]"
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 px-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[currentImageIndex]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[currentImageIndex])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')} &gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
-                <img src={`img/${images[(currentImageIndex+1+images.length)%images.length]}.png`} alt="Original" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[(currentImageIndex+1+prices.length)%prices.length]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[(currentImageIndex+1+images.length)%images.length])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')} &gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
-                <img src={`img/${images[(currentImageIndex+2+images.length)%images.length]}.png`} alt="Pioneer" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[(currentImageIndex+2+prices.length)%prices.length]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[(currentImageIndex+2+images.length)%images.length])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')} &gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
-                <img src={`img/${images[(currentImageIndex+3+images.length)%images.length]}.png`} alt="Founder" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[(currentImageIndex+3+prices.length)%prices.length]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[(currentImageIndex+3+images.length)%images.length])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')} &gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
-                <img src={`img/${images[(currentImageIndex+4+images.length)%images.length]}.png`} alt="Oldman" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[(currentImageIndex+4+prices.length)%prices.length]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[(currentImageIndex+4+images.length)%images.length])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')} &gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
-                <img src={`img/${images[(currentImageIndex+5+images.length)%images.length]}.png`} alt="Royal" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[(currentImageIndex+5+prices.length)%prices.length]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[(currentImageIndex+5+images.length)%images.length])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')} &gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-              <div className="absolute cursor-pointer shadow-3xl relative  bg-cover overflow-hidden w-[174px] 2xl:w-[281px] h-[276px] 2xl:h-[430px] ">
-                <img src={`img/${images[(currentImageIndex+6+images.length)%images.length]}.png`} alt="Ultimate" className="absolute w-full h-full object-cover" />
-                <div className="flex flex-col h-full justify-between">
-                  <div className="flex p-[10px] 2xl:p-[18px] z-10">
-                    <img
-                      src="img/triangle.svg"
-                      className="w-[20px] 2xl:w-[31px] "
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col-reverse">
-                      <div className="flex flex-row gap-1 py-2 2xl:py-4 pl-2 z-10 ">
-                        <div className="text-white text-[21px] 2xl:text-[32px] font-bold font-['Jost'] leading-[14px] 2xl:leading-[22px]">
-                          {prices[(currentImageIndex+6+prices.length)%prices.length]}
-                        </div>
-                        <div className="text-right text-white text-[12px] 2xl:text-[17px] font-bold font-['Jost'] leading-[8px] 2xl:leading-[12px]">
-                          €
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex flex-col gap-3 2xl:gap-5 pr-2 2xl:pr-5 z-10">
-                      <div className={`text-right text-white ${i18n.language === 'russian' ? `text-[15px] 2xl:text-[25px]` : `text-[25px] 2xl:text-[35px]`} font-bold font-['Jost'] leading-[17px] 2xl:leading-[24px]`}>
-                        {t(images[(currentImageIndex+6+images.length)%images.length])}
-                      </div>
-                      <div className="text-right text-yellow-400 text-[11px] 2xl:text-[16px] font-bold font-['Jost'] leading-[7px] 2xl:leading-[11px] pb-[20px] 2xl:pb-[30px]">
-                        {t('viewdetails')}&gt;
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    src="img/rectangle.svg"
-                    alt=""
-                    className=" absolute -bottom-[8px] -left-[1px] z-0 w-[97px] 2xl:w-[151px] h-[97px]  2xl:h-[157px]"
-                  />
-                </div>
-              </div>
-            </div>
+               
+          <div className="absolute top-[380px] md:top-[450px] xl:top-[680px] left-[20px] xl:left-[40px] 3xl:left-[90px] 5xl:left-0 w-[1100px] xl:w-[1180px] 2xl:w-[1800px]">
+            <DonateSlider
+              cardList={[
+                  { card: <DonateCard role="sproud" /> }, 
+                  { card: <DonateCard role="original" /> },         
+                  { card: <DonateCard role="pioneer" /> },      
+                  { card: <DonateCard role="founder" /> },   
+                  { card: <DonateCard role="oldman" /> },   
+                  { card: <DonateCard role="royal" /> },   
+                  { card: <DonateCard role="ultimate" /> },   
+                  
+              ]}
+            />        
           </div>
+
         </div>
       </div>
       <div className="bg-white 2xl:bg-[#F5F1ED] -mt-20 2xl:-mt-32 5xl:-mt-16">    

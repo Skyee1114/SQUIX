@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Hover2560 from "../../assets/img/model3d_hover-2560.svg";
 import Hover834 from "../../assets/img/model3d_hover-834.svg";
 import Hover320 from "../../assets/img/model3d_hover-320.svg";
@@ -54,10 +54,7 @@ function Video() {
               onMouseEnter={() => handleHover(index)}
               onMouseLeave={handleLeave}
             >
-              <div
-                className="absolute w-full h-full z-10 bg-transparent"
-              ></div>
-              {activeIndex === index || hoverIndex === index ? <>
+              {(activeIndex === index || hoverIndex === index) && <>
                 <img
                   src={Hover2560}
                   alt={""}
@@ -73,19 +70,15 @@ function Video() {
                   alt={""}
                   className="absolute z-10 -mt-[5px] block md:hidden"                  
                 />
-                <img
-                  src={ArtsHover}
-                  alt={""}
-                  className={`w-full h-full z-0 `}
-                />
-              </>
-              : <img
-                src={Arts}
+              </>}
+              <div
+                  className={`absolute inset-0 bg-[#3b362b] transition-opacity duration-300 ease-in-out ${(activeIndex === index || hoverIndex === index) ? "opacity-0" : "opacity-50"} z-20`}
+              ></div>
+              <img
+                src={ArtsHover}
                 alt={""}
-                className={`w-full h-full z-0 `}
-              />
-              }
-              
+                className={`w-full h-full z-0`}
+              />       
             </div>
           ))}
           

@@ -1,11 +1,5 @@
-import { Canvas,useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import Model from "./Model";
-import { OrbitControls } from "@react-three/drei";
-import { Group } from "three";
+import { Canvas } from "@react-three/fiber";
 import ModelScene from "./ModelScene";
-
-const lightColor = "#fff0c7"
 
 const ModelCanvas = () => {
 

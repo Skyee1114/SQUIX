@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import ImageWithHover from './ImageHover';
 import { useTranslation } from 'react-i18next';
-import Modal from "react-modal";
 
 const Team = () => {
     const { t } = useTranslation();
@@ -15,41 +14,8 @@ const Team = () => {
   
     const mobileAvatarClick = () => {
         setAvatarPopup(!avatarpopup);
-    };
+    };    
     
-    // console.log(avatarpopup)
-
-    const customStyles = {
-        content: {
-          top: "50%",
-          left: "50%",
-          right: "auto",
-          bottom: "auto",
-          marginRight: "-50%",
-          transform: "translate(-50%, -50%)",
-          padding: "0px",
-          height: "60vh",
-        },
-        overlay: {
-          backgroundColor: "#000000b0",
-          zIndex:10
-        },
-    };
-
-    const [modelIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = "#f00";
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
 
     return (
         <div className='bg-[#F5F1ED]'>

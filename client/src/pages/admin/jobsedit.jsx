@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { IoIosClose } from "react-icons/io";
 import { useLocation } from 'react-router-dom'
 import Footer from "../../components/Footer";
 import AdminNavbar from "../../components/AdminNavbar";

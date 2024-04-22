@@ -96,7 +96,7 @@ export default function ProfileButtons() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-[120px] 2xl:w-[170px] origin-top-right divide-y divide-[#070811] bg-[#070811] shadow-lg focus:outline-none text-[14px] font-bold">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-[130px] 2xl:w-[180px] origin-top-right divide-y divide-[#070811] bg-[#070811] shadow-lg focus:outline-none text-[14px] font-bold">
         {!user ?<>
           <Menu.Item>
             {({ active }) => (

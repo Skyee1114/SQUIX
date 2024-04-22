@@ -61,7 +61,7 @@ const Footer = () => {
   const location = useLocation()
 
   useEffect(() => {
-    if(location?.hash == "#contacts") {
+    if(location?.hash === "#contacts") {
       setTimeout(() => {
         roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
       }, 800); 
@@ -210,7 +210,7 @@ const Footer = () => {
                       type="email"
                       value={email}
                       onChange={(e) => {setEmail(e.target.value); setEmailError(null)}}
-                      className={`w-[280px] 2xl:w-[380px] h-[42px] 2xl:h-[60px] py-2 pl-4 2xl:pl-8 pr-12 2xl:pr-20 text-[14px] 2xl:text-[20px] font-['Jost'] rounded ${email ? 'bg-[#2F4254]' : 'bg-[#1E2730]'} outline-none focus:border ${emailerror === true ? 'border border-[#A45050] focus:border-[#A45050] focus:border-opacity-100' : 'focus:border-white focus:border-opacity-20'} ${emailerror === false ? 'border border-[#89A450] focus:border-[#89A450] focus:border-opacity-100' : 'focus:border-white focus:border-opacity-20'}`}
+                      className={`w-[280px] 2xl:w-[380px] h-[42px] 2xl:h-[60px] py-2 pl-4 2xl:pl-8 pr-12 2xl:pr-20 text-[14px] 2xl:text-[20px] font-['Jost'] rounded focus:bg-[#2F4254] ${email ? 'bg-[#2F4254]' : 'bg-[#1E2730]'} outline-none focus:border ${emailerror === true ? 'border border-[#A45050] focus:border-[#A45050] focus:border-opacity-100' : 'focus:border-white focus:border-opacity-20'} ${emailerror === false ? 'border border-[#89A450] focus:border-[#89A450] focus:border-opacity-100' : 'focus:border-white focus:border-opacity-20'}`}
                       placeholder={t('email')}
                     />
                     {emailerror === true ?

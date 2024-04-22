@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import Navbar from "../../components/Navbar";
-import Tag from "../../components/Tag";
 import TwitterIcon from "../../assets/img/socials/twitter.png";
 import TwitterHoverIcon from "../../assets/img/socials/twitter_.png";
 import ReditIcon from "../../assets/img/socials/redit.png";
@@ -21,8 +18,6 @@ import Button from "../../components/Buttons/Button";
 import PDFIcon from "../../assets/img/pdf_icon.svg";
 import GoogleBlueIcon from "../../assets/img/socials/blue_google.png";
 import GoogleBlueHoverIcon from "../../assets/img/socials/google_.png";
-import ImageSlider from "../../components/ImageSlider";
-import OptionImg4_1920 from "../../assets/img/option4-1920.jpg";
 import Footer from "../../components/Footer";
 import { useTranslation } from 'react-i18next';
 import ContentsReader from "../../components/ContentsReader";
@@ -111,27 +106,6 @@ function Roles() {
       date: "",
     }
   );    
-
-  const downloadPDF = () => {
-    const pdf = new jsPDF();
-
-    const input = document.getElementById('htmlContent');
-
-    html2canvas(input, { useCORS: true, imageTimeout: 15000, allowTaint: true }).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png'); // Default to PNG
-
-        // Determine the image type based on the content type of the data URL
-        const imageType = imgData.includes('image/jpeg') ? 'JPEG' : 'PNG';
-
-        // Add the canvas image to the PDF
-        pdf.addImage(imgData, imageType, 0, 0);
-
-        // Save the PDF file
-        pdf.save('downloaded-pdf.pdf');
-    });
-};
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0);

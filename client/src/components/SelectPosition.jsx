@@ -2,15 +2,12 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function SelectPosition({ positions, onPositionChange }) {
-
-  const { t } = useTranslation();
 
   const [position, setPosition] = useState(positions[0]);
 
